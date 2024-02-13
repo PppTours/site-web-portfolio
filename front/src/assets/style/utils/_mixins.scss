@@ -1,0 +1,133 @@
+/// Breakpoints map.
+/// @prop {String} keys - Keys are identifiers mapped to a given length.
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels.
+$breakpoints: (
+  'xs-max': 576px,
+  'sm-min': 577px,
+  'sm-max': 768px,
+  'md-min': 769px,
+  'md-max': 992px,
+  'lg-min': 993px,
+  'lg-max': 1200px,
+  'xl-min': 1201px
+);
+
+/// Media query for mobile devices.
+@mixin mobile {
+  @media only screen {
+    @content;
+  }
+}
+
+/// Media query for mobile devices with landscape orientation.
+@mixin mobile-landscape {
+  @media (orientation: landscape) and (height < 500px) {
+    @content;
+  }
+}
+
+/// Media query for XS devices.
+@mixin xs {
+  @media (max-width: map-get($breakpoints, 'xs-max')) {
+    @content;
+  }
+}
+
+/// Media query for small devices.
+@mixin sm {
+  @media (min-width: map-get($breakpoints, 'sm-min')) and (max-width: map-get($breakpoints, 'sm-max')) {
+    @content;
+  }
+}
+
+/// Media request for small devices and less.
+@mixin sm-lt {
+  @media (max-width: map-get($breakpoints, 'sm-max')) {
+    @content;
+  }
+}
+
+/// Media query for medium devices.
+@mixin md {
+  @media (min-width: map-get($breakpoints, 'md-min')) and (max-width: map-get($breakpoints, 'md-max')) {
+    @content;
+  }
+}
+
+/// Media query for small devices and less.
+@mixin md-lt {
+  @media (max-width: map-get($breakpoints, 'md-max')) {
+    @content;
+  }
+}
+
+/// Media query for large devices.
+@mixin lg {
+  @media (min-width: map-get($breakpoints, 'lg-min')) and (max-width: map-get($breakpoints, 'lg-max')) {
+    @content;
+  }
+}
+
+/// Media query for large devices and less.
+@mixin lg-lt {
+  @media (max-width: map-get($breakpoints, 'lg-max')) {
+    @content;
+  }
+}
+
+/// Media query for XL devices.
+@mixin xl {
+  @media (min-width: map-get($breakpoints, 'xl-min')) {
+    @content;
+  }
+}
+
+/// Add media query properties for a specific media.
+/// @param $media - Media.
+@mixin media-queries($media) {
+  @if ($media == xs) {
+    @include xs() {
+      @content;
+    }
+  } @else if ($media == sm) {
+    @include sm() {
+      @content;
+    }
+  } @else if ($media == sm-lt) {
+    @include sm-lt() {
+      @content;
+    }
+  } @else if ($media == md) {
+    @include md() {
+      @content;
+    }
+  } @else if ($media == md-lt) {
+    @include md-lt() {
+      @content;
+    }
+  } @else if ($media == lg) {
+    @include lg() {
+      @content;
+    }
+  } @else if ($media == lg-lt) {
+    @include lg-lt() {
+      @content;
+    }
+  } @else if ($media == xl) {
+    @include xl() {
+      @content;
+    }
+  }
+}
+
+/// Add media query rules from a map.
+/// @param {Map{Map}} $properties - Style rules according to the media.
+@mixin media-queries-rules($properties) {
+  @each $media, $rules in $properties {
+    @include media-queries($media) {
+      @each $rule, $value in $rules {
+        #{$rule}: $value;
+      }
+    }
+  }
+}
