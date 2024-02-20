@@ -6,7 +6,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "baseUrl": "src",
 
     /* Bundler mode */
     "moduleResolution": "bundler",

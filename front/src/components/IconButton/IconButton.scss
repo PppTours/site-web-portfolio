@@ -1,0 +1,11 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    $size: 1.6rem;
+    width: $size;
+    height: $size;
+  }
+}

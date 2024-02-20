@@ -1,0 +1,80 @@
+@import '../../../assets/style/utils/mixins';
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid var(--color-background-1);
+  background-color: hsl(var(--color-hsl-background) / 0.7);
+
+  &__content {
+    --button-size-xs: 2.8rem;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    column-gap: 1.2rem;
+    align-items: center;
+
+    @include xs {
+      height: 4.8rem;
+      padding: 0.9rem;
+      column-gap: 0.8rem;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1rem;
+      max-height: 2.8rem;
+
+      @include xs {
+        margin-right: 0;
+        max-height: 2.6rem;
+      }
+
+      &__image {
+        height: 100%;
+        max-height: inherit;
+        padding: 0.2rem;
+      }
+    }
+
+    .action {
+      display: flex;
+      flex-flow: row nowrap;
+      column-gap: 0.5rem;
+
+      &-button {
+        @include xs {
+          width: var(--button-size-xs);
+          height: var(--button-size-xs);
+        }
+      }
+    }
+
+    .profile {
+      &-button {
+        &--large {
+          @include xs {
+            display: none;
+          }
+        }
+
+        &--small {
+          display: none;
+          width: var(--button-size-xs);
+          height: var(--button-size-xs);
+          margin-left: 0.2rem;
+
+          @include xs {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

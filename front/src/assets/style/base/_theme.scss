@@ -1,0 +1,19 @@
+.theme {
+  &--light {
+    --color-border: var(--color-gray-200);
+    --color-background: var(--color-gray-50);
+    --color-hsl-background: 0 0% 98%;
+    --color-background-1: var(--color-gray-100);
+    --color-text: var(--color-gray-950);
+    --color-text-accent: var(--color-gray-600);
+  }
+
+  &--dark {
+    --color-border: var(--color-gray-800);
+    --color-background: var(--color-gray-950);
+    --color-hsl-background: 240 10% 4%;
+    --color-background-1: var(--color-gray-800);
+    --color-text: var(--color-gray-50);
+    --color-text-accent: var(--color-gray-400);
+  }
+}
