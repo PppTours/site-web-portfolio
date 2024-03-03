@@ -1,22 +1,15 @@
-import './IconButton.scss';
-
-import { Button } from 'antd';
-
 import frenchLanguageIcon from '../../assets/icons/flags/France.png';
 import englishLanguageIcon from '../../assets/icons/flags/United-Kingdom.png';
 import { useDispatch } from '../../contexts/DispatchContext';
 import { LanguagesEnum, useLanguage } from '../../contexts/LanguageContext';
 import { ReducerActionsEnum } from '../../reducers/ReducerActionsEnum';
+import AdditionalClassName from '../../types/IClassName';
+import IconButton from './IconButton';
 
-interface ILanguageButton {
-  /**
-   * Additional class name.
-   */
-  className?: string;
-}
+type ILanguageButton = AdditionalClassName;
 
 /**
- * Get button to toggle the language of the app.
+ * Button to toggle the language of the app.
  */
 export default function LanguageButton({ className }: ILanguageButton) {
   const dispatch = useDispatch();
@@ -35,17 +28,10 @@ export default function LanguageButton({ className }: ILanguageButton) {
   }
 
   return (
-    <Button
-      className={`icon-button language-button ${className ?? ''}`}
-      type="text"
-      shape="circle"
+    <IconButton
+      className={`language-button ${className ?? ''}`}
       onClick={handleClick}
-      icon={
-        <img
-          className="icon-button__icon"
-          src={isFrenchLanguage ? frenchLanguageIcon : englishLanguageIcon}
-        />
-      }
+      icon={isFrenchLanguage ? frenchLanguageIcon : englishLanguageIcon}
     />
   );
 }

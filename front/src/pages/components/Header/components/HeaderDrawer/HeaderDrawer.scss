@@ -1,0 +1,42 @@
+.header-drawer {
+  overflow: hidden;
+
+  .ant-drawer-header {
+    display: none;
+  }
+
+  .ant-drawer-body {
+    display: flex;
+    flex-direction: column;
+    padding: 8rem 2rem 5rem 2rem;
+
+    .close-button {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+
+      .svg-icon {
+        --color: var(--color-text-accent);
+        fill: var(--color);
+        stroke: var(--color);
+      }
+    }
+
+    .header-drawer__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .drawer-title {
+        color: var(--color-text);
+        font-size: 3rem;
+      }
+
+      .drawer-actions {
+        display: flex;
+      }
+    }
+  }
+}

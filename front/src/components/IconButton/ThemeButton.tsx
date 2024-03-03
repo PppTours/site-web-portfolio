@@ -1,24 +1,16 @@
-import './IconButton.scss';
-
-import { Button } from 'antd';
-
 import DarkThemeIcon from '../../assets/icons/moon.svg?react';
 import LightThemeIcon from '../../assets/icons/sun.svg?react';
 import { useDispatch } from '../../contexts/DispatchContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { ReducerActionsEnum } from '../../reducers/ReducerActionsEnum';
 import { ThemesEnum } from '../../themes/ThemesEnum';
-import { SvgIcon } from '../SvgIcon/SvgIcon';
+import AdditionalClassName from '../../types/IClassName';
+import { SvgIconButton } from './IconButton';
 
-interface IThemeButton {
-  /**
-   * Additional class name.
-   */
-  className?: string;
-}
+type IThemeButton = AdditionalClassName;
 
 /**
- * Get button to toggle the theme of the app.
+ * Button to toggle the theme of the app.
  */
 export default function ThemeButton({ className }: IThemeButton) {
   const dispatch = useDispatch();
@@ -37,12 +29,10 @@ export default function ThemeButton({ className }: IThemeButton) {
   }
 
   return (
-    <Button
-      className={`icon-button theme-button ${className ?? ''}`}
-      type="text"
-      shape="circle"
+    <SvgIconButton
+      className={`theme-button ${className ?? ''}`}
       onClick={handleClick}
-      icon={<SvgIcon SvgComponent={isLightTheme ? LightThemeIcon : DarkThemeIcon} />}
+      SvgComponent={isLightTheme ? LightThemeIcon : DarkThemeIcon}
     />
   );
 }

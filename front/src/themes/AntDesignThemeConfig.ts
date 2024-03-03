@@ -13,6 +13,7 @@ export function getAntDesignThemeConfig(theme: ThemesEnum): ThemeConfig {
       theme === ThemesEnum.Light ? AntDesignThemes.defaultAlgorithm : AntDesignThemes.darkAlgorithm,
     token: {
       colorPrimary: '#009fe3',
+      colorLink: '#009fe3',
       fontFamily: 'Montserrat, sans-serif'
     }
   };

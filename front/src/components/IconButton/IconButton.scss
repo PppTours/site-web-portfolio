@@ -4,8 +4,14 @@
   align-items: center;
 
   &__icon {
-    $size: 1.6rem;
-    width: $size;
-    height: $size;
+    --icon-size: 1.6rem;
+    // min-width: var(--icon-size) !important;
+    // min-height: var(--icon-size) !important;
+    max-width: var(--icon-size);
+    max-height: var(--icon-size);
+
+    &--large {
+      --icon-size: 2.2rem;
+    }
   }
 }
