@@ -1,0 +1,126 @@
+@import '../../assets/style/utils/variables';
+
+.drawer {
+  --transition-duration: 0.3s;
+  width: 100dvw;
+  max-width: 100dvw;
+  height: 100dvh;
+  max-height: 100dvh;
+  display: flex;
+  position: fixed;
+  z-index: map-get($map: $zIndexes, $key: 'drawer');
+  background-color: rgba($color: #000000, $alpha: 0.5);
+
+  &--top {
+    top: 0;
+    justify-content: flex-start;
+  }
+
+  &--right {
+    right: 0;
+    justify-content: flex-end;
+  }
+
+  &--bottom {
+    bottom: 0;
+    justify-content: flex-end;
+  }
+
+  &--left {
+    left: 0;
+    justify-content: flex-start;
+  }
+
+  &--right,
+  &--left {
+    top: 0;
+    bottom: 0;
+    flex-direction: row;
+    transition:
+      width 0s,
+      background-color var(--transition-duration) ease-out;
+
+    &.drawer--hidden {
+      width: 0;
+      transition:
+        width 0s var(--transition-duration),
+        background-color var(--transition-duration) ease-in;
+    }
+  }
+
+  &--top,
+  &--bottom {
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    transition:
+      height 0s,
+      background-color var(--transition-duration) ease-out;
+
+    &.drawer--hidden {
+      height: 0;
+      transition:
+        height 0s var(--transition-duration),
+        background-color var(--transition-duration) ease-in;
+    }
+  }
+
+  &--hidden {
+    background-color: rgba($color: #000000, $alpha: 0);
+
+    .drawer__content {
+      transition: transform var(--transition-duration) ease-in-out;
+    }
+  }
+
+  &__content {
+    background-color: var(--color-background);
+    transition: transform var(--transition-duration) ease-out;
+
+    &--top {
+      transform: translateY(0);
+
+      &.drawer__content--hidden {
+        transform: translateY(-100dvh);
+      }
+    }
+
+    &--right {
+      transform: translateX(0);
+
+      &.drawer__content--hidden {
+        transform: translateX(100dvh);
+      }
+    }
+
+    &--bottom {
+      transform: translateY(0);
+
+      &.drawer__content--hidden {
+        transform: translateY(100dvh);
+      }
+    }
+
+    &--left {
+      transform: translateX(0);
+
+      &.drawer__content--hidden {
+        transform: translateX(-100dvw);
+      }
+    }
+
+    &--right,
+    &--left {
+      width: 40rem !important;
+      max-width: 100dvw;
+      height: 100%;
+    }
+
+    &--top,
+    &--bottom {
+      height: 40rem;
+      max-height: 100dvh;
+      width: 100%;
+    }
+  }
+}

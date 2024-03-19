@@ -1,0 +1,23 @@
+.filters-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-button {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    column-gap: 1rem;
+
+    &__icon {
+      --icon-size: 1.4rem;
+      max-width: var(--icon-size);
+      max-height: var(--icon-size);
+    }
+
+    &__text {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+  }
+}

@@ -2,11 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--color-background);
 
   &__icon {
     --icon-size: 1.6rem;
-    // min-width: var(--icon-size) !important;
-    // min-height: var(--icon-size) !important;
     max-width: var(--icon-size);
     max-height: var(--icon-size);
 

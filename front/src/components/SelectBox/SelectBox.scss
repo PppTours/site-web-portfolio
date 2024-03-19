@@ -1,0 +1,12 @@
+@import '../../assets/style/utils/mixins';
+
+.select-box {
+  width: auto;
+  min-width: 10rem;
+
+  &:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) {
+    .ant-select-selection-item {
+      font-weight: 500;
+    }
+  }
+}

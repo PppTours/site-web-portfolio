@@ -1,6 +1,66 @@
+@import '../assets/style/utils/mixins';
+
+%horizontal-padding {
+  --horizontal-padding: 2rem;
+  padding-left: var(--horizontal-padding);
+  padding-right: var(--horizontal-padding);
+
+  @include sm-lt {
+    --horizontal-padding: 0.4rem;
+  }
+}
+
 .app {
   width: 100%;
-  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   background-color: var(--color-background);
+
+  &__header {
+    position: sticky;
+    top: 0;
+
+    & > div {
+      @extend %horizontal-padding;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 2rem;
+    @extend %horizontal-padding;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .filters {
+      position: sticky;
+      top: var(--header-height);
+
+      @include sm-lt {
+        display: none;
+      }
+    }
+
+    .profiles {
+      width: 100%;
+
+      &-header {
+        width: 100%;
+        padding: 0.5rem 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        position: sticky;
+        top: var(--header-height);
+        background-color: var(--color-background);
+
+        @include sm-lt {
+          top: var(--header-height--small);
+        }
+      }
+    }
+  }
 }

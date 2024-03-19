@@ -1,17 +1,12 @@
 import './IconButton.scss';
 
 import { Button } from 'antd';
-import { SizeType } from 'antd/es/config-provider/SizeContext';
+import { BaseButtonProps } from 'antd/es/button/button';
 
 import AdditionalClassName from '../../types/IClassName';
 import SvgIcon, { ISvgIcon } from '../SvgIcon/SvgIcon';
 
-interface IButton extends AdditionalClassName {
-  /**
-   * Size of the button.
-   */
-  size?: SizeType;
-
+interface IButton extends AdditionalClassName, Pick<BaseButtonProps, 'type' | 'size'> {
   /**
    * Function called when the button is clicked.
    */
@@ -30,11 +25,17 @@ type ISvgIconButton = IButton & Pick<ISvgIcon, 'SvgComponent'>;
 /**
  * Button with icon.
  */
-export default function IconButton({ icon, size = 'middle', className, onClick }: IIconButton) {
+export default function IconButton({
+  icon,
+  type = 'text',
+  size = 'middle',
+  className,
+  onClick
+}: IIconButton) {
   return (
     <Button
       className={`icon-button language-button ${className ?? ''}`}
-      type="text"
+      type={type}
       shape="circle"
       onClick={onClick}
       size={size}
@@ -48,6 +49,7 @@ export default function IconButton({ icon, size = 'middle', className, onClick }
  */
 export function SvgIconButton({
   SvgComponent,
+  type = 'text',
   size = 'middle',
   className,
   onClick
@@ -55,7 +57,7 @@ export function SvgIconButton({
   return (
     <Button
       className={`icon-button language-button ${className ?? ''}`}
-      type="text"
+      type={type}
       shape="circle"
       onClick={onClick}
       size={size}

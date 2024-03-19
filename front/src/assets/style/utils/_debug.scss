@@ -1,0 +1,23 @@
+@import './mixins';
+
+.debug {
+  @include xl {
+    border: 1px solid blue;
+  }
+
+  @include lg {
+    border: 1px solid green;
+  }
+
+  @include md {
+    border: 1px solid yellow;
+  }
+
+  @include sm {
+    border: 1px solid orange;
+  }
+
+  @include xs {
+    border: 1px solid red;
+  }
+}

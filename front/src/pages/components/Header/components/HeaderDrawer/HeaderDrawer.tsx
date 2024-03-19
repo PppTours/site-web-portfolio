@@ -1,64 +1,45 @@
 import './HeaderDrawer.scss';
 
-import { Drawer } from 'antd';
-import { useState } from 'react';
-
-import MenuIcon from '../../../../../assets/icons/menu.svg?react';
-import CloseIcon from '../../../../../assets/icons/x-circle.svg?react';
+import CloseIcon from '../../../../../assets/icons/close.svg?react';
+import Drawer, { DrawerAnchoringSides, IDrawer } from '../../../../../components/Drawer/Drawer';
 import { SvgIconButton } from '../../../../../components/IconButton/IconButton';
-import AdditionalClassName from '../../../../../types/IClassName';
-import HeaderActions from '../HeaderActions/HeaderActions';
-import HeaderUserProfile from '../HeaderUserProfile/HeaderUserProfile';
+import LanguageButton from '../../../../../components/IconButton/LanguageButton';
+import ThemeButton from '../../../../../components/IconButton/ThemeButton';
+import PolybookLogo from '../../../../../components/PolybookLogo/PolybookLogo';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
-type IHeaderDrawer = AdditionalClassName;
+type IHeaderDrawer = Omit<IDrawer, 'children'>;
 
 /**
  * Header drawer to display menu on small devices.
  */
-export default function HeaderDrawer({ className }: IHeaderDrawer) {
-  const [open, setOpen] = useState(false);
-
-  /**
-   * Open the drawer.
-   */
-  function openDrawer() {
-    setOpen(true);
-  }
-
-  /**
-   * Close the drawer.
-   */
-  function closeDrawer() {
-    setOpen(false);
-  }
-
+export default function HeaderDrawer({ className, open, onClose }: IHeaderDrawer) {
   return (
-    <>
-      <SvgIconButton
-        className={`drawer-button ${className ?? ''}`}
-        SvgComponent={MenuIcon}
-        size="large"
-        onClick={openDrawer}
-      />
-      <Drawer
-        rootClassName={`header-drawer ${className ?? ''}`}
-        title="Menu"
-        getContainer={false}
-        open={open}
-        onClose={closeDrawer}
-      >
+    <Drawer
+      className={className ?? ''}
+      contentClassName="header-drawer"
+      open={open}
+      anchor={DrawerAnchoringSides.Left}
+      onClose={onClose}
+    >
+      <header className="header-drawer-header">
+        <PolybookLogo className="header-drawer-header__logo" />
         <SvgIconButton
-          className="close-button"
+          className="header-drawer-header__close-button"
           SvgComponent={CloseIcon}
           size="large"
-          onClick={closeDrawer}
+          onClick={onClose}
         />
-        <main className="header-drawer__content">
-          <h2 className="drawer-title">Menu</h2>
-          <HeaderUserProfile className="drawer-profile" signUp={true} />
-          <HeaderActions className="drawer-actions" />
-        </main>
-      </Drawer>
-    </>
+      </header>
+      <main className="header-drawer-body">
+        <NavigationBar className="header-drawer-body__navigation-bar" />
+      </main>
+      <footer className="header-drawer-footer">
+        <div className="actions">
+          <ThemeButton className="actions__button" />
+          <LanguageButton className="actions__button" />
+        </div>
+      </footer>
+    </Drawer>
   );
 }

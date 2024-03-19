@@ -1,0 +1,38 @@
+.filters {
+  --menu-width: 25rem;
+  --transition-duration: 0.2s;
+  padding-right: calc(var(--menu-width) + 2rem);
+  width: 0;
+  height: 100rem;
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  transition:
+    var(--transition-duration) padding-right ease-out,
+    var(--transition-duration) opacity ease-out;
+  overflow-x: hidden;
+
+  &--hidden {
+    opacity: 0;
+    padding-right: 0;
+    transition:
+      var(--transition-duration) padding-right ease-in,
+      var(--transition-duration) opacity ease-in;
+
+    .filters__menu {
+      transform: translateX(calc(0px - var(--menu-width)));
+      transition: var(--transition-duration) transform ease-in;
+    }
+  }
+
+  &__menu {
+    width: var(--menu-width);
+    height: 100%;
+    padding-right: 1rem;
+    background-color: var(--color-background);
+    border: none !important;
+    overflow-y: auto;
+    transform: translateX(0);
+    transition: var(--transition-duration) transform ease-out;
+  }
+}

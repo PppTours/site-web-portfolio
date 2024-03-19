@@ -1,0 +1,10 @@
+.polybook-logo {
+  max-height: 2.8rem;
+
+  &__image {
+    display: block;
+    width: auto;
+    max-height: inherit;
+    padding: 0.2rem;
+  }
+}
