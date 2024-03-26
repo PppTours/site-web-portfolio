@@ -1,12 +1,12 @@
 import './HeaderDrawer.scss';
 
-import CloseIcon from '../../../../../assets/icons/close.svg?react';
-import Drawer, { DrawerAnchoringSides, IDrawer } from '../../../../../components/Drawer/Drawer';
-import { SvgIconButton } from '../../../../../components/IconButton/IconButton';
-import LanguageButton from '../../../../../components/IconButton/LanguageButton';
-import ThemeButton from '../../../../../components/IconButton/ThemeButton';
-import PolybookLogo from '../../../../../components/PolybookLogo/PolybookLogo';
-import NavigationBar from '../NavigationBar/NavigationBar';
+import CloseIcon from 'src/assets/icons/close.svg?react';
+import Drawer, { DrawerAnchoringSides, IDrawer } from 'src/components/Drawer/Drawer';
+import { SvgIconButton } from 'src/components/IconButton/IconButton';
+import LanguageButton from 'src/components/LanguageButton/LanguageButton';
+import PolybookLogo from 'src/components/PolybookLogo/PolybookLogo';
+import ThemeButton from 'src/components/ThemeButton/ThemeButton';
+import NavigationBar from 'src/pages/components/Header/components/NavigationBar/NavigationBar';
 
 type IHeaderDrawer = Omit<IDrawer, 'children'>;
 

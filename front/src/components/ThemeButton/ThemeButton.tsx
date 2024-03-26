@@ -1,11 +1,11 @@
-import DarkThemeIcon from '../../assets/icons/moon.svg?react';
-import LightThemeIcon from '../../assets/icons/sun.svg?react';
-import { useDispatch } from '../../contexts/DispatchContext';
-import { useTheme } from '../../contexts/ThemeContext';
-import { ReducerActionsEnum } from '../../reducers/ReducerActionsEnum';
-import { ThemesEnum } from '../../themes/ThemesEnum';
-import AdditionalClassName from '../../types/IClassName';
-import { SvgIconButton } from './IconButton';
+import DarkThemeIcon from 'src/assets/icons/moon.svg?react';
+import LightThemeIcon from 'src/assets/icons/sun.svg?react';
+import { SvgIconButton } from 'src/components/IconButton/IconButton';
+import useDispatch from 'src/hooks/useDispatch';
+import useTheme from 'src/hooks/useTheme';
+import { ReducerActionsEnum } from 'src/reducers/ReducerActionsEnum';
+import { ThemesEnum } from 'src/themes/ThemesEnum';
+import AdditionalClassName from 'src/types/IClassName';
 
 type IThemeButton = AdditionalClassName;
 
@@ -21,7 +21,7 @@ export default function ThemeButton({ className }: IThemeButton) {
   /**
    * Toggle theme of the app.
    */
-  function handleClick() {
+  function handleClick(): void {
     dispatch?.({
       type: ReducerActionsEnum.SetTheme,
       content: isLightTheme ? ThemesEnum.Dark : ThemesEnum.Light

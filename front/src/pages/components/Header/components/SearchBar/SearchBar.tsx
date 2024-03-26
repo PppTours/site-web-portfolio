@@ -2,12 +2,14 @@ import './SearchBar.scss';
 
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-
-import AdditionalClassName from '../../../types/IClassName';
+import AdditionalClassName from 'src/types/IClassName';
 
 type ISearchBar = AdditionalClassName;
 
-export function SearchBar({ className }: ISearchBar) {
+/**
+ * Bar to search a profile.
+ */
+export default function SearchBar({ className }: ISearchBar) {
   return (
     <div className={`search-bar ${className ?? ''}`}>
       <Input

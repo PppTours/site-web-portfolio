@@ -1,10 +1,14 @@
 import './ProfileGrid.scss';
 
-import AdditionalClassName from '../../../types/IClassName';
+import { memo } from 'react';
+import AdditionalClassName from 'src/types/IClassName';
 
 type IProfileGrid = AdditionalClassName;
 
-export default function ProfileGrid({ className }: IProfileGrid) {
+/**
+ * Grid of profiles.
+ */
+function ProfileGrid({ className }: IProfileGrid) {
   const items = Array.from(Array(20).keys());
 
   return (
@@ -17,3 +21,5 @@ export default function ProfileGrid({ className }: IProfileGrid) {
     </div>
   );
 }
+
+export default memo(ProfileGrid);

@@ -44,7 +44,7 @@ interface SelectBoxProps<T extends string> {
 
   /**
    * Function called when an option is selected.
-   * @param {T} sort Selected sort.
+   * @param {T | null} sort Selected sort.
    */
   onSelect: (sort: T | null) => void;
 }

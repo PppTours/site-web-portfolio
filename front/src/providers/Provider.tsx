@@ -1,12 +1,11 @@
 import { ConfigProvider as AntDesignProvider } from 'antd';
 import { ReactElement } from 'react';
-
-import { DispatchContext } from '../contexts/DispatchContext';
-import { LanguageContext, LanguagesEnum } from '../contexts/LanguageContext';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { AppAction } from '../reducers/Reducer';
-import { getAntDesignThemeConfig } from '../themes/AntDesignThemeConfig';
-import { ThemesEnum } from '../themes/ThemesEnum';
+import { DispatchContext } from 'src/contexts/DispatchContext';
+import { LanguageContext, LanguagesEnum } from 'src/contexts/LanguageContext';
+import { ThemeContext } from 'src/contexts/ThemeContext';
+import { AppAction } from 'src/reducers/Reducer';
+import { getAntDesignThemeConfig } from 'src/themes/AntDesignThemeConfig';
+import { ThemesEnum } from 'src/themes/ThemesEnum';
 
 interface IProvider {
   /**

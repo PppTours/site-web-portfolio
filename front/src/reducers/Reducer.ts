@@ -1,5 +1,6 @@
-import { LanguagesEnum } from '../contexts/LanguageContext';
-import { ThemesEnum } from '../themes/ThemesEnum';
+import { LanguagesEnum } from 'src/contexts/LanguageContext';
+import { ThemesEnum } from 'src/themes/ThemesEnum';
+
 import { ReducerActionsEnum } from './ReducerActionsEnum';
 
 /**
@@ -39,7 +40,13 @@ interface LanguageAction extends Omit<Action, 'content'> {
  */
 export type AppAction = ThemeAction | LanguageAction;
 
-export default function reducer(state: AppState, action: AppAction) {
+/**
+ * Global reducer of the app.
+ * @param {AppState} state Current state of the app.
+ * @param {AppAction} action Action to execute.
+ * @returns {AppState} New state of the app.
+ */
+export default function reducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case ReducerActionsEnum.SetTheme:
       return {

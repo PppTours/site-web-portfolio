@@ -1,10 +1,10 @@
 import './PolybookLogo.scss';
 
-import PolybookDarkLogo from '../../assets/images/Polybook_dark.png';
-import PolybookLightLogo from '../../assets/images/Polybook_light.png';
-import { useTheme } from '../../contexts/ThemeContext';
-import { ThemesEnum } from '../../themes/ThemesEnum';
-import AdditionalClassName from '../../types/IClassName';
+import PolybookDarkLogo from 'src/assets/images/Polybook_dark.png';
+import PolybookLightLogo from 'src/assets/images/Polybook_light.png';
+import useTheme from 'src/hooks/useTheme';
+import { ThemesEnum } from 'src/themes/ThemesEnum';
+import AdditionalClassName from 'src/types/IClassName';
 
 export type IPolybookLogo = AdditionalClassName;
 

@@ -1,9 +1,8 @@
-import './FiltersMenu.scss';
+import './FilterMenu.scss';
 
 import { Menu, MenuProps } from 'antd';
-import { forwardRef, LegacyRef } from 'react';
-
-import AdditionalClassName from '../../../types/IClassName';
+import { forwardRef, LegacyRef, memo } from 'react';
+import AdditionalClassName from 'src/types/IClassName';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -45,12 +44,15 @@ const items: MenuProps['items'] = [
   getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group')
 ];
 
-interface IFiltersMenu extends AdditionalClassName {
+interface IFilterMenu extends AdditionalClassName {
   hidden: boolean;
 }
 
-export const FiltersMenu = forwardRef(function FiltersMenu(
-  { className, hidden = false }: IFiltersMenu,
+/**
+ * Menu with filters.
+ */
+const FilterMenu = forwardRef(function FilterMenu(
+  { className, hidden = false }: IFilterMenu,
   ref: LegacyRef<HTMLDivElement> | undefined
 ) {
   const onClick: MenuProps['onClick'] = (e) => {
@@ -58,9 +60,9 @@ export const FiltersMenu = forwardRef(function FiltersMenu(
   };
 
   return (
-    <div ref={ref} className={`filters ${hidden ? 'filters--hidden' : ''} ${className ?? ''}`}>
+    <div ref={ref} className={`filter ${hidden ? 'filter--hidden' : ''} ${className ?? ''}`}>
       <Menu
-        className="filters__menu"
+        className="filter__menu"
         onClick={onClick}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1', 'sub2', 'sub4']}
@@ -70,3 +72,5 @@ export const FiltersMenu = forwardRef(function FiltersMenu(
     </div>
   );
 });
+
+export default memo(FilterMenu);

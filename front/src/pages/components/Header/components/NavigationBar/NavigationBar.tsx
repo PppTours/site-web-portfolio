@@ -1,6 +1,6 @@
 import './NavigationBar.scss';
 
-import AdditionalClassName from '../../../../../types/IClassName';
+import AdditionalClassName from 'src/types/IClassName';
 
 export type INavigationBar = AdditionalClassName;
 

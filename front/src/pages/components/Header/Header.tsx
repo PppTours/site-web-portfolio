@@ -1,25 +1,25 @@
 import './Header.scss';
 
-import { forwardRef, LegacyRef, useState } from 'react';
+import { forwardRef, LegacyRef, memo, useState } from 'react';
+import accountIcon from 'src/assets/icons/account.svg?react';
+import MenuIcon from 'src/assets/icons/menu.svg?react';
+import searchIcon from 'src/assets/icons/search.svg?react';
+import { SvgIconButton } from 'src/components/IconButton/IconButton';
+import LanguageButton from 'src/components/LanguageButton/LanguageButton';
+import PolybookLogo from 'src/components/PolybookLogo/PolybookLogo';
+import ThemeButton from 'src/components/ThemeButton/ThemeButton';
+import AdditionalClassName from 'src/types/IClassName';
 
-import accountIcon from '../../../assets/icons/account.svg?react';
-import MenuIcon from '../../../assets/icons/menu.svg?react';
-import searchIcon from '../../../assets/icons/search.svg?react';
-import { SvgIconButton } from '../../../components/IconButton/IconButton';
-import LanguageButton from '../../../components/IconButton/LanguageButton';
-import ThemeButton from '../../../components/IconButton/ThemeButton';
-import PolybookLogo from '../../../components/PolybookLogo/PolybookLogo';
-import AdditionalClassName from '../../../types/IClassName';
-import { SearchBar } from '../SearchBar/SearchBar';
 import HeaderDrawer from './components/HeaderDrawer/HeaderDrawer';
 import NavigationBar from './components/NavigationBar/NavigationBar';
+import SearchBar from './components/SearchBar/SearchBar';
 
 interface IHeader extends AdditionalClassName {}
 
 /**
  * Header bar.
  */
-export const Header = forwardRef(function Header(
+const Header = forwardRef(function Header(
   { className }: IHeader,
   ref: LegacyRef<HTMLDivElement> | undefined
 ) {
@@ -56,3 +56,5 @@ export const Header = forwardRef(function Header(
     </header>
   );
 });
+
+export default memo(Header);

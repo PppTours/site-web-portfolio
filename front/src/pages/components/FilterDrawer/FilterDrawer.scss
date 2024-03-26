@@ -1,13 +1,13 @@
-@import '../../../assets/style/utils/mixins';
+@import 'src/assets/style/utils/mixins';
 
-.filters-drawer-container.drawer {
+.filter-drawer-container.drawer {
   display: none;
 
   @include sm-lt {
     display: flex;
   }
 
-  .filters-drawer {
+  .filter-drawer {
     padding: 0.4rem;
     padding-left: 1rem;
     min-height: 80%;

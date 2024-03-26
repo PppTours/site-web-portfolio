@@ -1,4 +1,4 @@
-.filters {
+.filter {
   --menu-width: 25rem;
   --transition-duration: 0.2s;
   padding-right: calc(var(--menu-width) + 2rem);
@@ -19,7 +19,7 @@
       var(--transition-duration) padding-right ease-in,
       var(--transition-duration) opacity ease-in;
 
-    .filters__menu {
+    .filter__menu {
       transform: translateX(calc(0px - var(--menu-width)));
       transition: var(--transition-duration) transform ease-in;
     }

@@ -1,4 +1,4 @@
-@import '../assets/style/utils/mixins';
+@import 'src/assets/style/utils/mixins';
 
 %horizontal-padding {
   --horizontal-padding: 2rem;
@@ -35,7 +35,7 @@
     display: flex;
     flex-flow: row nowrap;
 
-    .filters {
+    .filter {
       position: sticky;
       top: var(--header-height);
 
@@ -47,7 +47,7 @@
     .profiles {
       width: 100%;
 
-      &-header {
+      &__header {
         width: 100%;
         padding: 0.5rem 0;
         display: flex;

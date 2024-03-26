@@ -1,8 +1,7 @@
 import './Drawer.scss';
 
 import { ReactElement, useEffect } from 'react';
-
-import AdditionalClassName from '../../types/IClassName';
+import AdditionalClassName from 'src/types/IClassName';
 
 /**
  * Drawer anchoring sides.
