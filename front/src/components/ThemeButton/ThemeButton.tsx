@@ -5,7 +5,7 @@ import useDispatch from 'src/hooks/useDispatch';
 import useTheme from 'src/hooks/useTheme';
 import { ReducerActionsEnum } from 'src/reducers/ReducerActionsEnum';
 import { ThemesEnum } from 'src/themes/ThemesEnum';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 type IThemeButton = AdditionalClassName;
 

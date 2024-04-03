@@ -1,7 +1,7 @@
 import './SvgIcon.scss';
 
 import { FunctionComponent, SVGProps } from 'react';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 export interface ISvgIcon extends SVGProps<SVGSVGElement>, AdditionalClassName {
   /**

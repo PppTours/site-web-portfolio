@@ -4,7 +4,9 @@ import { memo } from 'react';
 import CloseIcon from 'src/assets/icons/close.svg?react';
 import Drawer, { DrawerAnchoringSides } from 'src/components/Drawer/Drawer';
 import { SvgIconButton } from 'src/components/IconButton/IconButton';
-import AdditionalClassName from 'src/types/IClassName';
+import useTranslation from 'src/hooks/useTranslation';
+import { I18nKeys } from 'src/i18n/I18nKeys';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 export interface IFilterDrawer extends AdditionalClassName {
   /**
@@ -22,6 +24,8 @@ export interface IFilterDrawer extends AdditionalClassName {
  * Drawer with filter.
  */
 function FilterDrawer({ open, className, onClose }: IFilterDrawer) {
+  const { translate } = useTranslation();
+
   return (
     <Drawer
       className={`filter-drawer-container ${className ?? ''}`}
@@ -31,7 +35,7 @@ function FilterDrawer({ open, className, onClose }: IFilterDrawer) {
       onClose={onClose}
     >
       <header className="filter-drawer-header">
-        <h2 className="filter-drawer-header__title">Filtres</h2>
+        <h2 className="filter-drawer-header__title">{translate(I18nKeys.Filters)}</h2>
         <SvgIconButton
           className="filter-drawer-header__close-button"
           SvgComponent={CloseIcon}

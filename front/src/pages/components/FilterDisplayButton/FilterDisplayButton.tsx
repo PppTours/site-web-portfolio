@@ -4,7 +4,9 @@ import { Button } from 'antd';
 import { memo, useState } from 'react';
 import filterIcon from 'src/assets/icons/filter.svg?react';
 import SvgIcon from 'src/components/SvgIcon/SvgIcon';
-import AdditionalClassName from 'src/types/IClassName';
+import useTranslation from 'src/hooks/useTranslation';
+import { I18nKeys } from 'src/i18n/I18nKeys';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 export interface IFilterDisplayButton extends AdditionalClassName {
   /**
@@ -23,6 +25,7 @@ export interface IFilterDisplayButton extends AdditionalClassName {
  * Button to display filter.
  */
 function FilterDisplayButton({ initialValue, className, onClick }: IFilterDisplayButton) {
+  const { translate } = useTranslation();
   const [display, setDisplay] = useState<boolean>(initialValue);
 
   /**
@@ -37,7 +40,7 @@ function FilterDisplayButton({ initialValue, className, onClick }: IFilterDispla
   return (
     <div className={`filter-display ${className ?? ''}`}>
       <Button className="filter-display-button" type="text" size="small" onClick={handleClick}>
-        <span className="filter-display-button__text">{` ${display ? 'Masquer' : 'Afficher'} les filtres`}</span>
+        <span className="filter-display-button__text">{` ${translate(display ? I18nKeys.HideFilters : I18nKeys.DisplayFilters)}`}</span>
         <SvgIcon className="filter-display-button__icon" SvgComponent={filterIcon} />
       </Button>
     </div>

@@ -1,7 +1,7 @@
 import './Footer.scss';
 
 import { memo } from 'react';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 type IFooter = AdditionalClassName;
 

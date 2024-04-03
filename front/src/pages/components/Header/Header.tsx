@@ -8,7 +8,7 @@ import { SvgIconButton } from 'src/components/IconButton/IconButton';
 import LanguageButton from 'src/components/LanguageButton/LanguageButton';
 import PolybookLogo from 'src/components/PolybookLogo/PolybookLogo';
 import ThemeButton from 'src/components/ThemeButton/ThemeButton';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 import HeaderDrawer from './components/HeaderDrawer/HeaderDrawer';
 import NavigationBar from './components/NavigationBar/NavigationBar';

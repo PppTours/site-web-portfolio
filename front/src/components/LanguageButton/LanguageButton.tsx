@@ -1,11 +1,9 @@
 import frenchLanguageIcon from 'src/assets/icons/flags/France.png';
 import englishLanguageIcon from 'src/assets/icons/flags/United-Kingdom.png';
 import IconButton from 'src/components/IconButton/IconButton';
-import { LanguagesEnum } from 'src/contexts/LanguageContext';
-import useDispatch from 'src/hooks/useDispatch';
-import useLanguage from 'src/hooks/useLanguage';
-import { ReducerActionsEnum } from 'src/reducers/ReducerActionsEnum';
-import AdditionalClassName from 'src/types/IClassName';
+import useTranslation from 'src/hooks/useTranslation';
+import { SupportedLanguages } from 'src/i18n/i18n';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 type ILanguageButton = AdditionalClassName;
 
@@ -13,19 +11,16 @@ type ILanguageButton = AdditionalClassName;
  * Button to toggle the language of the app.
  */
 export default function LanguageButton({ className }: ILanguageButton) {
-  const dispatch = useDispatch();
-  const currentLanguage = useLanguage();
-
-  const isFrenchLanguage = currentLanguage === LanguagesEnum.French;
+  const { currentLanguage, changeLanguage } = useTranslation();
+  const isFrenchLanguage = currentLanguage === SupportedLanguages.French;
 
   /**
    * Toggle language of the app.
    */
   function handleClick(): void {
-    dispatch?.({
-      type: ReducerActionsEnum.SetLanguage,
-      content: isFrenchLanguage ? LanguagesEnum.English : LanguagesEnum.French
-    });
+    const language = isFrenchLanguage ? SupportedLanguages.English : SupportedLanguages.French;
+
+    changeLanguage(language);
   }
 
   return (

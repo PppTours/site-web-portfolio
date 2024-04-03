@@ -4,7 +4,7 @@ import PolybookDarkLogo from 'src/assets/images/Polybook_dark.png';
 import PolybookLightLogo from 'src/assets/images/Polybook_light.png';
 import useTheme from 'src/hooks/useTheme';
 import { ThemesEnum } from 'src/themes/ThemesEnum';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 export type IPolybookLogo = AdditionalClassName;
 

@@ -1,8 +1,7 @@
 import 'src/assets/style/utils/_debug.scss';
 import './App.scss';
 
-import { Reducer, useCallback, useEffect, useReducer, useState } from 'react';
-import { LanguagesEnum } from 'src/contexts/LanguageContext';
+import { Reducer, Suspense, useCallback, useEffect, useReducer, useState } from 'react';
 import Provider from 'src/providers/Provider';
 import reducer, { AppAction, AppState } from 'src/reducers/Reducer';
 import { ThemesEnum } from 'src/themes/ThemesEnum';
@@ -25,8 +24,7 @@ export default function App() {
   const [displayFilters, setDisplayFilters] = useState<boolean>(false);
   const [displayFilterDrawer, setDisplayFilterDrawer] = useState<boolean>(false);
   const [state, dispatch] = useReducer<Reducer<AppState, AppAction>>(reducer, {
-    theme: ThemesEnum.Light,
-    language: LanguagesEnum.French
+    theme: ThemesEnum.Light
   });
 
   /**
@@ -75,31 +73,36 @@ export default function App() {
   }, [displayFilters, refs.filterMenu]);
 
   return (
-    <Provider theme={state.theme} language={state.language} dispatch={dispatch}>
-      <div className={`theme theme--${state.theme}`}>
-        <div className="app">
-          <TopBanner />
-          <Header ref={refs.header} className="app__header" />
-          <div
-            ref={refs.body}
-            className={`app__body ${!displayFilters ? 'app__body--filter-hidden' : ''}`}
-          >
-            <FilterMenu ref={refs.filterMenu} className="filter" hidden={!displayFilters} />
-            <div className="profiles">
-              <div className="profiles__header">
-                <FilterDisplayButton initialValue={displayFilters} onClick={handleFilterDisplay} />
+    <Suspense fallback="">
+      <Provider theme={state.theme} dispatch={dispatch}>
+        <div className={`theme theme--${state.theme}`}>
+          <div className="app">
+            <TopBanner />
+            <Header ref={refs.header} className="app__header" />
+            <div
+              ref={refs.body}
+              className={`app__body ${!displayFilters ? 'app__body--filter-hidden' : ''}`}
+            >
+              <FilterMenu ref={refs.filterMenu} className="filter" hidden={!displayFilters} />
+              <div className="profiles">
+                <div className="profiles__header">
+                  <FilterDisplayButton
+                    initialValue={displayFilters}
+                    onClick={handleFilterDisplay}
+                  />
+                </div>
+                <ProfileGrid className="profiles__catalog" />
               </div>
-              <ProfileGrid className="profiles__catalog" />
             </div>
+            <Footer className="app__footer app-section" />
+            <FilterDrawer
+              className="app__filter-drawer"
+              open={displayFilters && displayFilterDrawer}
+              onClose={handleFilterDrawerClosure}
+            />
           </div>
-          <Footer className="app__footer app-section" />
-          <FilterDrawer
-            className="app__filter-drawer"
-            open={displayFilters && displayFilterDrawer}
-            onClose={handleFilterDrawerClosure}
-          />
         </div>
-      </div>
-    </Provider>
+      </Provider>
+    </Suspense>
   );
 }

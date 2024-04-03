@@ -2,7 +2,7 @@ import './FilterMenu.scss';
 
 import { Menu, MenuProps } from 'antd';
 import { forwardRef, LegacyRef, memo } from 'react';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

@@ -3,7 +3,7 @@ import './IconButton.scss';
 import { Button } from 'antd';
 import { BaseButtonProps } from 'antd/es/button/button';
 import SvgIcon, { ISvgIcon } from 'src/components/SvgIcon/SvgIcon';
-import AdditionalClassName from 'src/types/IClassName';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 interface IButton extends AdditionalClassName, Pick<BaseButtonProps, 'type' | 'size'> {
   /**

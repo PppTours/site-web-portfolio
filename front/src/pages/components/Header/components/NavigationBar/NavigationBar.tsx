@@ -1,6 +1,7 @@
 import './NavigationBar.scss';
 
-import AdditionalClassName from 'src/types/IClassName';
+import { useTranslation } from 'react-i18next';
+import AdditionalClassName from 'src/types/AdditionalClassName';
 
 export type INavigationBar = AdditionalClassName;
 
@@ -8,22 +9,24 @@ export type INavigationBar = AdditionalClassName;
  * Navigation bar.
  */
 export default function NavigationBar({ className }: INavigationBar) {
+  const { t: translate } = useTranslation();
+
   return (
     <nav className={`navigation-bar ${className ?? ''}`}>
       <ul className="navigation-bar-menu">
         <li className="navigation-bar-menu-page">
           <a className="navigation-bar-menu-page__link" href="#">
-            Accueil
+            {translate('home')}
           </a>
         </li>
         <li className="navigation-bar-menu-page">
           <a className="navigation-bar-menu-page__link" href="#">
-            Profils
+            {translate('profiles')}
           </a>
         </li>
         <li className="navigation-bar-menu-page">
           <a className="navigation-bar-menu-page__link" href="#">
-            Contact
+            {translate('contact')}
           </a>
         </li>
       </ul>
