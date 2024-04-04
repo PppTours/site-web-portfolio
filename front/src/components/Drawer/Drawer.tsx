@@ -58,7 +58,6 @@ export default function Drawer({
   return (
     <div
       className={`drawer ${`drawer--${anchor}`} ${!open ? 'drawer--hidden' : ''} ${className ?? ''}`}
-      onClick={onClose}
       onTouchStart={onClose}
     >
       <div

@@ -36,7 +36,9 @@ export default function App() {
   /**
    * Handle filter drawer closure.
    */
-  const handleFilterDrawerClosure = useCallback(() => setDisplayFilters(false), []);
+  const handleFilterDrawerClosure = useCallback(() => {
+    setDisplayFilters(false);
+  }, []);
 
   useEffect(() => {
     /**
@@ -87,7 +89,7 @@ export default function App() {
               <div className="profiles">
                 <div className="profiles__header">
                   <FilterDisplayButton
-                    initialValue={displayFilters}
+                    areFiltersDisplayed={displayFilters}
                     onClick={handleFilterDisplay}
                   />
                 </div>
