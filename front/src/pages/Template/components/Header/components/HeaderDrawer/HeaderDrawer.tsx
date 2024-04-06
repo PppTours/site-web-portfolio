@@ -6,7 +6,7 @@ import { SvgIconButton } from 'src/components/IconButton/IconButton';
 import LanguageButton from 'src/components/LanguageButton/LanguageButton';
 import PolybookLogo from 'src/components/PolybookLogo/PolybookLogo';
 import ThemeButton from 'src/components/ThemeButton/ThemeButton';
-import NavigationBar from 'src/pages/components/Header/components/NavigationBar/NavigationBar';
+import NavigationBar from 'src/pages/Template/components/Header/components/NavigationBar/NavigationBar';
 
 type IHeaderDrawer = Omit<IDrawer, 'children'>;
 
