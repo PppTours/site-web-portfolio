@@ -21,7 +21,7 @@
 
     &__close-button {
       .svg-icon {
-        --color: var(--color-text-accent);
+        --color: var(--color-text--accent);
         fill: var(--color);
         stroke: var(--color);
       }

@@ -14,7 +14,8 @@ export function getAntDesignThemeConfig(theme: ThemesEnum): ThemeConfig {
     token: {
       colorPrimary: '#009fe3',
       colorLink: '#009fe3',
-      fontFamily: 'Montserrat, sans-serif'
+      fontFamily: 'Montserrat, sans-serif',
+      motion: false
     }
   };
 }

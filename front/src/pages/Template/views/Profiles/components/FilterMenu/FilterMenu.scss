@@ -11,6 +11,7 @@
     var(--transition-duration) padding-right ease-out,
     var(--transition-duration) opacity ease-out;
   overflow-x: hidden;
+  overscroll-behavior: contain;
 
   &--hidden {
     opacity: 0;
