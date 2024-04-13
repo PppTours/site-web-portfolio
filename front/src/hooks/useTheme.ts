@@ -1,11 +1,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'src/contexts/ThemeContext';
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 
-/**
- * Hook to get the current theme of the app.
- * @returns {ThemesEnum | null} Current theme of the app.
- */
-export default function useTheme(): ThemesEnum | null {
+export default function useTheme(): Theme | null {
   return useContext(ThemeContext);
 }

@@ -3,12 +3,9 @@ import './NavigationBar.scss';
 import { useTranslation } from 'react-i18next';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-export type INavigationBar = AdditionalClassName;
+export type NavigationBarProps = AdditionalClassName;
 
-/**
- * Navigation bar.
- */
-export default function NavigationBar({ className }: INavigationBar) {
+export default function NavigationBar({ className }: NavigationBarProps) {
   const { t: translate } = useTranslation();
 
   return (

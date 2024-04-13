@@ -3,15 +3,12 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import i18nBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-const currentHost = import.meta.env.VITE_DEVELOPMENT_HOST;
-
-/**
- * Languages supported by the application
- */
 export enum SupportedLanguages {
   English = 'en',
   French = 'fr'
 }
+
+const currentHost = import.meta.env.VITE_DEVELOPMENT_HOST;
 
 i18n
   .use(LanguageDetector)
@@ -22,7 +19,7 @@ i18n
     fallbackLng: SupportedLanguages.English,
     interpolation: {
       // Escape the values and avoid XSS attacks.
-      // Useless with React because it already does it.
+      // Useless because React already does it.
       escapeValue: false
     },
     backend: {

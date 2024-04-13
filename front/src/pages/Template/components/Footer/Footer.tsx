@@ -3,12 +3,9 @@ import './Footer.scss';
 import { memo } from 'react';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type IFooter = AdditionalClassName;
+type FooterProps = AdditionalClassName;
 
-/**
- * Footer of the page.
- */
-function Footer({ className }: IFooter) {
+function Footer({ className }: FooterProps) {
   return <div className={`footer ${className ?? ''}`}></div>;
 }
 

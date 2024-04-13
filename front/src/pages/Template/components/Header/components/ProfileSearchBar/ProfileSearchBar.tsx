@@ -1,4 +1,4 @@
-import './SearchBar.scss';
+import './ProfileSearchBar.scss';
 
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
@@ -6,12 +6,9 @@ import useTranslation from 'src/hooks/useTranslation';
 import { I18nKeys } from 'src/i18n/I18nKeys';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type ISearchBar = AdditionalClassName;
+type ProfileSearchBarProps = AdditionalClassName;
 
-/**
- * Bar to search a profile.
- */
-export default function SearchBar({ className }: ISearchBar) {
+export default function ProfileSearchBar({ className }: ProfileSearchBarProps) {
   const { translate } = useTranslation();
 
   return (

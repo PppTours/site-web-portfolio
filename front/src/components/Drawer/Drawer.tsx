@@ -1,69 +1,53 @@
 import './Drawer.scss';
 
+import { MouseEvent, TouchEvent } from 'react';
 import { ReactElement, useEffect } from 'react';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-/**
- * Drawer anchoring sides.
- */
-export enum DrawerAnchoringSides {
+export enum DrawerAnchoringSide {
   Top = 'top',
   Right = 'right',
   Bottom = 'bottom',
   Left = 'left'
 }
 
-export interface IDrawer extends AdditionalClassName {
-  /**
-   * Whether to open the drawer.
-   */
-  open: boolean;
-
-  /**
-   * Drawer anchor side.
-   */
-  anchor?: DrawerAnchoringSides;
-
-  /**
-   * Drawer content.
-   */
+export interface DrawerProps extends AdditionalClassName {
   children: ReactElement | ReactElement[];
-
-  /**
-   * Drawer content additional class name.
-   */
+  isOpen: boolean;
+  anchoringSide?: DrawerAnchoringSide;
   contentClassName?: string;
-
-  /**
-   * Function called when closing the drawer.
-   */
   onClose: () => void;
 }
 
-/**
- * Drawer.
- */
 export default function Drawer({
-  open,
-  anchor = DrawerAnchoringSides.Left,
+  isOpen,
+  anchoringSide = DrawerAnchoringSide.Left,
   children,
   className,
   contentClassName,
   onClose
-}: IDrawer) {
+}: DrawerProps) {
+  function stopEventPropagation(e: MouseEvent | TouchEvent): void {
+    e.stopPropagation();
+  }
+
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : 'auto';
-  }, [open]);
+    function preventPageScrollingWhenOpen(): void {
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    }
+
+    preventPageScrollingWhenOpen();
+  }, [isOpen]);
 
   return (
     <div
-      className={`drawer ${`drawer--${anchor}`} ${!open ? 'drawer--hidden' : ''} ${className ?? ''}`}
+      className={`drawer ${`drawer--${anchoringSide}`} ${isOpen ? '' : 'drawer--hidden'} ${className ?? ''}`}
       onTouchStart={onClose}
     >
       <div
-        className={`drawer__content ${`drawer__content--${anchor}`} ${!open ? 'drawer__content--hidden' : ''} ${contentClassName ?? ''}`}
-        onClick={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
+        className={`drawer__content ${`drawer__content--${anchoringSide}`} ${!isOpen ? 'drawer__content--hidden' : ''} ${contentClassName ?? ''}`}
+        onClick={stopEventPropagation}
+        onTouchStart={stopEventPropagation}
       >
         {children}
       </div>

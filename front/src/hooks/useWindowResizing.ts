@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
 
-/**
- * Hook to know when the window is resizing.
- * @returns {boolean} Whether the window is resizing.
- */
-export default function useWindowResizing(): boolean {
-  const [windowResizing, setWindowResizing] = useState<boolean>(false);
+export default function useWindowResizing(updateDelayInMilliseconds = 200): boolean {
+  const [isWindowResizing, setIsWindowResizing] = useState<boolean>(false);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout | undefined;
+    let updateTimeout: NodeJS.Timeout | undefined;
 
-    /**
-     * Handle window resizing.
-     */
-    function handleWindowResizing(): void {
-      clearTimeout(timeout);
-      setWindowResizing(true);
-      timeout = setTimeout(() => setWindowResizing(false), 200);
+    function onWindowResizingStartOrContinuation(): void {
+      clearTimeout(updateTimeout);
+      setIsWindowResizing(true);
+      updateTimeout = setTimeout(onWindowResizingEnd, updateDelayInMilliseconds);
     }
 
-    window.addEventListener('resize', handleWindowResizing);
+    function onWindowResizingEnd(): void {
+      setIsWindowResizing(false);
+    }
 
-    return () => window.removeEventListener('resize', handleWindowResizing);
-  }, []);
+    window.addEventListener('resize', onWindowResizingStartOrContinuation);
 
-  return windowResizing;
+    return () => window.removeEventListener('resize', onWindowResizingStartOrContinuation);
+  }, [updateDelayInMilliseconds]);
+
+  return isWindowResizing;
 }

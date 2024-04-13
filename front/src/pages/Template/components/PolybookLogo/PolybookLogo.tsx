@@ -3,17 +3,14 @@ import './PolybookLogo.scss';
 import PolybookDarkLogo from 'src/assets/images/Polybook_dark.png';
 import PolybookLightLogo from 'src/assets/images/Polybook_light.png';
 import useTheme from 'src/hooks/useTheme';
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-export type IPolybookLogo = AdditionalClassName;
+export type PolybookLogoProps = AdditionalClassName;
 
-/**
- * Polybook logo.
- */
-export default function PolybookLogo({ className }: IPolybookLogo) {
+export default function PolybookLogo({ className }: PolybookLogoProps) {
   const currentTheme = useTheme();
-  const isLightTheme = currentTheme === ThemesEnum.Light;
+  const isLightTheme = currentTheme === Theme.Light;
 
   return (
     <a className={`polybook-logo ${className ?? ''}`} href="/">

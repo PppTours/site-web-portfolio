@@ -4,71 +4,66 @@ import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import useWindowResizing from 'src/hooks/useWindowResizing';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-import FilterDisplayButton from './components/FilterDisplayButton/FilterDisplayButton';
+import FilterDisplayToggleButton from './components/FilterDisplayToggleButton/FilterDisplayToggleButton';
 import FilterDrawer from './components/FilterDrawer/FilterDrawer';
 import FilterMenu from './components/FilterMenu/FilterMenu';
 import ProfileGrid from './components/ProfileGrid/ProfileGrid';
-import useHeaderBottom from './hooks/useFilterMenuHeight';
+import useHeaderBottomPosition from './hooks/useHeaderBottomPosition';
 
-export interface IProfileView extends AdditionalClassName {
-  /**
-   * Header reference.
-   */
+export interface ProfileViewProps extends AdditionalClassName {
   headerRef: RefObject<HTMLDivElement> | undefined;
 }
 
-/**
- * View to display profiles.
- */
-export default function ProfileView({ headerRef, className }: IProfileView) {
+export default function ProfileView({ headerRef, className }: ProfileViewProps) {
   const filterMenuRef = useRef<HTMLDivElement>(null);
-  const [displayFilters, setDisplayFilters] = useState<boolean>(false);
-  const [displayFilterDrawer, setDisplayFilterDrawer] = useState<boolean>(false);
-  const headerBottom = useHeaderBottom(headerRef);
+  const [areFiltersDisplayed, setAreFiltersDisplayed] = useState<boolean>(false);
+  const [isFilterDrawerDisplayed, setIsFilterDrawerDisplayed] = useState<boolean>(false);
+  const headerBottomPosition = useHeaderBottomPosition(headerRef);
   const isWindowResizing = useWindowResizing();
 
-  /**
-   * Handle filter display.
-   * @param {boolean} display Whether to display filters or not.
-   */
-  const handleFilterDisplay = useCallback((display: boolean) => setDisplayFilters(display), []);
+  const toggleFilterDisplay = useCallback(
+    (display: boolean) => setAreFiltersDisplayed(display),
+    []
+  );
 
-  /**
-   * Handle filter drawer closure.
-   */
-  const handleFilterDrawerClosure = useCallback(() => {
-    setDisplayFilters(false);
+  const closeFilterDrawer = useCallback(() => {
+    setAreFiltersDisplayed(false);
   }, []);
 
   useEffect(() => {
-    /**
-     * Update filter display.
-     */
-    function updateFilterDisplay(): void {
-      setDisplayFilterDrawer(
-        (filterMenuRef.current ? getComputedStyle(filterMenuRef.current).display : 'null') ===
-          'none'
+    function updateFilterDrawerDisplay(): void {
+      const filterDisplay = filterMenuRef.current
+        ? getComputedStyle(filterMenuRef.current).display
+        : null;
+      const areFiltersNotDisplayed = filterDisplay === 'none';
+      setIsFilterDrawerDisplayed(areFiltersNotDisplayed);
+    }
+
+    if (!isWindowResizing) updateFilterDrawerDisplay();
+  }, [areFiltersDisplayed, filterMenuRef, isWindowResizing]);
+
+  useEffect(() => {
+    function updateFilterHeight(): void {
+      filterMenuRef.current?.setAttribute(
+        'style',
+        `max-height: calc(100dvh - ${headerBottomPosition}px)`
       );
     }
 
-    if (!isWindowResizing) updateFilterDisplay();
-  }, [displayFilters, filterMenuRef, isWindowResizing]);
-
-  useEffect(() => {
-    filterMenuRef.current?.setAttribute('style', `max-height: calc(100dvh - ${headerBottom}px)`);
-  }, [headerBottom]);
+    updateFilterHeight();
+  }, [headerBottomPosition]);
 
   return (
     <>
       <div
-        className={`profile-view ${!displayFilters ? 'profile-view--filter-hidden' : ''} ${className ?? ''}`}
+        className={`profile-view ${!areFiltersDisplayed ? 'profile-view--filter-hidden' : ''} ${className ?? ''}`}
       >
-        <FilterMenu ref={filterMenuRef} className="filter" hidden={!displayFilters} />
+        <FilterMenu ref={filterMenuRef} className="filter" hidden={!areFiltersDisplayed} />
         <div className="profiles">
           <div className="profiles__header">
-            <FilterDisplayButton
-              areFiltersDisplayed={displayFilters}
-              onClick={handleFilterDisplay}
+            <FilterDisplayToggleButton
+              areFiltersDisplayed={areFiltersDisplayed}
+              onClick={toggleFilterDisplay}
             />
           </div>
           <ProfileGrid className="profiles__catalog" />
@@ -76,8 +71,8 @@ export default function ProfileView({ headerRef, className }: IProfileView) {
       </div>
       <FilterDrawer
         className="filter-drawer"
-        open={displayFilters && displayFilterDrawer}
-        onClose={handleFilterDrawerClosure}
+        isOpen={areFiltersDisplayed && isFilterDrawerDisplayed}
+        onClose={closeFilterDrawer}
       />
     </>
   );

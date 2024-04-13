@@ -3,17 +3,11 @@ import './SvgIcon.scss';
 import { FunctionComponent, SVGProps } from 'react';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-export interface ISvgIcon extends SVGProps<SVGSVGElement>, AdditionalClassName {
-  /**
-   * SVG component.
-   */
-  SvgComponent: FunctionComponent<SVGProps<SVGSVGElement>>;
+export interface SvgIconProps extends SVGProps<SVGSVGElement>, AdditionalClassName {
+  svg: FunctionComponent<SVGProps<SVGSVGElement>>;
 }
 
-/**
- * SVG icon.
- */
-export default function SvgIcon({ SvgComponent, className, ...rest }: ISvgIcon) {
-  const Component = SvgComponent;
-  return <Component className={`svg-icon ${className}`} {...rest} />;
+export default function SvgIcon({ svg, className, ...rest }: SvgIconProps) {
+  const SvgComponent = svg;
+  return <SvgComponent className={`svg-icon ${className}`} {...rest} />;
 }

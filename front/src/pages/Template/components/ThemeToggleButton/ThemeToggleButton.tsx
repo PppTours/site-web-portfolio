@@ -4,35 +4,28 @@ import { SvgIconButton } from 'src/components/IconButton/IconButton';
 import useDispatch from 'src/hooks/useDispatch';
 import useTheme from 'src/hooks/useTheme';
 import { ReducerActionsEnum } from 'src/reducers/ReducerActionsEnum';
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type IThemeButton = AdditionalClassName;
+type ThemeToggleButtonProps = AdditionalClassName;
 
-/**
- * Button to toggle the theme of the app.
- */
-export default function ThemeButton({ className }: IThemeButton) {
+export default function ThemeToggleButton({ className }: ThemeToggleButtonProps) {
   const dispatch = useDispatch();
   const currentTheme = useTheme();
+  const isLightTheme = currentTheme === Theme.Light;
 
-  const isLightTheme = currentTheme === ThemesEnum.Light;
-
-  /**
-   * Toggle theme of the app.
-   */
-  function handleClick(): void {
+  function toggleTheme(): void {
     dispatch?.({
       type: ReducerActionsEnum.SetTheme,
-      content: isLightTheme ? ThemesEnum.Dark : ThemesEnum.Light
+      content: isLightTheme ? Theme.Dark : Theme.Light
     });
   }
 
   return (
     <SvgIconButton
       className={`theme-button ${className ?? ''}`}
-      onClick={handleClick}
-      SvgComponent={isLightTheme ? LightThemeIcon : DarkThemeIcon}
+      onClick={toggleTheme}
+      svg={isLightTheme ? LightThemeIcon : DarkThemeIcon}
     />
   );
 }

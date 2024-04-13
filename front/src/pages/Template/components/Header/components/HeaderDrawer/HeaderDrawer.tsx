@@ -1,32 +1,29 @@
 import './HeaderDrawer.scss';
 
 import CloseIcon from 'src/assets/icons/close.svg?react';
-import Drawer, { DrawerAnchoringSides, IDrawer } from 'src/components/Drawer/Drawer';
+import Drawer, { DrawerAnchoringSide, DrawerProps } from 'src/components/Drawer/Drawer';
 import { SvgIconButton } from 'src/components/IconButton/IconButton';
-import LanguageButton from 'src/components/LanguageButton/LanguageButton';
-import PolybookLogo from 'src/components/PolybookLogo/PolybookLogo';
-import ThemeButton from 'src/components/ThemeButton/ThemeButton';
 import NavigationBar from 'src/pages/Template/components/Header/components/NavigationBar/NavigationBar';
+import LanguageToggleButton from 'src/pages/Template/components/LanguageToggleButton/LanguageToggleButton';
+import PolybookLogo from 'src/pages/Template/components/PolybookLogo/PolybookLogo';
+import ThemeToggleButton from 'src/pages/Template/components/ThemeToggleButton/ThemeToggleButton';
 
-type IHeaderDrawer = Omit<IDrawer, 'children'>;
+type HeaderDrawerProps = Omit<DrawerProps, 'children'>;
 
-/**
- * Header drawer to display menu on small devices.
- */
-export default function HeaderDrawer({ className, open, onClose }: IHeaderDrawer) {
+export default function HeaderDrawer({ className, isOpen, onClose }: HeaderDrawerProps) {
   return (
     <Drawer
       className={className ?? ''}
       contentClassName="header-drawer"
-      open={open}
-      anchor={DrawerAnchoringSides.Left}
+      isOpen={isOpen}
+      anchoringSide={DrawerAnchoringSide.Left}
       onClose={onClose}
     >
       <header className="header-drawer-header">
         <PolybookLogo className="header-drawer-header__logo" />
         <SvgIconButton
           className="header-drawer-header__close-button"
-          SvgComponent={CloseIcon}
+          svg={CloseIcon}
           size="large"
           onClick={onClose}
         />
@@ -36,8 +33,8 @@ export default function HeaderDrawer({ className, open, onClose }: IHeaderDrawer
       </main>
       <footer className="header-drawer-footer">
         <div className="actions">
-          <ThemeButton className="actions__button" />
-          <LanguageButton className="actions__button" />
+          <ThemeToggleButton className="actions__button" />
+          <LanguageToggleButton className="actions__button" />
         </div>
       </footer>
     </Drawer>

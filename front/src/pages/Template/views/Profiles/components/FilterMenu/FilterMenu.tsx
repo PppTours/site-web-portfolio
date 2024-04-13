@@ -44,15 +44,12 @@ const items: MenuProps['items'] = [
   getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group')
 ];
 
-interface IFilterMenu extends AdditionalClassName {
+interface FilterMenuProps extends AdditionalClassName {
   hidden: boolean;
 }
 
-/**
- * Menu with filters.
- */
 const FilterMenu = forwardRef(function FilterMenu(
-  { className, hidden = false }: IFilterMenu,
+  { className, hidden = false }: FilterMenuProps,
   ref: LegacyRef<HTMLDivElement> | undefined
 ) {
   const onClick: MenuProps['onClick'] = (e) => {

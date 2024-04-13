@@ -3,11 +3,11 @@ import { Reducer, Suspense, useReducer } from 'react';
 import TemplatePage from './pages/Template/TemplatePage';
 import Provider from './providers/Provider';
 import reducer, { AppAction, AppState } from './reducers/Reducer';
-import { ThemesEnum } from './themes/ThemesEnum';
+import Theme from './themes/Theme';
 
 export default function App() {
   const [state, dispatch] = useReducer<Reducer<AppState, AppAction>>(reducer, {
-    theme: ThemesEnum.Light
+    theme: Theme.Light
   });
 
   return (

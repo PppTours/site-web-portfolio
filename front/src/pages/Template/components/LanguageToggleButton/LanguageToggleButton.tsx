@@ -5,29 +5,22 @@ import useTranslation from 'src/hooks/useTranslation';
 import { SupportedLanguages } from 'src/i18n/i18n';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type ILanguageButton = AdditionalClassName;
+type LanguageToggleButtonProps = AdditionalClassName;
 
-/**
- * Button to toggle the language of the app.
- */
-export default function LanguageButton({ className }: ILanguageButton) {
+export default function LanguageToggleButton({ className }: LanguageToggleButtonProps) {
   const { currentLanguage, changeLanguage } = useTranslation();
   const isFrenchLanguage = currentLanguage === SupportedLanguages.French;
 
-  /**
-   * Toggle language of the app.
-   */
-  function handleClick(): void {
-    const language = isFrenchLanguage ? SupportedLanguages.English : SupportedLanguages.French;
-
-    changeLanguage(language);
+  function toggleLanguage(): void {
+    const newLanguage = isFrenchLanguage ? SupportedLanguages.English : SupportedLanguages.French;
+    changeLanguage(newLanguage);
   }
 
   return (
     <IconButton
       className={`language-button ${className ?? ''}`}
-      onClick={handleClick}
-      icon={isFrenchLanguage ? frenchLanguageIcon : englishLanguageIcon}
+      onClick={toggleLanguage}
+      iconSrc={isFrenchLanguage ? frenchLanguageIcon : englishLanguageIcon}
     />
   );
 }

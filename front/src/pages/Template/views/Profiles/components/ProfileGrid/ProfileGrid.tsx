@@ -3,17 +3,16 @@ import './ProfileGrid.scss';
 import { memo } from 'react';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type IProfileGrid = AdditionalClassName;
+type ProfileGridProps = AdditionalClassName;
 
-/**
- * Grid of profiles.
- */
-function ProfileGrid({ className }: IProfileGrid) {
-  const items = Array.from(Array(20).keys());
+function ProfileGrid({ className }: ProfileGridProps) {
+  function getNumbersFromZeroTo(n: number): number[] {
+    return Array.from(Array(n).keys());
+  }
 
   return (
     <div className={`profile-grid ${className ?? ''}`}>
-      {items.map((i) => (
+      {getNumbersFromZeroTo(20).map((i) => (
         <div key={i} className="profile-grid-card">
           {i + 1}
         </div>

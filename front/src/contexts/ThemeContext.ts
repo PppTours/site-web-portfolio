@@ -1,7 +1,4 @@
 import { createContext } from 'react';
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 
-/**
- * Context for getting the theme of the app anywhere in the application.
- */
-export const ThemeContext = createContext<ThemesEnum | null>(null);
+export const ThemeContext = createContext<Theme | null>(null);

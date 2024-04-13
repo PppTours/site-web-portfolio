@@ -4,29 +4,21 @@ import { DispatchContext } from 'src/contexts/DispatchContext';
 import { ThemeContext } from 'src/contexts/ThemeContext';
 import { AppAction } from 'src/reducers/Reducer';
 import { getAntDesignThemeConfig } from 'src/themes/AntDesignThemeConfig';
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 
-interface IProvider {
-  /**
-   * Initial theme of the app.
-   */
-  theme: ThemesEnum;
+interface ParamsToProvide {
+  theme: Theme;
+}
 
-  /**
-   * Dispatcher.
-   */
+interface ProviderProps extends ParamsToProvide {
   dispatch: React.Dispatch<AppAction>;
-
-  /**
-   * Elements benefiting from the provider.
-   */
   children: ReactElement;
 }
 
 /**
  * App provider.
  */
-export default function Provider({ theme, dispatch, children }: IProvider) {
+export default function Provider({ theme, dispatch, children }: ProviderProps) {
   return (
     <ThemeContext.Provider value={theme}>
       <AntDesignProvider theme={getAntDesignThemeConfig(theme)}>

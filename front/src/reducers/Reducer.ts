@@ -1,4 +1,4 @@
-import { ThemesEnum } from 'src/themes/ThemesEnum';
+import Theme from 'src/themes/Theme';
 
 import { ReducerActionsEnum } from './ReducerActionsEnum';
 
@@ -6,7 +6,7 @@ import { ReducerActionsEnum } from './ReducerActionsEnum';
  * Application state.
  */
 export interface AppState {
-  theme: ThemesEnum;
+  theme: Theme;
 }
 
 /**
@@ -22,7 +22,7 @@ interface Action {
  */
 interface ThemeAction extends Omit<Action, 'content'> {
   type: ReducerActionsEnum.SetTheme;
-  content: ThemesEnum;
+  content: Theme;
 }
 
 /**

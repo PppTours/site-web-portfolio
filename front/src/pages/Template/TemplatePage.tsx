@@ -1,7 +1,9 @@
 import './TemplatePage.scss';
 
 import { useEffect, useRef } from 'react';
+import useTranslation from 'src/hooks/useTranslation';
 import useWindowResizing from 'src/hooks/useWindowResizing';
+import { I18nKeys } from 'src/i18n/I18nKeys';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -13,12 +15,10 @@ export default function TemplatePage() {
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const isWindowResizing = useWindowResizing();
+  const { translate } = useTranslation();
 
   useEffect(() => {
-    /**
-     * Resize minimum body height.
-     */
-    function resizeMinimumBodyHeight() {
+    function resizeMinimumBodyHeight(): void {
       const topBannerHeight = topBannerRef.current?.clientHeight ?? 0;
       const headerHeight = headerRef.current?.clientHeight ?? 0;
       const topBannerAndHeaderHeight = topBannerHeight + headerHeight;
@@ -34,7 +34,9 @@ export default function TemplatePage() {
 
   return (
     <div className="template-page">
-      <TopBanner ref={topBannerRef} className="template-page__top-banner" />
+      <TopBanner ref={topBannerRef} className="template-page__top-banner">
+        {translate(I18nKeys.TopBannerMessage)}
+      </TopBanner>
       <Header ref={headerRef} className="template-page__header" />
       <main ref={bodyRef} className="template-page__body">
         <ProfileView headerRef={headerRef} />

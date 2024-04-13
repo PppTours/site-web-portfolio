@@ -1,71 +1,56 @@
 import './IconButton.scss';
 
-import { Button } from 'antd';
+import { Button as AntDesignButton } from 'antd';
 import { BaseButtonProps } from 'antd/es/button/button';
-import SvgIcon, { ISvgIcon } from 'src/components/SvgIcon/SvgIcon';
+import SvgIcon, { SvgIconProps } from 'src/components/SvgIcon/SvgIcon';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-interface IButton extends AdditionalClassName, Pick<BaseButtonProps, 'type' | 'size'> {
-  /**
-   * Function called when the button is clicked.
-   */
+type AntDesignButtonProps = Pick<BaseButtonProps, 'type' | 'size'>;
+
+interface Button extends AntDesignButtonProps, AdditionalClassName {
   onClick: () => void;
 }
 
-interface IIconButton extends IButton {
-  /**
-   * Icon of the button.
-   */
-  icon: string;
+interface IconButtonProps extends Button {
+  iconSrc: string;
 }
 
-type ISvgIconButton = IButton & Pick<ISvgIcon, 'SvgComponent'>;
-
-/**
- * Button with icon.
- */
 export default function IconButton({
-  icon,
+  iconSrc,
   type = 'text',
   size = 'middle',
   className,
   onClick
-}: IIconButton) {
+}: IconButtonProps) {
   return (
-    <Button
-      className={`icon-button language-button ${className ?? ''}`}
+    <AntDesignButton
+      className={`icon-button ${className ?? ''}`}
       type={type}
       shape="circle"
       onClick={onClick}
       size={size}
-      icon={<img className="icon-button__icon" src={icon} />}
+      icon={<img className="icon-button__icon" src={iconSrc} />}
     />
   );
 }
 
-/**
- * Button with SVG icon.
- */
+type SvgIconButtonProps = Button & Pick<SvgIconProps, 'svg'>;
+
 export function SvgIconButton({
-  SvgComponent,
+  svg,
   type = 'text',
   size = 'middle',
   className,
   onClick
-}: ISvgIconButton) {
+}: SvgIconButtonProps) {
   return (
-    <Button
-      className={`icon-button language-button ${className ?? ''}`}
+    <AntDesignButton
+      className={`icon-button ${className ?? ''}`}
       type={type}
       shape="circle"
       onClick={onClick}
       size={size}
-      icon={
-        <SvgIcon
-          className={`icon-button__icon icon-button__icon--${size}`}
-          SvgComponent={SvgComponent}
-        />
-      }
+      icon={<SvgIcon className={`icon-button__icon icon-button__icon--${size}`} svg={svg} />}
     />
   );
 }
