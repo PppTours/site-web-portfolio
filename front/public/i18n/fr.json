@@ -6,5 +6,10 @@
   "display_filters": "Afficher les filtres",
   "hide_filters": "Masquer les filtres",
   "top_banner_message": "Ce site est en cours de construction ...",
-  "search_profile": "Rechercher un profil ..."
+  "search_profile": "Rechercher un profil ...",
+  "reload": "Rafraîchir",
+  "not_found_error_title": "Page introuvable",
+  "not_found_error_subtitle": "Vérifiez que l'URL renseignée est correcte",
+  "unknown_error_title": "Une erreur est survenue",
+  "unknown_error_subtitle": "Corrigez l'erreur et rafraîchissez la page"
 }

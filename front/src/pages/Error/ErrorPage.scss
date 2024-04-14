@@ -1,0 +1,14 @@
+@import '/src/assets/style/utils/mixins';
+
+.error-page {
+  flex: 1;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include xs {
+    padding: 1rem;
+  }
+}

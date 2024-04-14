@@ -15,9 +15,6 @@ interface ProviderProps extends ParamsToProvide {
   children: ReactElement;
 }
 
-/**
- * App provider.
- */
 export default function Provider({ theme, dispatch, children }: ProviderProps) {
   return (
     <ThemeContext.Provider value={theme}>

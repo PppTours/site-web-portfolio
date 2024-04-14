@@ -8,10 +8,10 @@
   }
 
   &--dark {
-    --color-border: var(--color-gray-800);
+    --color-border: var(--color-gray-700);
     --color-background: var(--color-gray-950);
     --color-background--accent: var(--color-gray-800);
     --color-text: var(--color-gray-50);
-    --color-text--accent: var(--color-gray-400);
+    --color-text--accent: var(--color-gray-100);
   }
 }

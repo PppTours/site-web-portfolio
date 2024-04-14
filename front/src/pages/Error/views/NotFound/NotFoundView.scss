@@ -1,0 +1,51 @@
+@import '/src/assets/style/utils/mixins';
+
+.not-found-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    height: 50rem;
+
+    @include sm {
+      height: 30rem;
+    }
+
+    @include xs {
+      height: 24rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-text);
+
+    @include sm {
+      font-size: 2.8rem;
+    }
+
+    @include xs {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 5rem;
+    font-size: 1.6rem;
+    color: var(--color-text);
+    text-align: center;
+
+    @include sm {
+      font-size: 1.5rem;
+    }
+
+    @include xs {
+      font-size: 1.4rem;
+    }
+  }
+}

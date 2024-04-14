@@ -6,5 +6,10 @@
   "display_filters": "Display filters",
   "hide_filters": "Hide filters",
   "top_banner_message": "This site is currently under construction ...",
-  "search_profile": "Search for a profile ..."
+  "search_profile": "Search for a profile ...",
+  "reload": "Reload",
+  "not_found_error_title": "Page not found",
+  "not_found_error_subtitle": "Check that the URL is correct",
+  "unknown_error_title": "An error has occurred",
+  "unknown_error_subtitle": "Correct the error and refresh the page"
 }

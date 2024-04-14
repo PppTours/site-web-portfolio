@@ -1,0 +1,31 @@
+.svg-image {
+  .color-primary {
+    fill: var(--color-primary);
+    stroke: var(--color-primary);
+  }
+
+  .color-border {
+    fill: var(--color-border);
+    stroke: var(--color-border);
+  }
+
+  .color-background {
+    fill: var(--color-background);
+    stroke: var(--color-background);
+  }
+
+  .color-background--accent {
+    fill: var(--color-background--accent);
+    stroke: var(--color-background--accent);
+  }
+
+  .color-text {
+    fill: var(--color-text);
+    stroke: var(--color-text);
+  }
+
+  .color-text--accent {
+    fill: var(--color-text--accent);
+    stroke: var(--color-text--accent);
+  }
+}

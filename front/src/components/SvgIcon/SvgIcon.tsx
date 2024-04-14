@@ -7,7 +7,7 @@ export interface SvgIconProps extends SVGProps<SVGSVGElement>, AdditionalClassNa
   svg: FunctionComponent<SVGProps<SVGSVGElement>>;
 }
 
-export default function SvgIcon({ svg, className, ...rest }: SvgIconProps) {
+export default function SvgIcon({ svg, className }: SvgIconProps) {
   const SvgComponent = svg;
-  return <SvgComponent className={`svg-icon ${className}`} {...rest} />;
+  return <SvgComponent className={`svg-icon ${className}`} />;
 }

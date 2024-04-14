@@ -1,11 +1,14 @@
-import { Reducer, Suspense, useReducer } from 'react';
+import { ReactElement, Reducer, Suspense, useReducer } from 'react';
 
-import TemplatePage from './pages/Template/TemplatePage';
 import Provider from './providers/Provider';
 import reducer, { AppAction, AppState } from './reducers/Reducer';
 import Theme from './themes/Theme';
 
-export default function App() {
+interface AppProps {
+  children: ReactElement;
+}
+
+export default function App({ children }: AppProps) {
   const [state, dispatch] = useReducer<Reducer<AppState, AppAction>>(reducer, {
     theme: Theme.Light
   });
@@ -13,9 +16,7 @@ export default function App() {
   return (
     <Suspense fallback="">
       <Provider theme={state.theme} dispatch={dispatch}>
-        <div className={`theme theme--${state.theme}`}>
-          <TemplatePage />
-        </div>
+        {children}
       </Provider>
     </Suspense>
   );

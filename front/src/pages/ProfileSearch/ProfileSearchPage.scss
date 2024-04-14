@@ -1,0 +1,40 @@
+@import 'src/assets/style/utils/mixins';
+
+.profile-search-page {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .profile-catalog {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .filter {
+      position: sticky;
+      top: var(--header-height);
+
+      @include sm-lt {
+        display: none;
+      }
+    }
+
+    .profiles {
+      &__header {
+        width: 100%;
+        padding: 0.5rem 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        position: sticky;
+        top: var(--header-height);
+        background-color: var(--color-background);
+
+        @include sm-lt {
+          top: var(--header-height--small);
+        }
+      }
+    }
+  }
+}
