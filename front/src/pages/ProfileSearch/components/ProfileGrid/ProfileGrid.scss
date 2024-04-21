@@ -1,21 +1,29 @@
 @import 'src/assets/style/utils/mixins';
+@import 'src/assets/style/utils/debug';
 
 .profile-grid {
-  display: flex;
-  flex-flow: row wrap;
-  column-gap: 1rem;
-  row-gap: 1rem;
+  --column-number: 5;
+  width: 100%;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(var(--column-number), 1fr);
+  grid-gap: 2rem;
+  overflow-x: hidden;
 
-  &-card {
-    flex: 1;
-    min-width: 30rem;
-    width: 100%;
-    min-height: 30rem;
-    color: var(--color-text);
-    background-color: var(--color-background--accent);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+  @include lg-lt {
+    --column-number: 4;
+  }
+
+  @include md-lt {
+    --column-number: 3;
+  }
+
+  @include sm-lt {
+    --column-number: 3;
+  }
+
+  @include xs {
+    --column-number: 2;
+    grid-gap: 1rem;
   }
 }

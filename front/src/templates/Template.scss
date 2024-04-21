@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  background-color: var(--color-background);
+  background-color: var(--background-color);
 
   &__top-banner {
     & > div {
@@ -40,6 +40,10 @@
     margin: 0 2rem;
     display: flex;
     flex-direction: column;
+
+    @include sm-lt {
+      padding: 0 1rem;
+    }
   }
 
   &__footer {

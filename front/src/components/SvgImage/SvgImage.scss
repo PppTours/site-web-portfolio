@@ -5,27 +5,27 @@
   }
 
   .color-border {
-    fill: var(--color-border);
-    stroke: var(--color-border);
+    fill: var(--border-color);
+    stroke: var(--border-color);
   }
 
   .color-background {
-    fill: var(--color-background);
-    stroke: var(--color-background);
+    fill: var(--background-color);
+    stroke: var(--background-color);
   }
 
   .color-background--accent {
-    fill: var(--color-background--accent);
-    stroke: var(--color-background--accent);
+    fill: var(--background-color--accent);
+    stroke: var(--background-color--accent);
   }
 
   .color-text {
-    fill: var(--color-text);
-    stroke: var(--color-text);
+    fill: var(--text-color);
+    stroke: var(--text-color);
   }
 
   .color-text--accent {
-    fill: var(--color-text--accent);
-    stroke: var(--color-text--accent);
+    fill: var(--text-color--accent);
+    stroke: var(--text-color--accent);
   }
 }

@@ -1,17 +1,23 @@
 .theme {
   &--light {
-    --color-border: var(--color-gray-200);
-    --color-background: var(--color-gray-50);
-    --color-background--accent: var(--color-gray-100);
-    --color-text: var(--color-gray-950);
-    --color-text--accent: var(--color-gray-600);
+    --text-color: var(--color-gray-950);
+    --text-color--accent: var(--color-gray-600);
+
+    --background-color: var(--color-white);
+    --background-color--accent: var(--color-gray-100);
+    --background-color--hover: rgba(0, 0, 0, 0.05);
+
+    --border-color: var(--color-gray-200);
   }
 
   &--dark {
-    --color-border: var(--color-gray-700);
-    --color-background: var(--color-gray-950);
-    --color-background--accent: var(--color-gray-800);
-    --color-text: var(--color-gray-50);
-    --color-text--accent: var(--color-gray-100);
+    --text-color: var(--color-gray-50);
+    --text-color--accent: var(--color-gray-100);
+
+    --background-color: var(--color-black);
+    --background-color--accent: var(--color-gray-800);
+    --background-color--hover: rgba(0, 0, 0, 0.15);
+
+    --border-color: var(--color-gray-700);
   }
 }

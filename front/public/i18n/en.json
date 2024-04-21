@@ -11,5 +11,12 @@
   "not_found_error_title": "Page not found",
   "not_found_error_subtitle": "Check that the URL is correct",
   "unknown_error_title": "An error has occurred",
-  "unknown_error_subtitle": "Correct the error and refresh the page"
+  "unknown_error_subtitle": "Correct the error and refresh the page",
+  "peip_1": "Peip 1",
+  "peip_2": "Peip 2",
+  "year_3": "3th year",
+  "year_4": "4th year",
+  "year_5": "5th year",
+  "year_6": "6th year",
+  "graduated": "Graduated"
 }

@@ -1,21 +1,18 @@
 import './ProfileGrid.scss';
 
 import { memo } from 'react';
+import { fakeProfiles } from 'src/assets/mock/FakeProfiles';
 import AdditionalClassName from 'src/types/AdditionalClassName';
+
+import ProfileCard from './components/ProfileCard/ProfileCard';
 
 type ProfileGridProps = AdditionalClassName;
 
 function ProfileGrid({ className }: ProfileGridProps) {
-  function getNumbersFromZeroTo(n: number): number[] {
-    return Array.from(Array(n).keys());
-  }
-
   return (
     <div className={`profile-grid ${className ?? ''}`}>
-      {getNumbersFromZeroTo(20).map((i) => (
-        <div key={i} className="profile-grid-card">
-          {i + 1}
-        </div>
+      {fakeProfiles.map((profile, i) => (
+        <ProfileCard key={i} className="profile-grid__card" profile={profile} />
       ))}
     </div>
   );

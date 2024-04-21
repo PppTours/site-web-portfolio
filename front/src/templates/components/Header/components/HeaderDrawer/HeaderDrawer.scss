@@ -15,13 +15,13 @@
 
     &__logo {
       margin-left: 0.5rem;
-      color: var(--color-text);
+      color: var(--text-color);
       font-size: 2.2rem;
     }
 
     &__close-button {
       .svg-icon {
-        --color: var(--color-text--accent);
+        --color: var(--text-color--accent);
         fill: var(--color);
         stroke: var(--color);
       }
