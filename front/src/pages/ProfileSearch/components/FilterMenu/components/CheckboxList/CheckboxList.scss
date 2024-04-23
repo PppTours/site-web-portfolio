@@ -1,0 +1,9 @@
+.checkbox-list {
+  margin-left: 2rem;
+
+  &__option {
+    .ant-checkbox-wrapper {
+      width: 100%;
+    }
+  }
+}

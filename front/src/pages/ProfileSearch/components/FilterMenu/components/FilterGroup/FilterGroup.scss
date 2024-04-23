@@ -1,0 +1,16 @@
+.filter-group {
+  width: 100%;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+
+  & ~ .filter-group {
+    border-top: none;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}

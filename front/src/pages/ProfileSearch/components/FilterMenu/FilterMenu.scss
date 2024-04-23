@@ -1,9 +1,9 @@
-.filter {
+.filter-menu {
   --menu-width: 25rem;
   --transition-duration: 0.2s;
   padding-right: calc(var(--menu-width) + 2rem);
   width: 0;
-  height: 100rem;
+  height: 100dvh;
   max-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -20,19 +20,14 @@
       var(--transition-duration) padding-right ease-in,
       var(--transition-duration) opacity ease-in;
 
-    .filter__menu {
+    .filter__content {
       transform: translateX(calc(0px - var(--menu-width)));
       transition: var(--transition-duration) transform ease-in;
     }
   }
 
-  &__menu {
-    width: var(--menu-width);
-    height: 100%;
-    padding-right: 1rem;
-    background-color: var(--background-color);
-    border: none !important;
-    overflow-y: auto;
+  &__content {
+    width: var(--menu-width) !important;
     transform: translateX(0);
     transition: var(--transition-duration) transform ease-out;
   }

@@ -9,22 +9,31 @@
 
   .filter-drawer {
     padding: 0.4rem;
-    padding-left: 1rem;
+    padding-left: 1.2rem;
     min-height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     &-header {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 2rem;
 
       &__title {
         font-size: 1.8rem;
         color: var(--text-color);
       }
     }
+
+    &-content {
+      padding-right: 1.2rem;
+    }
+  }
+
+  .filter-content {
+    height: 100%;
   }
 }

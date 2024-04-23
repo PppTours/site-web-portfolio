@@ -8,6 +8,8 @@ import useTranslation from 'src/hooks/useTranslation';
 import { I18nKey } from 'src/i18n/I18nKey';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
+import Filters from '../Filters/Filters';
+
 export interface FilterDrawerProps extends AdditionalClassName {
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +23,7 @@ function FilterDrawer({ isOpen, className, onClose }: FilterDrawerProps) {
       className={`filter-drawer-container ${className ?? ''}`}
       contentClassName={'filter-drawer'}
       isOpen={isOpen}
-      anchoringSide={DrawerAnchoringSide.Bottom}
+      anchoringSide={DrawerAnchoringSide.Right}
       onClose={onClose}
     >
       <header className="filter-drawer-header">
@@ -33,6 +35,9 @@ function FilterDrawer({ isOpen, className, onClose }: FilterDrawerProps) {
           onClick={onClose}
         />
       </header>
+      <main className="filter-drawer-content">
+        <Filters />
+      </main>
     </Drawer>
   );
 }

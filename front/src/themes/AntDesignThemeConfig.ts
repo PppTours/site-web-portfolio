@@ -7,8 +7,8 @@ export function getAntDesignThemeConfig(theme: Theme): ThemeConfig {
     algorithm:
       theme === Theme.Light ? AntDesignThemes.defaultAlgorithm : AntDesignThemes.darkAlgorithm,
     token: {
-      colorPrimary: '#009fe3',
-      colorLink: '#009fe3',
+      colorPrimary: '#3498db',
+      colorLink: '#3498db',
       fontFamily: 'Montserrat, sans-serif',
       motion: false
     }

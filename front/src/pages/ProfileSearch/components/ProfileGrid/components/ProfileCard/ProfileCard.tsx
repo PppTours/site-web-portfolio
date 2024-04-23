@@ -2,19 +2,21 @@ import './ProfileCard.scss';
 
 import { useState } from 'react';
 import { FakeProfile } from 'src/assets/mock/FakeProfiles';
-import useTranslation from 'src/hooks/useTranslation';
-import StudentLevel from 'src/models/StudentLevel';
+import useEnumTranslation from 'src/hooks/useEnumTranslation';
+import { studyLevelTranslationMapping } from 'src/models/StudyLevel/StudyLevelTranslationMapping';
+import { studySpecialtyTranslationMapping } from 'src/models/StudySpecialty/StudentSpecialtyTranslationMapping';
 import AdditionalClassName from 'src/types/AdditionalClassName';
-
-const defaultPicture =
-  'https://static.vecteezy.com/system/resources/previews/006/732/119/non_2x/account-icon-sign-symbol-logo-design-free-vector.jpg';
-
 export interface ProfileCardProps extends AdditionalClassName {
   profile: FakeProfile;
 }
 
 export default function ProfileCard({ profile, className }: ProfileCardProps) {
-  const { translate } = useTranslation();
+  const { getTranslation: getStudentLevelTranslation } = useEnumTranslation(
+    studyLevelTranslationMapping
+  );
+  const { getTranslation: getStudentSpecialtyTranslation } = useEnumTranslation(
+    studySpecialtyTranslationMapping
+  );
   const [picture, setPicture] = useState<string | null>(profile.image);
 
   return (
@@ -24,7 +26,7 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
           {picture ? (
             <img
               className="profile-picture__image"
-              src={picture ?? defaultPicture}
+              src={picture}
               alt={`${profile.firstName} ${profile.lastName} picture`}
               onError={() => setPicture(null)}
             />
@@ -36,10 +38,10 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
         </div>
         <p className="profile-name">{`${profile.firstName} ${profile.lastName}`}</p>
         <div className="profile-study">
-          <p className="profile-study__level">
-            {translate(StudentLevel.getTranslationKey(profile.studyLevel))}
+          <p className="profile-study__level">{getStudentLevelTranslation(profile.studyLevel)}</p>
+          <p className="profile-study__specialty">
+            {profile.studySpecialty ? getStudentSpecialtyTranslation(profile.studySpecialty) : ''}
           </p>
-          <p className="profile-study__specialty">{profile.studySpecialty}</p>
         </div>
       </div>
     </div>

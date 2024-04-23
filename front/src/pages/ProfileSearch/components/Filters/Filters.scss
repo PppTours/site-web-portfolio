@@ -1,0 +1,22 @@
+.filters {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 1.5rem;
+  color: var(--text-color);
+  overflow-y: auto;
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .actions {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

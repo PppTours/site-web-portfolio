@@ -1,28 +1,12 @@
+import StudyLevel from 'src/models/StudyLevel/StudyLevel';
+import StudySpecialty from 'src/models/StudySpecialty/StudySpecialty';
+
 export interface FakeProfile {
   image: string | null;
   firstName: string;
   lastName: string;
-  studySpecialty: StudySpecialty;
+  studySpecialty: StudySpecialty | null;
   studyLevel: StudyLevel;
-}
-
-export enum StudySpecialty {
-  DI = 'DI',
-  DII = 'DII',
-  DAE = 'DAE',
-  DEE = 'DEE',
-  DMS = 'DMS',
-  PEIP = 'PEIP'
-}
-
-export enum StudyLevel {
-  Peip1,
-  Peip2,
-  Year3,
-  Year4,
-  Year5,
-  Year6,
-  Graduated
 }
 
 export const fakeProfiles: FakeProfile[] = [
@@ -37,7 +21,7 @@ export const fakeProfiles: FakeProfile[] = [
     image: 'https://i.pinimg.com/474x/b9/3d/d4/b93dd44ef0d0719d741a9c36802e6d82.jpg',
     firstName: 'Alice',
     lastName: 'Smith',
-    studySpecialty: StudySpecialty.DII,
+    studySpecialty: StudySpecialty.ISIE,
     studyLevel: StudyLevel.Peip2
   },
   {
@@ -65,8 +49,8 @@ export const fakeProfiles: FakeProfile[] = [
     image: 'https://wrong.url.com/picture.png',
     firstName: 'Sophia',
     lastName: 'Miller',
-    studySpecialty: StudySpecialty.PEIP,
-    studyLevel: StudyLevel.Year6
+    studySpecialty: StudySpecialty.MMA,
+    studyLevel: StudyLevel.Year5
   },
   {
     image: 'https://i.pinimg.com/474x/e9/c8/08/e9c808fdac222166d8b1d892e79fe25e.jpg',
@@ -80,7 +64,7 @@ export const fakeProfiles: FakeProfile[] = [
       'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     firstName: 'William',
     lastName: 'Wilson',
-    studySpecialty: StudySpecialty.DII,
+    studySpecialty: null,
     studyLevel: StudyLevel.Graduated
   },
   {

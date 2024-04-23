@@ -1,8 +1,9 @@
 import './ProfileSearchPage.scss';
 
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useTranslation from 'src/hooks/useTranslation';
 import useWindowResizing from 'src/hooks/useWindowResizing';
-import { TemplateContext } from 'src/templates/Template';
+import { I18nKey } from 'src/i18n/I18nKey';
 
 import FilterDisplayToggleButton from './components/FilterDisplayToggleButton/FilterDisplayToggleButton';
 import FilterDrawer from './components/FilterDrawer/FilterDrawer';
@@ -11,11 +12,12 @@ import ProfileGrid from './components/ProfileGrid/ProfileGrid';
 import useHeaderBottomPosition from './hooks/useHeaderBottomPosition';
 
 export default function ProfileSearchPage() {
-  const { headerRef } = useContext(TemplateContext);
+  const { translate } = useTranslation();
+  const profileHeaderRef = useRef<HTMLDivElement>(null);
   const filterMenuRef = useRef<HTMLDivElement>(null);
   const [areFiltersDisplayed, setAreFiltersDisplayed] = useState<boolean>(false);
   const [isFilterDrawerDisplayed, setIsFilterDrawerDisplayed] = useState<boolean>(false);
-  const headerBottomPosition = useHeaderBottomPosition(headerRef);
+  const headerBottomPosition = useHeaderBottomPosition(profileHeaderRef);
   const isWindowResizing = useWindowResizing();
 
   const toggleFilterDisplay = useCallback(
@@ -43,7 +45,8 @@ export default function ProfileSearchPage() {
     function updateFilterHeight(): void {
       filterMenuRef.current?.setAttribute(
         'style',
-        `max-height: calc(100dvh - ${headerBottomPosition}px)`
+        `top: ${headerBottomPosition}px;
+        max-height: calc(100dvh - ${headerBottomPosition}px)`
       );
     }
 
@@ -52,18 +55,21 @@ export default function ProfileSearchPage() {
 
   return (
     <div className="profile-search-page">
-      <div
-        className={`profile-catalog ${!areFiltersDisplayed ? 'profile-catalog--filter-hidden' : ''}`}
-      >
-        <FilterMenu ref={filterMenuRef} className="filter" hidden={!areFiltersDisplayed} />
-        <div className="profiles">
-          <div className="profiles__header">
-            <FilterDisplayToggleButton
-              areFiltersDisplayed={areFiltersDisplayed}
-              onClick={toggleFilterDisplay}
-            />
-          </div>
-          <ProfileGrid className="profiles__grid" />
+      <div className={`profiles ${!areFiltersDisplayed ? 'profiles--filter-hidden' : ''}`}>
+        <div ref={profileHeaderRef} className="profiles__header">
+          <h2 className="title">{`${translate(I18nKey.OurTalents)} (10)`}</h2>
+          <FilterDisplayToggleButton
+            areFiltersDisplayed={areFiltersDisplayed}
+            onClick={toggleFilterDisplay}
+          />
+        </div>
+        <div className="profiles__main">
+          <FilterMenu
+            ref={filterMenuRef}
+            className="profile-filter"
+            hidden={!areFiltersDisplayed}
+          />
+          <ProfileGrid className="profile-grid" />
         </div>
       </div>
       <FilterDrawer

@@ -1,6 +1,6 @@
 import './Template.scss';
 
-import { createContext, ReactElement, RefObject, useEffect, useRef } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import useTheme from 'src/hooks/useTheme';
 import useTranslation from 'src/hooks/useTranslation';
 import useWindowResizing from 'src/hooks/useWindowResizing';
@@ -9,14 +9,6 @@ import { I18nKey } from 'src/i18n/I18nKey';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import TopBanner from './components/TopBanner/TopBanner';
-
-interface TemplateContextProps {
-  headerRef: RefObject<HTMLDivElement> | undefined;
-}
-
-export const TemplateContext = createContext<TemplateContextProps>({
-  headerRef: undefined
-});
 
 interface TemplateProps {
   children: ReactElement;
@@ -53,7 +45,7 @@ export default function Template({ children }: TemplateProps) {
         </TopBanner>
         <Header ref={headerRef} className="template__header" />
         <main ref={bodyRef} className="template__body">
-          <TemplateContext.Provider value={{ headerRef }}>{children}</TemplateContext.Provider>
+          {children}
         </main>
         <Footer className="template__footer" />
       </div>
