@@ -1,81 +1,60 @@
 import './ProfileSearchPage.scss';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
 import useTranslation from 'src/hooks/useTranslation';
-import useWindowResizing from 'src/hooks/useWindowResizing';
 import { I18nKey } from 'src/i18n/I18nKey';
 
 import FilterDisplayToggleButton from './components/FilterDisplayToggleButton/FilterDisplayToggleButton';
 import FilterDrawer from './components/FilterDrawer/FilterDrawer';
 import FilterMenu from './components/FilterMenu/FilterMenu';
+import useFilteredProfiles from './components/ProfileGrid/hooks/useProfiles';
 import ProfileGrid from './components/ProfileGrid/ProfileGrid';
-import useHeaderBottomPosition from './hooks/useHeaderBottomPosition';
+import useFilterDisplay from './hooks/useFilterDisplay';
+import useFilterDrawerDisplay from './hooks/useFilterDrawerDisplay';
+import useFilterMenuTopPosition from './hooks/useFilterMenuTopPosition';
+import useProfileSearchFilters from './hooks/useProfileSearchFilters';
 
 export default function ProfileSearchPage() {
   const { translate } = useTranslation();
-  const profileHeaderRef = useRef<HTMLDivElement>(null);
-  const filterMenuRef = useRef<HTMLDivElement>(null);
-  const [areFiltersDisplayed, setAreFiltersDisplayed] = useState<boolean>(false);
-  const [isFilterDrawerDisplayed, setIsFilterDrawerDisplayed] = useState<boolean>(false);
-  const headerBottomPosition = useHeaderBottomPosition(profileHeaderRef);
-  const isWindowResizing = useWindowResizing();
+  const { filters, setFilters } = useProfileSearchFilters();
+  const { profiles, areProfilesLoading, filterProfiles } = useFilteredProfiles();
+  const { areFiltersDisplayed, toggleFilterDisplay, closeFilterDrawer } = useFilterDisplay();
+  const { filterMenuTopPosition, profileHeaderRef } = useFilterMenuTopPosition();
+  const { isFilterDrawerDisplayed, filterMenuRef } = useFilterDrawerDisplay();
 
-  const toggleFilterDisplay = useCallback(
-    (display: boolean) => setAreFiltersDisplayed(display),
-    []
-  );
-
-  const closeFilterDrawer = useCallback(() => {
-    setAreFiltersDisplayed(false);
-  }, []);
-
-  useEffect(() => {
-    function updateFilterDrawerDisplay(): void {
-      const filterDisplay = filterMenuRef.current
-        ? getComputedStyle(filterMenuRef.current).display
-        : null;
-      const areFiltersNotDisplayed = filterDisplay === 'none';
-      setIsFilterDrawerDisplayed(areFiltersNotDisplayed);
-    }
-
-    if (!isWindowResizing) updateFilterDrawerDisplay();
-  }, [areFiltersDisplayed, filterMenuRef, isWindowResizing]);
-
-  useEffect(() => {
-    function updateFilterHeight(): void {
-      filterMenuRef.current?.setAttribute(
-        'style',
-        `top: ${headerBottomPosition}px;
-        max-height: calc(100dvh - ${headerBottomPosition}px)`
-      );
-    }
-
-    updateFilterHeight();
-  }, [headerBottomPosition]);
+  function updateProfiles(): void {
+    filterProfiles(filters);
+  }
 
   return (
     <div className="profile-search-page">
       <div className={`profiles ${!areFiltersDisplayed ? 'profiles--filter-hidden' : ''}`}>
         <div ref={profileHeaderRef} className="profiles__header">
-          <h2 className="title">{`${translate(I18nKey.OurTalents)} (10)`}</h2>
+          <h2 className="title">{`${translate(I18nKey.OurTalents)} (${areProfilesLoading ? 0 : profiles.length})`}</h2>
           <FilterDisplayToggleButton
             areFiltersDisplayed={areFiltersDisplayed}
-            onClick={toggleFilterDisplay}
+            onClick={() => toggleFilterDisplay()}
           />
         </div>
         <div className="profiles__main">
           <FilterMenu
             ref={filterMenuRef}
             className="profile-filter"
+            filters={filters}
+            topPosition={filterMenuTopPosition}
             hidden={!areFiltersDisplayed}
+            onFilterUpdate={setFilters}
+            onFilterApplication={updateProfiles}
           />
-          <ProfileGrid className="profile-grid" />
+          <ProfileGrid className="profile-grid" profiles={profiles} loading={areProfilesLoading} />
         </div>
       </div>
       <FilterDrawer
         className="filter-drawer"
         isOpen={areFiltersDisplayed && isFilterDrawerDisplayed}
+        filters={filters}
         onClose={closeFilterDrawer}
+        onFilterUpdate={setFilters}
+        onFilterApplication={updateProfiles}
       />
     </div>
   );

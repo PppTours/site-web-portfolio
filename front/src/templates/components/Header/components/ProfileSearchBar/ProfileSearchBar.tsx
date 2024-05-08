@@ -15,6 +15,7 @@ export default function ProfileSearchBar({ className }: ProfileSearchBarProps) {
     <div className={`search-bar ${className ?? ''}`}>
       <Input
         className="search-bar__input"
+        name="search-bar"
         addonBefore={<SearchOutlined />}
         placeholder={translate(I18nKey.SearchProfile)}
         size="middle"

@@ -1,6 +1,6 @@
 import './ProfileCard.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FakeProfile } from 'src/assets/mock/FakeProfiles';
 import useEnumTranslation from 'src/hooks/useEnumTranslation';
 import { studyLevelTranslationMapping } from 'src/models/StudyLevel/StudyLevelTranslationMapping';
@@ -18,6 +18,11 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
     studySpecialtyTranslationMapping
   );
   const [picture, setPicture] = useState<string | null>(profile.image);
+  const initials = `${profile.firstName.at(0)}${profile.lastName.at(0)}`;
+
+  useEffect(() => {
+    setPicture(profile.image);
+  }, [profile]);
 
   return (
     <div className={`profile-card ${className ?? ''}`}>
@@ -32,7 +37,7 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
             />
           ) : (
             <div className="profile-picture-image-replacement">
-              <p className="profile-picture-image-replacement__initials">{`${profile.firstName.at(0)}${profile.lastName.at(0)}`}</p>
+              <p className="profile-picture-image-replacement__initials">{initials}</p>
             </div>
           )}
         </div>
