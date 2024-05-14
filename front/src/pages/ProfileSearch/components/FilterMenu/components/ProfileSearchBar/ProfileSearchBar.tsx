@@ -6,9 +6,16 @@ import useTranslation from 'src/hooks/useTranslation';
 import { I18nKey } from 'src/i18n/I18nKey';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-type ProfileSearchBarProps = AdditionalClassName;
+interface ProfileSearchBarProps extends AdditionalClassName {
+  value: string;
+  onTextChange: (text: string) => void;
+}
 
-export default function ProfileSearchBar({ className }: ProfileSearchBarProps) {
+export default function ProfileSearchBar({
+  value,
+  className,
+  onTextChange
+}: ProfileSearchBarProps) {
   const { translate } = useTranslation();
 
   return (
@@ -18,7 +25,10 @@ export default function ProfileSearchBar({ className }: ProfileSearchBarProps) {
         name="search-bar"
         addonBefore={<SearchOutlined />}
         placeholder={translate(I18nKey.SearchProfile)}
+        value={value}
         size="middle"
+        allowClear={true}
+        onChange={(event) => onTextChange(event.target.value ?? '')}
       />
     </div>
   );

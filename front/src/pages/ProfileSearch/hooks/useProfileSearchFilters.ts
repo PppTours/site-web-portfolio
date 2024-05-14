@@ -3,6 +3,7 @@ import StudyLevel from 'src/models/StudyLevel/StudyLevel';
 import StudySpecialty from 'src/models/StudySpecialty/StudySpecialty';
 
 export interface ProfileSearchFilters {
+  searchText: string;
   studyLevels: StudyLevel[];
   studySpecialties: StudySpecialty[];
 }
@@ -14,6 +15,7 @@ interface FiltersReturn {
 
 function useProfileSearchFilters(): FiltersReturn {
   const [filters, setFilters] = useState<ProfileSearchFilters>({
+    searchText: '',
     studyLevels: [],
     studySpecialties: []
   });

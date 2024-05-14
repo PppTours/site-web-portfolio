@@ -17,6 +17,7 @@ export enum I18nKey {
   UnknownErrorSubtitle = 'unknown_error_subtitle',
   OurTalents = 'our_talents',
   SortAndFilter = 'sort_and_filter',
+  Name = 'name',
   StudySpecialty = 'study_specialty',
   StudyLevel = 'study_level',
   Apply = 'apply',

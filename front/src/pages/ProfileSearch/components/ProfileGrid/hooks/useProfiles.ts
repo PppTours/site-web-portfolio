@@ -16,12 +16,27 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
   const filterProfiles = useCallback(async (filters: ProfileSearchFilters) => {
     setAreProfilesLoading(true);
     const profiles = fakeProfiles.filter(
-      (profile) => checkStudyLevel(profile, filters) && checkStudySpecialty(profile, filters)
+      (profile) =>
+        checkSearchText(profile, filters) &&
+        checkStudyLevel(profile, filters) &&
+        checkStudySpecialty(profile, filters)
     );
     setTimeout(() => setAreProfilesLoading(false), 500);
 
     setFilteredProfiles(profiles);
   }, []);
+
+  function checkSearchText(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
+    const searchTextSplit = filters.searchText
+      .trim()
+      .replaceAll(/[ ]{2,}/g, ' ')
+      .toLowerCase()
+      .split(' ');
+    const profileString = [profile.firstName.toLowerCase(), profile.lastName.toLowerCase()].join(
+      ' '
+    );
+    return searchTextSplit.reduce((acc, string) => acc && !!profileString.match(string), true);
+  }
 
   function checkStudyLevel(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
     return filters.studyLevels.length === 0 || filters.studyLevels.includes(profile.studyLevel);
@@ -36,7 +51,7 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
 
   useEffect(() => {
     function loadProfiles() {
-      filterProfiles(filters ?? { studyLevels: [], studySpecialties: [] });
+      filterProfiles(filters ?? { searchText: '', studyLevels: [], studySpecialties: [] });
       setAreProfilesLoaded(true);
     }
 

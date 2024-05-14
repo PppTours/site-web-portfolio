@@ -7,6 +7,7 @@ import AdditionalClassName from 'src/types/AdditionalClassName';
 
 import { ProfileSearchFilters } from '../../hooks/useProfileSearchFilters';
 import FilterGroup from '../FilterMenu/components/FilterGroup/FilterGroup';
+import ProfileSearchBar from '../FilterMenu/components/ProfileSearchBar/ProfileSearchBar';
 import StudyLevelFilter from '../FilterMenu/components/StudyLevelFilter/StudyLevelFilter';
 import StudySpecialtyFilter from '../FilterMenu/components/StudySpecialtyFilter/StudySpecialtyFilter';
 
@@ -25,7 +26,7 @@ export default function Filters({
   const { translate } = useTranslation();
 
   function clearAllFilters(): void {
-    onFilterUpdate({ studySpecialties: [], studyLevels: [] });
+    onFilterUpdate({ searchText: '', studySpecialties: [], studyLevels: [] });
   }
 
   function applyFilters(): void {
@@ -36,6 +37,12 @@ export default function Filters({
     <div className={`filters ${className ?? ''}`}>
       <p className="filters__title">{translate(I18nKey.SortAndFilter)}</p>
       <div className="filter-groups">
+        <FilterGroup title={translate(I18nKey.Name)}>
+          <ProfileSearchBar
+            value={filters.searchText}
+            onTextChange={(searchText) => onFilterUpdate({ ...filters, searchText })}
+          />
+        </FilterGroup>
         <FilterGroup title={translate(I18nKey.StudySpecialty)}>
           <StudySpecialtyFilter
             checkedOptions={filters.studySpecialties}

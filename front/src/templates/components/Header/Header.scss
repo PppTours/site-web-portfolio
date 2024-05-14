@@ -21,8 +21,8 @@
     max-width: var(--max-width);
     padding: 1rem 0;
     display: grid;
-    grid-template-areas: 'logo navigation-bar search-bar actions';
-    grid-template-columns: auto auto 1fr auto;
+    grid-template-areas: 'logo navigation-bar actions';
+    grid-template-columns: auto 1fr auto;
     column-gap: 0.5rem;
 
     @include sm-lt {
@@ -53,15 +53,6 @@
 
     .navigation-bar {
       grid-area: navigation-bar;
-      margin: 0 1rem;
-
-      @include sm-lt {
-        display: none;
-      }
-    }
-
-    .search-bar {
-      grid-area: search-bar;
 
       @include sm-lt {
         display: none;
@@ -84,14 +75,6 @@
         &--language {
           @include sm-lt {
             display: none;
-          }
-        }
-
-        &--search {
-          display: none;
-
-          @include sm-lt {
-            display: flex;
           }
         }
       }
