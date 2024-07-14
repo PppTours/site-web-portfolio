@@ -2,7 +2,8 @@
   "name": "polybook",
   "version": "0.0.0",
   "workspaces": [
-    "front"
+    "front",
+    "api"
   ],
   "scripts": {
     "prepare": "husky install"
