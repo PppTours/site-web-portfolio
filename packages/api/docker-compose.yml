@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres:15.4
+    container_name: postgres-db
+    env_file:
+      - .env
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - postgres_data:/database/var/lib/mysql
+
+volumes:
+  postgres_data:

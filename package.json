@@ -6,7 +6,9 @@
     "api"
   ],
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start:front": "pnpm --filter front run start",
+    "start:api": "pnpm --filter api run start:dev"
   },
   "devDependencies": {
     "@commitlint/cli": "18.6.0",
