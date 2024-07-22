@@ -19,6 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "database:create": "docker compose -p polybook up -d",
+    "database:seed": "ts-node -r tsconfig-paths/register ./src/database/seeds/seed.helper.ts",
     "database:delete": "docker compose down",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:create": "sh ./src/database/scripts/create-migration.sh",
