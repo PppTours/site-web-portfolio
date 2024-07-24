@@ -16,7 +16,12 @@ export class StudentService {
   ) {}
 
   public async findAll(): Promise<StudentEntity[]> {
-    return await this.repository.find();
+    return await this.repository.find({
+      relations: {
+        level: true,
+        specialty: true,
+      },
+    });
   }
 
   public async create(studentDTO: StudentCreationDTO): Promise<StudentEntity> {
