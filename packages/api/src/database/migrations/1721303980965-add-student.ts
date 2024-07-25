@@ -11,7 +11,7 @@ export class AddStudent1721303980965 implements MigrationInterface {
       `CREATE TABLE "study_specialty" ("id" SERIAL NOT NULL, "initialism" VARCHAR NOT NULL, "title" VARCHAR NOT NULL, CONSTRAINT "PK_3f04dc5a5e8a24b67e0bbc0de90" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "student" ("id" SERIAL NOT NULL, "first_name" VARCHAR NOT NULL, "last_name" VARCHAR NOT NULL, "profile_picture_url" VARCHAR, "level_id" integer, "specialty_id" integer, CONSTRAINT "PK_3d8016e1cb58429474a3c041904" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "student" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "first_name" VARCHAR NOT NULL, "last_name" VARCHAR NOT NULL, "profile_picture_url" VARCHAR, "level_id" integer, "specialty_id" integer, CONSTRAINT "PK_3d8016e1cb58429474a3c041904" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `ALTER TABLE "student" ADD CONSTRAINT "FK_7bad0eccb24746edb72da1e7d69" FOREIGN KEY ("level_id") REFERENCES "study_level"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,

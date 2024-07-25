@@ -1,22 +1,16 @@
-import { DataSource, Repository } from 'typeorm';
-import { StudyLevelEntity } from 'src/study-level/study-level.entity';
-import { StudySpecialtyEntity } from 'src/study-specialty/study-specialty.entity';
+import { StudentService } from 'src/student/student.service';
+import { StudyLevelService } from 'src/study-level/study-level.service';
+import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
+import { STUDENTS } from './data/student.data';
 import { STUDY_LEVELS } from './data/study-level.data';
 import { STUDY_SPECIALTIES } from './data/study-specialty.data';
-import { STUDENTS } from './data/student.data';
-import { StudentEntity } from 'src/student/student.entity';
 
 export class SeedService {
-  private studyLevelRepository: Repository<StudyLevelEntity>;
-  private studySpecialtyRepository: Repository<StudySpecialtyEntity>;
-  private studentRepository: Repository<StudentEntity>;
-
-  constructor(private dataSource: DataSource) {
-    this.studyLevelRepository = this.dataSource.getRepository(StudyLevelEntity);
-    this.studySpecialtyRepository =
-      this.dataSource.getRepository(StudySpecialtyEntity);
-    this.studentRepository = this.dataSource.getRepository(StudentEntity);
-  }
+  constructor(
+    private studentService: StudentService,
+    private studyLevelService: StudyLevelService,
+    private studySpecialtyService: StudySpecialtyService,
+  ) {}
 
   public async seedData(): Promise<void> {
     await this.seedStudyLevels();
@@ -26,23 +20,19 @@ export class SeedService {
 
   private async seedStudyLevels(): Promise<void> {
     for (const studyLevel of STUDY_LEVELS) {
-      const studyLevelEntity = this.studyLevelRepository.create(studyLevel);
-      await this.studyLevelRepository.save(studyLevelEntity);
+      await this.studyLevelService.insert(studyLevel);
     }
   }
 
   private async seedStudySpecialties(): Promise<void> {
     for (const studySpecialty of STUDY_SPECIALTIES) {
-      const studySpecialtyEntity =
-        this.studySpecialtyRepository.create(studySpecialty);
-      await this.studySpecialtyRepository.save(studySpecialtyEntity);
+      await this.studySpecialtyService.insert(studySpecialty);
     }
   }
 
   private async seedStudents(): Promise<void> {
     for (const student of STUDENTS) {
-      const studentEntity = this.studentRepository.create(student);
-      await this.studentRepository.save(studentEntity);
+      await this.studentService.insert(student);
     }
   }
 }

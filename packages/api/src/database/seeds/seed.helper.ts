@@ -1,11 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
-import { DataSource } from 'typeorm';
+import { StudentService } from 'src/student/student.service';
 import { SeedService } from './seed.service';
+import { StudyLevelService } from 'src/study-level/study-level.service';
+import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
 
 async function runSeeder() {
   const app = await NestFactory.create(AppModule);
-  const seedService = new SeedService(app.get(DataSource));
+  const seedService = new SeedService(
+    app.get(StudentService),
+    app.get(StudyLevelService),
+    app.get(StudySpecialtyService),
+  );
   await seedService.seedData();
   await app.close();
 }

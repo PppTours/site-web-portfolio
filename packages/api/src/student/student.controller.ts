@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { StudentService } from './student.service';
-import { StudentCreationDTO } from './dto/student-creation.dto';
+import { CreateStudentRequestDTO } from './dto/create-student-request.dto';
 import { StudentDTO } from './dto/student.dto';
 import { StudentListDTO } from './dto/student-list.dto';
 
@@ -15,8 +15,8 @@ export class StudentController {
 
   @Post('/')
   public async createStudent(
-    @Body() body: StudentCreationDTO,
+    @Body() body: CreateStudentRequestDTO,
   ): Promise<StudentDTO> {
-    return await this.studentService.create(body);
+    return await this.studentService.insert(body);
   }
 }

@@ -1,3 +1,4 @@
+import { UUID } from 'crypto';
 import { StudyLevelEntity } from 'src/study-level/study-level.entity';
 import { StudySpecialtyEntity } from 'src/study-specialty/study-specialty.entity';
 import {
@@ -10,8 +11,8 @@ import {
 
 @Entity('student')
 export class StudentEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: UUID;
 
   @Column({ name: 'first_name' })
   firstName: string;

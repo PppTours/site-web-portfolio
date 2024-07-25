@@ -9,6 +9,7 @@ export class StudySpecialtyEntity {
 
   @Column({
     enum: StudySpecialtyInitialism,
+    unique: true,
   })
   initialism: StudySpecialtyInitialism;
 

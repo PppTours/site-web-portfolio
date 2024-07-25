@@ -1,6 +1,6 @@
 import { IsNumber } from 'class-validator';
 
-export class StudySpecialtyGettingDTO {
+export class GetStudySpecialtyRequestDTO {
   @IsNumber()
   id: number;
 }

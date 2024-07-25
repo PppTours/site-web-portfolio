@@ -9,6 +9,7 @@ export class StudyLevelEntity {
 
   @Column({
     enum: StudyLevel,
+    unique: true,
   })
   name: StudyLevel;
 
