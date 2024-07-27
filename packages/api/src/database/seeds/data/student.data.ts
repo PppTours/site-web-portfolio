@@ -9,7 +9,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 1,
     },
-    specialty: null,
+    sector: null,
   },
   {
     firstName: 'Alice',
@@ -19,7 +19,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 2,
     },
-    specialty: null,
+    sector: null,
   },
   {
     firstName: 'Emma',
@@ -28,7 +28,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 3,
     },
-    specialty: {
+    sector: {
       id: 2,
     },
   },
@@ -40,7 +40,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 4,
     },
-    specialty: {
+    sector: {
       id: 3,
     },
   },
@@ -52,7 +52,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 5,
     },
-    specialty: {
+    sector: {
       id: 5,
     },
   },
@@ -63,7 +63,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 5,
     },
-    specialty: {
+    sector: {
       id: 7,
     },
   },
@@ -75,7 +75,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 6,
     },
-    specialty: {
+    sector: {
       id: 4,
     },
   },
@@ -87,7 +87,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 3,
     },
-    specialty: {
+    sector: {
       id: 3,
     },
   },
@@ -99,7 +99,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 5,
     },
-    specialty: {
+    sector: {
       id: 2,
     },
   },
@@ -111,7 +111,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 5,
     },
-    specialty: {
+    sector: {
       id: 3,
     },
   },
@@ -123,6 +123,6 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 1,
     },
-    specialty: null,
+    sector: null,
   },
 ];

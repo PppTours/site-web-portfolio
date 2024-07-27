@@ -1,4 +1,4 @@
-export enum StudySpecialtyInitialism {
+export enum StudySectorInitialism {
   PEIP = 'PEIP',
   DEE = 'DEE',
   DAE = 'DAE',

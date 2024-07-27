@@ -12,7 +12,7 @@ export class AddStudent1721303980965 implements MigrationInterface {
       )`,
     );
     await queryRunner.query(
-      `CREATE TABLE "study_specialty" (
+      `CREATE TABLE "study_sector" (
         "id" SERIAL NOT NULL, 
         "initialism" VARCHAR NOT NULL, 
         "title" VARCHAR NOT NULL, 
@@ -26,7 +26,7 @@ export class AddStudent1721303980965 implements MigrationInterface {
         "last_name" VARCHAR NOT NULL, 
         "profile_picture_url" VARCHAR, 
         "level_id" INTEGER NOT NULL, 
-        "specialty_id" INTEGER, 
+        "sector_id" INTEGER, 
         CONSTRAINT "PK_3d8016e1cb58429474a3c041904" PRIMARY KEY ("id")
       )`,
     );
@@ -37,7 +37,7 @@ export class AddStudent1721303980965 implements MigrationInterface {
     );
     await queryRunner.query(
       `ALTER TABLE "student" ADD CONSTRAINT "FK_76b0972b066c01f496c665cfaac" 
-      FOREIGN KEY ("specialty_id") REFERENCES "study_specialty"("id") 
+      FOREIGN KEY ("sector_id") REFERENCES "study_sector"("id") 
       ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
   }
@@ -49,7 +49,7 @@ export class AddStudent1721303980965 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "student" DROP CONSTRAINT "FK_7bad0eccb24746edb72da1e7d69"`,
     );
-    await queryRunner.query(`DROP TABLE "study_specialty"`);
+    await queryRunner.query(`DROP TABLE "study_sector"`);
     await queryRunner.query(`DROP TABLE "student"`);
     await queryRunner.query(`DROP TABLE "study_level"`);
   }

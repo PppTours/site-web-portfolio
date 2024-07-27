@@ -3,11 +3,11 @@ import { CreateStudyLevelRequestDTO } from './dtos/create-study-level-request.dt
 import { StudyLevelDTO } from './dtos/study-level.dto';
 import { StudyLevel } from './enums/study-level.enum';
 import { StudyLevelRepository } from './study-level.repository';
-import { StudySpecialtyDTO } from 'src/study-specialty/dto/study-specialty.dto';
+import { StudySectorDTO } from 'src/study-sector/dto/study-sector.dto';
 
 @Injectable()
 export class StudyLevelService {
-  private static levelsWithoutSpecialty = [StudyLevel.Peip1, StudyLevel.Peip2];
+  private static levelsWithoutSector = [StudyLevel.Peip1, StudyLevel.Peip2];
 
   constructor(private repository: StudyLevelRepository) {}
 
@@ -21,19 +21,19 @@ export class StudyLevelService {
     return this.repository.insert(studyLevel);
   }
 
-  public assertLevelCanHaveSpecialty(
+  public assertLevelCanHaveSector(
     level: StudyLevelDTO,
-    specialty: StudySpecialtyDTO,
+    sector: StudySectorDTO,
   ) {
-    if (specialty && this.shouldHaveSpecialty(level)) {
+    if (sector && this.shouldHaveSector(level)) {
       throw new HttpException(
-        `Study level '${level.name}' can't have specialty`,
+        `Study level '${level.name}' can't have sector`,
         HttpStatus.BAD_REQUEST,
       );
     }
   }
 
-  public shouldHaveSpecialty(level: StudyLevelDTO): boolean {
-    return StudyLevelService.levelsWithoutSpecialty.includes(level.name);
+  public shouldHaveSector(level: StudyLevelDTO): boolean {
+    return StudyLevelService.levelsWithoutSector.includes(level.name);
   }
 }

@@ -1,6 +1,6 @@
 import { UUID } from 'crypto';
 import { StudyLevelEntity } from 'src/study-level/study-level.entity';
-import { StudySpecialtyEntity } from 'src/study-specialty/study-specialty.entity';
+import { StudySectorEntity } from 'src/study-sector/study-sector.entity';
 import {
   Column,
   Entity,
@@ -32,9 +32,9 @@ export class StudentEntity {
   @JoinColumn({ name: 'level_id' })
   level: StudyLevelEntity;
 
-  @ManyToOne(() => StudySpecialtyEntity, (level) => level.students, {
+  @ManyToOne(() => StudySectorEntity, (level) => level.students, {
     nullable: true,
   })
-  @JoinColumn({ name: 'specialty_id' })
-  specialty?: StudySpecialtyEntity;
+  @JoinColumn({ name: 'sector_id' })
+  sector?: StudySectorEntity;
 }

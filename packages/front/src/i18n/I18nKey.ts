@@ -18,7 +18,7 @@ export enum I18nKey {
   OurTalents = 'our_talents',
   SortAndFilter = 'sort_and_filter',
   Name = 'name',
-  StudySpecialty = 'study_specialty',
+  StudySector = 'study_sector',
   StudyLevel = 'study_level',
   Apply = 'apply',
   ClearAll = 'clear_all',

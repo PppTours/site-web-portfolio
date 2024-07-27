@@ -19,7 +19,7 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
       (profile) =>
         checkSearchText(profile, filters) &&
         checkStudyLevel(profile, filters) &&
-        checkStudySpecialty(profile, filters)
+        checkStudySector(profile, filters)
     );
     setTimeout(() => setAreProfilesLoading(false), 500);
 
@@ -42,10 +42,10 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
     return filters.studyLevels.length === 0 || filters.studyLevels.includes(profile.studyLevel);
   }
 
-  function checkStudySpecialty(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
+  function checkStudySector(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
     return (
       filters.studySpecialties.length === 0 ||
-      (!!profile.studySpecialty && filters.studySpecialties.includes(profile.studySpecialty))
+      (!!profile.studySector && filters.studySpecialties.includes(profile.studySector))
     );
   }
 

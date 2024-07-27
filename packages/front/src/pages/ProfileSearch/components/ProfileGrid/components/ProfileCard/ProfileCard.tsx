@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { FakeProfile } from 'src/assets/mock/FakeProfiles';
 import useEnumTranslation from 'src/hooks/useEnumTranslation';
 import { studyLevelTranslationMapping } from 'src/models/StudyLevel/StudyLevelTranslationMapping';
-import { studySpecialtyTranslationMapping } from 'src/models/StudySpecialty/StudentSpecialtyTranslationMapping';
+import { studySectorTranslationMapping } from 'src/models/StudySector/StudentSectorTranslationMapping';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 export interface ProfileCardProps extends AdditionalClassName {
   profile: FakeProfile;
@@ -14,8 +14,8 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
   const { getTranslation: getStudentLevelTranslation } = useEnumTranslation(
     studyLevelTranslationMapping
   );
-  const { getTranslation: getStudentSpecialtyTranslation } = useEnumTranslation(
-    studySpecialtyTranslationMapping
+  const { getTranslation: getStudentSectorTranslation } = useEnumTranslation(
+    studySectorTranslationMapping
   );
   const [picture, setPicture] = useState<string | null>(profile.image);
   const initials = `${profile.firstName.at(0)}${profile.lastName.at(0)}`;
@@ -44,8 +44,8 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
         <p className="profile-name">{`${profile.firstName} ${profile.lastName}`}</p>
         <div className="profile-study">
           <p className="profile-study__level">{getStudentLevelTranslation(profile.studyLevel)}</p>
-          <p className="profile-study__specialty">
-            {profile.studySpecialty ? getStudentSpecialtyTranslation(profile.studySpecialty) : ''}
+          <p className="profile-study__sector">
+            {profile.studySector ? getStudentSectorTranslation(profile.studySector) : ''}
           </p>
         </div>
       </div>

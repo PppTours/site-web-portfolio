@@ -9,7 +9,7 @@ import { ProfileSearchFilters } from '../../hooks/useProfileSearchFilters';
 import FilterGroup from '../FilterMenu/components/FilterGroup/FilterGroup';
 import ProfileSearchBar from '../FilterMenu/components/ProfileSearchBar/ProfileSearchBar';
 import StudyLevelFilter from '../FilterMenu/components/StudyLevelFilter/StudyLevelFilter';
-import StudySpecialtyFilter from '../FilterMenu/components/StudySpecialtyFilter/StudySpecialtyFilter';
+import StudySectorFilter from '../FilterMenu/components/StudySectorFilter/StudySectorFilter';
 
 export interface FiltersProps extends AdditionalClassName {
   filters: ProfileSearchFilters;
@@ -43,8 +43,8 @@ export default function Filters({
             onTextChange={(searchText) => onFilterUpdate({ ...filters, searchText })}
           />
         </FilterGroup>
-        <FilterGroup title={translate(I18nKey.StudySpecialty)}>
-          <StudySpecialtyFilter
+        <FilterGroup title={translate(I18nKey.StudySector)}>
+          <StudySectorFilter
             checkedOptions={filters.studySpecialties}
             onUpdate={(studySpecialties) => onFilterUpdate({ ...filters, studySpecialties })}
           />

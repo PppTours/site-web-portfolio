@@ -4,7 +4,7 @@ import { StudentEntity } from '../student.entity';
 import { StudentListDTO } from './student-list.dto';
 import { StudentDTO } from './student.dto';
 import { StudyLevelDtoService } from 'src/study-level/dtos/study-level.dto.service';
-import { StudySpecialtyDtoService } from 'src/study-specialty/dto/study-specialty.dto.service';
+import { StudySectorDtoService } from 'src/study-sector/dto/study-sector.dto.service';
 
 @Injectable()
 export class StudentDtoService
@@ -12,7 +12,7 @@ export class StudentDtoService
 {
   constructor(
     private studyLevelDtoService: StudyLevelDtoService,
-    private studySpecialtyDtoService: StudySpecialtyDtoService,
+    private studySectorDtoService: StudySectorDtoService,
   ) {}
 
   public convertToDTO(student: StudentEntity): StudentDTO {
@@ -22,8 +22,8 @@ export class StudentDtoService
     dto.lastName = student.lastName;
     dto.profilePictureUrl = student.profilePictureUrl ?? null;
     dto.level = this.studyLevelDtoService.convertToDTO(student.level);
-    dto.specialty = student.specialty
-      ? this.studySpecialtyDtoService.convertToDTO(student.specialty)
+    dto.sector = student.sector
+      ? this.studySectorDtoService.convertToDTO(student.sector)
       : null;
     return dto;
   }

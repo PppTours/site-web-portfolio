@@ -1,15 +1,15 @@
 import { StudentService } from 'src/student/student.service';
 import { StudyLevelService } from 'src/study-level/study-level.service';
-import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
 import { STUDENTS } from './data/student.data';
 import { STUDY_LEVELS } from './data/study-level.data';
-import { STUDY_SPECIALTIES } from './data/study-specialty.data';
+import { STUDY_SPECIALTIES } from './data/study-sector.data';
+import { StudySectorService } from 'src/study-sector/study-sector.service';
 
 export class SeedService {
   constructor(
     private studentService: StudentService,
     private studyLevelService: StudyLevelService,
-    private studySpecialtyService: StudySpecialtyService,
+    private studySectorService: StudySectorService,
   ) {}
 
   public async seedData(): Promise<void> {
@@ -25,8 +25,8 @@ export class SeedService {
   }
 
   private async seedStudySpecialties(): Promise<void> {
-    for (const studySpecialty of STUDY_SPECIALTIES) {
-      await this.studySpecialtyService.create(studySpecialty);
+    for (const studySector of STUDY_SPECIALTIES) {
+      await this.studySectorService.create(studySector);
     }
   }
 

@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { StudyLevelDTO } from 'src/study-level/dtos/study-level.dto';
 
-export class StudentWithSpecialtyRequiredException extends HttpException {
+export class StudentWithSectorRequiredException extends HttpException {
   constructor(studyLevel: StudyLevelDTO) {
     super(
-      `'${studyLevel.name}' student should have a specialty`,
+      `'${studyLevel.name}' student should have a sector`,
       HttpStatus.NOT_FOUND,
     );
   }

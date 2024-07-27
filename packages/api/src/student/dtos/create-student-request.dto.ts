@@ -1,6 +1,6 @@
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
 import { GetStudyLevelRequestDTO } from 'src/study-level/dtos/get-study-level-request.dto';
-import { GetStudySpecialtyRequestDTO } from 'src/study-specialty/dto/get-study-specialty-request.dto';
+import { GetStudySectorRequestDTO } from 'src/study-sector/dto/get-study-sector-request.dto';
 
 export class CreateStudentRequestDTO {
   @IsString()
@@ -18,5 +18,5 @@ export class CreateStudentRequestDTO {
 
   @ValidateNested()
   @IsOptional()
-  specialty?: GetStudySpecialtyRequestDTO;
+  sector?: GetStudySectorRequestDTO;
 }

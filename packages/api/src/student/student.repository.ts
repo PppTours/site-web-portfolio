@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { StudyLevelService } from 'src/study-level/study-level.service';
-import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
+import { StudySectorService } from 'src/study-sector/study-sector.service';
 import { Repository } from 'typeorm';
 import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
 import { StudentListDTO } from './dtos/student-list.dto';
@@ -19,7 +19,7 @@ export class StudentRepository {
     private repository: Repository<StudentEntity>,
     private dtoService: StudentDtoService,
     private studyLevelService: StudyLevelService,
-    private studySpecialtyService: StudySpecialtyService,
+    private studySectorService: StudySectorService,
   ) {}
 
   public async findById(id: UUID): Promise<StudentDTO> {
@@ -32,7 +32,7 @@ export class StudentRepository {
     const students = await this.repository.find({
       relations: {
         level: true,
-        specialty: true,
+        sector: true,
       },
     });
     return this.dtoService.convertToListDTO(students);
@@ -58,15 +58,15 @@ export class StudentRepository {
     studentDTO: CreateStudentRequestDTO,
   ): Promise<StudentEntity> {
     const level = await this.studyLevelService.get(studentDTO.level.id);
-    const specialty = studentDTO.specialty
-      ? await this.studySpecialtyService.get(studentDTO.specialty.id)
+    const sector = studentDTO.sector
+      ? await this.studySectorService.get(studentDTO.sector.id)
       : null;
     return this.repository.create({
       firstName: studentDTO.firstName,
       lastName: studentDTO.lastName,
       profilePictureUrl: studentDTO.profilePictureUrl,
       level,
-      specialty,
+      sector,
     });
   }
 

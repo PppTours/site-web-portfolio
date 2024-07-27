@@ -1,4 +1,4 @@
-enum StudySpecialty {
+enum StudySector {
   DI = 'DI',
   DAE = 'DAE',
   DEE = 'DEE',
@@ -7,4 +7,4 @@ enum StudySpecialty {
   MMA = 'MMA'
 }
 
-export default StudySpecialty;
+export default StudySector;

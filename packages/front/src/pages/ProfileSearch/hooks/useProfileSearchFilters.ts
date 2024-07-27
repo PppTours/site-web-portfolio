@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import StudyLevel from 'src/models/StudyLevel/StudyLevel';
-import StudySpecialty from 'src/models/StudySpecialty/StudySpecialty';
+import StudySector from 'src/models/StudySector/StudySector';
 
 export interface ProfileSearchFilters {
   searchText: string;
   studyLevels: StudyLevel[];
-  studySpecialties: StudySpecialty[];
+  studySpecialties: StudySector[];
 }
 
 interface FiltersReturn {

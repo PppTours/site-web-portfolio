@@ -5,15 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './database/typeorm.config';
 import { EnvModule } from './env/env.module';
 import { StudentModule } from './student/student.module';
-import { StudySpecialtyModule } from './study-specialty/study-specialty.module';
 import { StudyLevelModule } from './study-level/study-level.module';
+import { StudySectorModule } from './study-sector/study-sector.module';
 
 @Module({
   imports: [
     EnvModule,
     TypeOrmModule.forRoot(typeormConfig.getTypeOrmModuleOptions()),
     StudentModule,
-    StudySpecialtyModule,
+    StudySectorModule,
     StudyLevelModule,
   ],
   controllers: [AppController],
