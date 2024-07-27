@@ -9,9 +9,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 1,
     },
-    specialty: {
-      id: 4,
-    },
+    specialty: null,
   },
   {
     firstName: 'Alice',
@@ -21,9 +19,7 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 2,
     },
-    specialty: {
-      id: 6,
-    },
+    specialty: null,
   },
   {
     firstName: 'Emma',
@@ -127,8 +123,6 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     level: {
       id: 1,
     },
-    specialty: {
-      id: 4,
-    },
+    specialty: null,
   },
 ];

@@ -26,11 +26,15 @@ export class StudentEntity {
   })
   profilePictureUrl: string;
 
-  @ManyToOne(() => StudyLevelEntity, (level) => level.students, {})
+  @ManyToOne(() => StudyLevelEntity, (level) => level.students, {
+    nullable: false,
+  })
   @JoinColumn({ name: 'level_id' })
   level: StudyLevelEntity;
 
-  @ManyToOne(() => StudySpecialtyEntity, (level) => level.students)
+  @ManyToOne(() => StudySpecialtyEntity, (level) => level.students, {
+    nullable: true,
+  })
   @JoinColumn({ name: 'specialty_id' })
-  specialty: StudySpecialtyEntity;
+  specialty?: StudySpecialtyEntity;
 }

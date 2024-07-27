@@ -61,9 +61,9 @@ export class StudentService {
     studentDTO: CreateStudentRequestDTO,
   ): Promise<StudentEntity> {
     const level = await this.studyLevelService.findById(studentDTO.level.id);
-    const specialty = await this.studySpecialtyService.findById(
-      studentDTO.specialty.id,
-    );
+    const specialty = studentDTO.specialty
+      ? await this.studySpecialtyService.findById(studentDTO.specialty.id)
+      : null;
     return this.repository.create({
       firstName: studentDTO.firstName,
       lastName: studentDTO.lastName,

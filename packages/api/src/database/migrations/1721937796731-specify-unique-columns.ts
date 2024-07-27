@@ -5,10 +5,12 @@ export class SpecifyUniqueColumns1721937796731 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `ALTER TABLE "study_level" ADD CONSTRAINT "UQ_3a2f8138650bf64db5d242b5f55" UNIQUE ("name")`,
+      `ALTER TABLE "study_level" 
+      ADD CONSTRAINT "UQ_3a2f8138650bf64db5d242b5f55" UNIQUE ("name")`,
     );
     await queryRunner.query(
-      `ALTER TABLE "study_specialty" ADD CONSTRAINT "UQ_5e16da2d8489bec6d6336a8e97c" UNIQUE ("initialism")`,
+      `ALTER TABLE "study_specialty" 
+      ADD CONSTRAINT "UQ_5e16da2d8489bec6d6336a8e97c" UNIQUE ("initialism")`,
     );
   }
 

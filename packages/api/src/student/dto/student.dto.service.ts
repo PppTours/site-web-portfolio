@@ -22,9 +22,9 @@ export class StudentDtoService
     dto.lastName = student.lastName;
     dto.profilePictureUrl = student.profilePictureUrl ?? null;
     dto.level = this.studyLevelDtoService.convertToDTO(student.level);
-    dto.specialty = this.studySpecialtyDtoService.convertToDTO(
-      student.specialty,
-    );
+    dto.specialty = student.specialty
+      ? this.studySpecialtyDtoService.convertToDTO(student.specialty)
+      : null;
     return dto;
   }
 

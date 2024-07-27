@@ -17,5 +17,6 @@ export class CreateStudentRequestDTO {
   level: GetStudyLevelRequestDTO;
 
   @ValidateNested()
-  specialty: GetStudySpecialtyRequestDTO;
+  @IsOptional()
+  specialty?: GetStudySpecialtyRequestDTO;
 }

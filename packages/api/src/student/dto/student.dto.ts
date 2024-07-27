@@ -21,5 +21,6 @@ export class StudentDTO {
   level: StudyLevelDTO;
 
   @ValidateNested()
-  specialty: StudySpecialtyDTO;
+  @IsOptional()
+  specialty: StudySpecialtyDTO | null;
 }
