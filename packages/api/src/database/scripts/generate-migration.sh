@@ -2,7 +2,12 @@
 
 set -e
 
-generation_name=$1
+migration_name=$1
+
+if [ -z "$migration_name" ]; then
+    echo "Error: Migration name is missing"
+    exit 1
+fi
 
 if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
@@ -10,7 +15,7 @@ fi
 
 npm run build
 
-output=$(npm run typeorm -- migration:generate -d $DATABASE_CONFIG_FILE_PATH $MIGRATION_FOLDER_PATH/$generation_name | tee)
+output=$(npm run typeorm -- migration:generate -d $DATABASE_CONFIG_FILE_PATH $MIGRATION_FOLDER_PATH/$migration_name | tee)
 
 filename=$(echo "$output" | sed -n 's/.*Migration .\+\/\([^ ]\+\).*/\1/p')
 
