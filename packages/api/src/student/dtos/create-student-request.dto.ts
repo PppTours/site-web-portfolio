@@ -1,5 +1,5 @@
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
-import { GetStudyLevelRequestDTO } from 'src/study-level/dto/get-study-level-request.dto';
+import { GetStudyLevelRequestDTO } from 'src/study-level/dtos/get-study-level-request.dto';
 import { GetStudySpecialtyRequestDTO } from 'src/study-specialty/dto/get-study-specialty-request.dto';
 
 export class CreateStudentRequestDTO {

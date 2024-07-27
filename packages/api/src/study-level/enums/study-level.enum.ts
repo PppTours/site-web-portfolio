@@ -5,5 +5,4 @@ export enum StudyLevel {
   Year4 = 'Year4',
   Year5 = 'Year5',
   Year6 = 'Year6',
-  Graduated = 'Graduated',
 }

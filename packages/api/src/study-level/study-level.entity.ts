@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { StudyLevel } from './study-level.enum';
+import { StudyLevel } from './enums/study-level.enum';
 import { StudentEntity } from 'src/student/student.entity';
 
 @Entity('study_level')

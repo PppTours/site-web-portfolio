@@ -1,80 +1,51 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { StudyLevelService } from 'src/study-level/study-level.service';
-import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
-import { Repository } from 'typeorm';
-import { CreateStudentRequestDTO } from './dto/create-student-request.dto';
-import { StudentListDTO } from './dto/student-list.dto';
-import { StudentDTO } from './dto/student.dto';
-import { StudentDtoService } from './dto/student.dto.service';
-import { StudentEntity } from './student.entity';
-import { UpdateStudentRequestDTO } from './dto/update-student-request.dto';
+import { Injectable } from '@nestjs/common';
 import { UUID } from 'crypto';
+import { StudyLevelDTO } from 'src/study-level/dtos/study-level.dto';
+import { StudyLevelService } from 'src/study-level/study-level.service';
+import { StudySpecialtyDTO } from 'src/study-specialty/dto/study-specialty.dto';
+import { StudySpecialtyService } from 'src/study-specialty/study-specialty.service';
+import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
+import { StudentListDTO } from './dtos/student-list.dto';
+import { StudentDTO } from './dtos/student.dto';
+import { StudentWithNoSpecialtyRequiredException } from './exceptions/student-with-no-specialty-required.exception';
+import { StudentRepository } from './student.repository';
+import { StudentWithSpecialtyRequiredException } from './exceptions/student-with-specialty-required.exception';
 
 @Injectable()
 export class StudentService {
   constructor(
-    @InjectRepository(StudentEntity)
-    private repository: Repository<StudentEntity>,
-    private dtoService: StudentDtoService,
+    private repository: StudentRepository,
     private studyLevelService: StudyLevelService,
     private studySpecialtyService: StudySpecialtyService,
   ) {}
 
-  public async findById(id: UUID): Promise<StudentDTO> {
-    const student = await this.repository.findOneBy({ id });
-    if (!student)
-      throw new HttpException(
-        `No student found with ID '${id}'`,
-        HttpStatus.NOT_FOUND,
-      );
-    return this.dtoService.convertToDTO(student);
+  public async get(id: UUID): Promise<StudentDTO> {
+    return await this.repository.findById(id);
   }
 
-  public async findAll(): Promise<StudentListDTO> {
-    const students = await this.repository.find({
-      relations: {
-        level: true,
-        specialty: true,
-      },
-    });
-    return this.dtoService.convertToListDTO(students);
+  public async getAll(): Promise<StudentListDTO> {
+    return await this.repository.findAll();
   }
 
-  public async insert(
+  public async create(
     studentDTO: CreateStudentRequestDTO,
   ): Promise<StudentDTO> {
-    const studentEntity = await this.create(studentDTO);
-    return await this.save(studentEntity);
-  }
-
-  public async update(student: UpdateStudentRequestDTO): Promise<StudentDTO> {
-    const currentStudent = await this.findById(student.id);
-    const studentEntity = {
-      ...(await this.create(student.data)),
-      id: currentStudent.id,
-    };
-    return await this.save(studentEntity);
-  }
-
-  private async create(
-    studentDTO: CreateStudentRequestDTO,
-  ): Promise<StudentEntity> {
-    const level = await this.studyLevelService.findById(studentDTO.level.id);
+    const level = await this.studyLevelService.get(studentDTO.level.id);
     const specialty = studentDTO.specialty
-      ? await this.studySpecialtyService.findById(studentDTO.specialty.id)
+      ? await this.studySpecialtyService.get(studentDTO.specialty.id)
       : null;
-    return this.repository.create({
-      firstName: studentDTO.firstName,
-      lastName: studentDTO.lastName,
-      profilePictureUrl: studentDTO.profilePictureUrl,
-      level,
-      specialty,
-    });
+    this.assertStudyLevelAndSpecialtyConsistency(level, specialty);
+    return await this.repository.insert(studentDTO);
   }
 
-  private async save(student: StudentEntity): Promise<StudentDTO> {
-    const newStudent = await this.repository.save(student);
-    return this.dtoService.convertToDTO(newStudent);
+  private assertStudyLevelAndSpecialtyConsistency(
+    level: StudyLevelDTO,
+    specialty: StudySpecialtyDTO,
+  ) {
+    if (this.studyLevelService.shouldHaveSpecialty(level)) {
+      if (!specialty) throw new StudentWithSpecialtyRequiredException(level);
+    } else {
+      if (specialty) throw new StudentWithNoSpecialtyRequiredException(level);
+    }
   }
 }

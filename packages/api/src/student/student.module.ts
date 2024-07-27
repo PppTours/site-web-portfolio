@@ -5,7 +5,8 @@ import { StudySpecialtyModule } from 'src/study-specialty/study-specialty.module
 import { StudentController } from './student.controller';
 import { StudentEntity } from './student.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { StudentDtoService } from './dto/student.dto.service';
+import { StudentDtoService } from './dtos/student.dto.service';
+import { StudentRepository } from './student.repository';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { StudentDtoService } from './dto/student.dto.service';
     StudySpecialtyModule,
     TypeOrmModule.forFeature([StudentEntity]),
   ],
-  providers: [StudentService, StudentDtoService],
+  providers: [StudentService, StudentDtoService, StudentRepository],
   controllers: [StudentController],
 })
 export class StudentModule {}

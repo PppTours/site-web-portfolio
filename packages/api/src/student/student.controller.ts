@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { StudentService } from './student.service';
-import { CreateStudentRequestDTO } from './dto/create-student-request.dto';
-import { StudentDTO } from './dto/student.dto';
-import { StudentListDTO } from './dto/student-list.dto';
+import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
+import { StudentDTO } from './dtos/student.dto';
+import { StudentListDTO } from './dtos/student-list.dto';
 
 @Controller('students')
 export class StudentController {
@@ -10,13 +10,13 @@ export class StudentController {
 
   @Get('/')
   public async getAllStudents(): Promise<StudentListDTO> {
-    return await this.studentService.findAll();
+    return await this.studentService.getAll();
   }
 
   @Post('/')
   public async createStudent(
     @Body() body: CreateStudentRequestDTO,
   ): Promise<StudentDTO> {
-    return await this.studentService.insert(body);
+    return await this.studentService.create(body);
   }
 }

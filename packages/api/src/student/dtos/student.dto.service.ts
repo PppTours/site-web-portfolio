@@ -3,7 +3,7 @@ import { DtoService } from 'src/interfaces/dto-service.interface';
 import { StudentEntity } from '../student.entity';
 import { StudentListDTO } from './student-list.dto';
 import { StudentDTO } from './student.dto';
-import { StudyLevelDtoService } from 'src/study-level/dto/study-level.dto.service';
+import { StudyLevelDtoService } from 'src/study-level/dtos/study-level.dto.service';
 import { StudySpecialtyDtoService } from 'src/study-specialty/dto/study-specialty.dto.service';
 
 @Injectable()

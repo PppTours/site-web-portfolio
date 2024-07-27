@@ -1,5 +1,5 @@
+import { StudyLevel } from 'src/study-level/enums/study-level.enum';
 import { StudyLevelEntity } from 'src/study-level/study-level.entity';
-import { StudyLevel } from 'src/study-level/study-level.enum';
 
 type StudyLevelCreation = Omit<StudyLevelEntity, 'id' | 'students'>;
 

@@ -20,19 +20,19 @@ export class SeedService {
 
   private async seedStudyLevels(): Promise<void> {
     for (const studyLevel of STUDY_LEVELS) {
-      await this.studyLevelService.insert(studyLevel);
+      await this.studyLevelService.create(studyLevel);
     }
   }
 
   private async seedStudySpecialties(): Promise<void> {
     for (const studySpecialty of STUDY_SPECIALTIES) {
-      await this.studySpecialtyService.insert(studySpecialty);
+      await this.studySpecialtyService.create(studySpecialty);
     }
   }
 
   private async seedStudents(): Promise<void> {
     for (const student of STUDENTS) {
-      await this.studentService.insert(student);
+      await this.studentService.create(student);
     }
   }
 }

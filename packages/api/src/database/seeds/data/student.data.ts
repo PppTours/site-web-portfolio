@@ -1,4 +1,4 @@
-import { CreateStudentRequestDTO } from 'src/student/dto/create-student-request.dto';
+import { CreateStudentRequestDTO } from 'src/student/dtos/create-student-request.dto';
 
 export const STUDENTS: CreateStudentRequestDTO[] = [
   {

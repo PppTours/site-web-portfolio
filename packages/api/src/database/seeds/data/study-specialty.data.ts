@@ -1,5 +1,5 @@
 import { StudySpecialtyEntity } from 'src/study-specialty/study-specialty.entity';
-import { StudySpecialtyInitialism } from 'src/study-specialty/study-specialty.enum';
+import { StudySpecialtyInitialism } from 'src/study-specialty/enums/study-specialty.enum';
 
 type StudySpecialtyCreation = Omit<StudySpecialtyEntity, 'id' | 'students'>;
 
