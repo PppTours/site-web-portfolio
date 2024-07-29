@@ -1,54 +1,49 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateStudySectorRequestDTO } from './dto/create-study-sector-request.dto';
-import { StudySectorDTO } from './dto/study-sector.dto';
-import { StudySectorDtoService } from './dto/study-sector.dto.service';
-import { UpdateStudySectorRequestDTO } from './dto/update-study-sector-request.dto';
-import { StudySectorEntity } from './study-sector.entity';
 import { StudySectorNotFoundException } from './exceptions/study-sector-not-found.exception';
+import { StudySectorEntity } from './study-sector.entity';
+import { StudySectorCreationDTO } from './dto/study-sector-creation.dto';
 
 @Injectable()
 export class StudySectorRepository {
   constructor(
     @InjectRepository(StudySectorEntity)
     private repository: Repository<StudySectorEntity>,
-    private dtoService: StudySectorDtoService,
   ) {}
 
-  public async findById(id: number): Promise<StudySectorDTO> {
+  public async findById(id: number): Promise<StudySectorEntity> {
     const sector = await this.repository.findOneBy({ id });
     if (!sector) throw new StudySectorNotFoundException(id);
-    return this.dtoService.convertToDTO(sector);
+    return sector;
   }
 
   public async insert(
-    studySector: CreateStudySectorRequestDTO,
-  ): Promise<StudySectorDTO> {
-    const studySectorEntity = this.create(studySector);
-    return await this.save(studySectorEntity);
+    studySector: StudySectorCreationDTO,
+  ): Promise<StudySectorEntity> {
+    const newStudySector = this.create(studySector);
+    return await this.save(newStudySector);
   }
 
   public async update(
-    studySector: UpdateStudySectorRequestDTO,
-  ): Promise<StudySectorDTO> {
-    const currentStudySector = await this.findById(studySector.id);
-    const studySectorEntity = {
-      ...this.create(studySector.data),
+    id: number,
+    studySector: StudySectorCreationDTO,
+  ): Promise<StudySectorEntity> {
+    const currentStudySector = await this.findById(id);
+    const updatedStudySector = {
+      ...this.create(studySector),
       id: currentStudySector.id,
     };
-    return await this.save(studySectorEntity);
+    return await this.save(updatedStudySector);
   }
 
-  private create(studySector: CreateStudySectorRequestDTO): StudySectorEntity {
-    return this.repository.create({
-      initialism: studySector.initialism,
-      title: studySector.title,
-    });
+  private create(studySector: StudySectorCreationDTO): StudySectorEntity {
+    return this.repository.create(studySector);
   }
 
-  public async save(studySector: StudySectorEntity): Promise<StudySectorDTO> {
-    const savedStudySector = await this.repository.save(studySector);
-    return this.dtoService.convertToDTO(savedStudySector);
+  public async save(
+    studySector: StudySectorEntity,
+  ): Promise<StudySectorEntity> {
+    return await this.repository.save(studySector);
   }
 }

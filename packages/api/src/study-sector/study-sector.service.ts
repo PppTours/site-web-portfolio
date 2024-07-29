@@ -1,19 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { StudySectorRepository } from './study-sector.repository';
 import { CreateStudySectorRequestDTO } from './dto/create-study-sector-request.dto';
-import { StudySectorDTO } from './dto/study-sector.dto';
+import { StudySectorMapperService } from './services/study-sector-mapper.service';
+import { StudySectorEntity } from './study-sector.entity';
+import { StudySectorRepository } from './study-sector.repository';
 
 @Injectable()
 export class StudySectorService {
-  constructor(private repository: StudySectorRepository) {}
+  constructor(
+    private repository: StudySectorRepository,
+    public mapper: StudySectorMapperService,
+  ) {}
 
-  public async get(id: number): Promise<StudySectorDTO> {
+  public async get(id: number): Promise<StudySectorEntity> {
     return await this.repository.findById(id);
   }
 
   public async create(
     studySector: CreateStudySectorRequestDTO,
-  ): Promise<StudySectorDTO> {
-    return await this.repository.insert(studySector);
+  ): Promise<StudySectorEntity> {
+    const studySectorEntity = this.mapper.toEntityWithoutId(studySector);
+    return await this.repository.insert(studySectorEntity);
   }
 }

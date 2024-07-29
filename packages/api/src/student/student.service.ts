@@ -1,51 +1,53 @@
 import { Injectable } from '@nestjs/common';
 import { UUID } from 'crypto';
-import { StudyLevelDTO } from 'src/study-level/dtos/study-level.dto';
-import { StudyLevelService } from 'src/study-level/study-level.service';
 import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
-import { StudentListDTO } from './dtos/student-list.dto';
-import { StudentDTO } from './dtos/student.dto';
+import { UpdateStudentRequestDTO } from './dtos/update-student-request.dto';
+import { StudentMapperService } from './services/student-mapper.service';
+import { StudentRelationsService } from './services/student-relations.service';
+import { StudentEntity } from './student.entity';
 import { StudentRepository } from './student.repository';
-import { StudySectorDTO } from 'src/study-sector/dto/study-sector.dto';
-import { StudySectorService } from 'src/study-sector/study-sector.service';
-import { StudentWithNoSectorRequiredException } from './exceptions/student-with-no-specialty-required.exception';
-import { StudentWithSectorRequiredException } from './exceptions/student-with-specialty-required.exception';
 
 @Injectable()
 export class StudentService {
   constructor(
     private repository: StudentRepository,
-    private studyLevelService: StudyLevelService,
-    private studySectorService: StudySectorService,
+    private mapper: StudentMapperService,
+    private studentRelationsService: StudentRelationsService,
   ) {}
 
-  public async get(id: UUID): Promise<StudentDTO> {
+  public async get(id: UUID): Promise<StudentEntity> {
     return await this.repository.findById(id);
   }
 
-  public async getAll(): Promise<StudentListDTO> {
+  public async getAll(): Promise<StudentEntity[]> {
     return await this.repository.findAll();
   }
 
   public async create(
-    studentDTO: CreateStudentRequestDTO,
-  ): Promise<StudentDTO> {
-    const level = await this.studyLevelService.get(studentDTO.level.id);
-    const sector = studentDTO.sector
-      ? await this.studySectorService.get(studentDTO.sector.id)
-      : null;
-    this.assertStudyLevelAndSectorConsistency(level, sector);
-    return await this.repository.insert(studentDTO);
+    newStudentDTO: CreateStudentRequestDTO,
+  ): Promise<StudentEntity> {
+    const studentRelations =
+      await this.studentRelationsService.getStudentRelationsAndAssertTheirCompatibility(
+        newStudentDTO,
+      );
+    const newStudent = this.mapper.toEntityWithoutId(
+      newStudentDTO,
+      studentRelations,
+    );
+    return await this.repository.insert(newStudent);
   }
 
-  private assertStudyLevelAndSectorConsistency(
-    level: StudyLevelDTO,
-    sector: StudySectorDTO,
-  ) {
-    if (this.studyLevelService.shouldHaveSector(level)) {
-      if (!sector) throw new StudentWithSectorRequiredException(level);
-    } else {
-      if (sector) throw new StudentWithNoSectorRequiredException(level);
-    }
+  public async update(
+    updatedStudentDTO: UpdateStudentRequestDTO,
+  ): Promise<StudentEntity> {
+    const studentRelations =
+      await this.studentRelationsService.getStudentRelationsAndAssertTheirCompatibility(
+        updatedStudentDTO.data,
+      );
+    const updatedStudent = this.mapper.toEntityWithoutId(
+      updatedStudentDTO.data,
+      studentRelations,
+    );
+    return await this.repository.update(updatedStudentDTO.id, updatedStudent);
   }
 }

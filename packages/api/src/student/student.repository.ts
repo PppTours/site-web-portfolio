@@ -1,77 +1,55 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
-import { StudyLevelService } from 'src/study-level/study-level.service';
-import { StudySectorService } from 'src/study-sector/study-sector.service';
 import { Repository } from 'typeorm';
-import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
-import { StudentListDTO } from './dtos/student-list.dto';
-import { StudentDTO } from './dtos/student.dto';
-import { StudentDtoService } from './dtos/student.dto.service';
-import { UpdateStudentRequestDTO } from './dtos/update-student-request.dto';
-import { StudentEntity } from './student.entity';
 import { StudentNotFoundException } from './exceptions/student-not-found.exception';
+import { StudentEntity } from './student.entity';
+import { StudentCreationDTO } from './dtos/student-creation.dto';
 
 @Injectable()
 export class StudentRepository {
   constructor(
     @InjectRepository(StudentEntity)
     private repository: Repository<StudentEntity>,
-    private dtoService: StudentDtoService,
-    private studyLevelService: StudyLevelService,
-    private studySectorService: StudySectorService,
   ) {}
 
-  public async findById(id: UUID): Promise<StudentDTO> {
+  public async findById(id: UUID): Promise<StudentEntity> {
     const student = await this.repository.findOneBy({ id });
     if (!student) throw new StudentNotFoundException(id);
-    return this.dtoService.convertToDTO(student);
+    return student;
   }
 
-  public async findAll(): Promise<StudentListDTO> {
-    const students = await this.repository.find({
+  public async findAll(): Promise<StudentEntity[]> {
+    return await this.repository.find({
       relations: {
-        level: true,
-        sector: true,
+        studyLevel: true,
+        studySector: true,
       },
     });
-    return this.dtoService.convertToListDTO(students);
   }
 
-  public async insert(
-    studentDTO: CreateStudentRequestDTO,
-  ): Promise<StudentDTO> {
-    const studentEntity = await this.create(studentDTO);
-    return await this.save(studentEntity);
+  public async insert(student: StudentCreationDTO): Promise<StudentEntity> {
+    const newStudent = await this.create(student);
+    return await this.save(newStudent);
   }
 
-  public async update(student: UpdateStudentRequestDTO): Promise<StudentDTO> {
-    const currentStudent = await this.findById(student.id);
-    const studentEntity = {
-      ...(await this.create(student.data)),
+  public async update(
+    id: UUID,
+    student: StudentCreationDTO,
+  ): Promise<StudentEntity> {
+    const currentStudent = await this.findById(id);
+    const updatedStudent = {
+      ...(await this.create(student)),
       id: currentStudent.id,
     };
-    return await this.save(studentEntity);
+    return await this.save(updatedStudent);
   }
 
-  private async create(
-    studentDTO: CreateStudentRequestDTO,
-  ): Promise<StudentEntity> {
-    const level = await this.studyLevelService.get(studentDTO.level.id);
-    const sector = studentDTO.sector
-      ? await this.studySectorService.get(studentDTO.sector.id)
-      : null;
-    return this.repository.create({
-      firstName: studentDTO.firstName,
-      lastName: studentDTO.lastName,
-      profilePictureUrl: studentDTO.profilePictureUrl,
-      level,
-      sector,
-    });
+  private async create(student: StudentCreationDTO): Promise<StudentEntity> {
+    return this.repository.create(student);
   }
 
-  private async save(student: StudentEntity): Promise<StudentDTO> {
-    const newStudent = await this.repository.save(student);
-    return this.dtoService.convertToDTO(newStudent);
+  private async save(student: StudentEntity): Promise<StudentEntity> {
+    return await this.repository.save(student);
   }
 }

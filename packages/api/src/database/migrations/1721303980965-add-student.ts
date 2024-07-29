@@ -25,19 +25,19 @@ export class AddStudent1721303980965 implements MigrationInterface {
         "first_name" VARCHAR NOT NULL, 
         "last_name" VARCHAR NOT NULL, 
         "profile_picture_url" VARCHAR, 
-        "level_id" INTEGER NOT NULL, 
-        "sector_id" INTEGER, 
+        "study_level_id" INTEGER NOT NULL, 
+        "study_sector_id" INTEGER, 
         CONSTRAINT "PK_3d8016e1cb58429474a3c041904" PRIMARY KEY ("id")
       )`,
     );
     await queryRunner.query(
       `ALTER TABLE "student" ADD CONSTRAINT "FK_7bad0eccb24746edb72da1e7d69" 
-      FOREIGN KEY ("level_id") REFERENCES "study_level"("id") 
+      FOREIGN KEY ("study_level_id") REFERENCES "study_level"("id") 
       ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
       `ALTER TABLE "student" ADD CONSTRAINT "FK_76b0972b066c01f496c665cfaac" 
-      FOREIGN KEY ("sector_id") REFERENCES "study_sector"("id") 
+      FOREIGN KEY ("study_sector_id") REFERENCES "study_sector"("id") 
       ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
   }

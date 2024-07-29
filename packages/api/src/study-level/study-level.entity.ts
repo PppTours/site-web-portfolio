@@ -13,6 +13,6 @@ export class StudyLevelEntity {
   })
   name: StudyLevel;
 
-  @OneToMany(() => StudentEntity, (student) => student.level)
+  @OneToMany(() => StudentEntity, (student) => student.studyLevel)
   students: StudentEntity[];
 }

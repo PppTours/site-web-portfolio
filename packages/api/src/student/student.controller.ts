@@ -3,20 +3,26 @@ import { StudentService } from './student.service';
 import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
 import { StudentDTO } from './dtos/student.dto';
 import { StudentListDTO } from './dtos/student-list.dto';
+import { StudentMapperService } from './services/student-mapper.service';
 
 @Controller('students')
 export class StudentController {
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    private mapper: StudentMapperService,
+  ) {}
 
   @Get('/')
   public async getAllStudents(): Promise<StudentListDTO> {
-    return await this.studentService.getAll();
+    const students = await this.studentService.getAll();
+    return this.mapper.toListDTO(students);
   }
 
   @Post('/')
   public async createStudent(
     @Body() body: CreateStudentRequestDTO,
   ): Promise<StudentDTO> {
-    return await this.studentService.create(body);
+    const newStudent = await this.studentService.create(body);
+    return this.mapper.toDTO(newStudent);
   }
 }
