@@ -26,10 +26,9 @@ export class StudentService {
   public async create(
     newStudentDTO: CreateStudentRequestDTO,
   ): Promise<StudentEntity> {
-    const studentRelations =
-      await this.studentRelationsService.getStudentRelationsAndAssertTheirCompatibility(
-        newStudentDTO,
-      );
+    const studentRelations = await this.studentRelationsService.getRelations(
+      newStudentDTO,
+    );
     const newStudent = this.mapper.toEntityWithoutId(
       newStudentDTO,
       studentRelations,
@@ -40,10 +39,9 @@ export class StudentService {
   public async update(
     updatedStudentDTO: UpdateStudentRequestDTO,
   ): Promise<StudentEntity> {
-    const studentRelations =
-      await this.studentRelationsService.getStudentRelationsAndAssertTheirCompatibility(
-        updatedStudentDTO.data,
-      );
+    const studentRelations = await this.studentRelationsService.getRelations(
+      updatedStudentDTO.data,
+    );
     const updatedStudent = this.mapper.toEntityWithoutId(
       updatedStudentDTO.data,
       studentRelations,

@@ -5,7 +5,7 @@ export class StudentWithNoSectorRequiredException extends HttpException {
   constructor(studyLevel: StudyLevelDTO) {
     super(
       `'${studyLevel.name}' student can't have sector`,
-      HttpStatus.NOT_FOUND,
+      HttpStatus.UNPROCESSABLE_ENTITY,
     );
   }
 }

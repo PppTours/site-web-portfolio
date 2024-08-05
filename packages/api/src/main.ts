@@ -7,7 +7,9 @@ import { EnvironmentVariableService } from './env/services/environment-variable.
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const environmentVariable = app.get(EnvironmentVariableService);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+  );
   await app.listen(environmentVariable.get(EnvVariable.Port));
 }
 bootstrap();

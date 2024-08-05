@@ -39,13 +39,13 @@ export class StudentRepository {
   ): Promise<StudentEntity> {
     const currentStudent = await this.findById(id);
     const updatedStudent = {
-      ...(await this.create(student)),
+      ...this.create(student),
       id: currentStudent.id,
     };
     return await this.save(updatedStudent);
   }
 
-  private async create(student: StudentCreationDTO): Promise<StudentEntity> {
+  private create(student: StudentCreationDTO): StudentEntity {
     return this.repository.create(student);
   }
 

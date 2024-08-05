@@ -4,6 +4,7 @@ import { CreateStudentRequestDTO } from './dtos/create-student-request.dto';
 import { StudentDTO } from './dtos/student.dto';
 import { StudentListDTO } from './dtos/student-list.dto';
 import { StudentMapperService } from './services/student-mapper.service';
+import { StudentCreationValidationPipe } from './pipes/student-creation-validation.pipe';
 
 @Controller('students')
 export class StudentController {
@@ -20,7 +21,7 @@ export class StudentController {
 
   @Post('/')
   public async createStudent(
-    @Body() body: CreateStudentRequestDTO,
+    @Body(StudentCreationValidationPipe) body: CreateStudentRequestDTO,
   ): Promise<StudentDTO> {
     const newStudent = await this.studentService.create(body);
     return this.mapper.toDTO(newStudent);
