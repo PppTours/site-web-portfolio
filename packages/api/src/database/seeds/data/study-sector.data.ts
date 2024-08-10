@@ -1,9 +1,7 @@
-import { StudySectorEntity } from 'src/study-sector/study-sector.entity';
+import { BaseStudySectorEntity } from 'src/study-sector/entities/study-sector.entity';
 import { StudySectorInitialism } from 'src/study-sector/enums/study-sector.enum';
 
-type StudySectorCreation = Omit<StudySectorEntity, 'id' | 'students'>;
-
-export const STUDY_SPECIALTIES: StudySectorCreation[] = [
+export const STUDY_SECTORS: BaseStudySectorEntity[] = [
   {
     initialism: StudySectorInitialism.PEIP,
     title: 'Parcours des Écoles d’Ingénieurs Polytech',

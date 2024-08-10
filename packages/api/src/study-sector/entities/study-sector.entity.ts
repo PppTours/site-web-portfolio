@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { StudentEntity } from 'src/student/student.entity';
-import { StudySectorInitialism } from './enums/study-sector.enum';
+import { StudentEntity } from 'src/student/entities/student.entity';
+import { StudySectorInitialism } from '../enums/study-sector.enum';
 
 @Entity('study_sector')
 export class StudySectorEntity {
@@ -19,3 +19,5 @@ export class StudySectorEntity {
   @OneToMany(() => StudentEntity, (student) => student.studySector)
   students: StudentEntity[];
 }
+
+export type BaseStudySectorEntity = Omit<StudySectorEntity, 'id' | 'students'>;

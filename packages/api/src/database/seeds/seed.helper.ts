@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
-import { StudentService } from 'src/student/student.service';
+import { StudentService } from 'src/student/services/student.service';
 import { SeedService } from './seed.service';
-import { StudyLevelService } from 'src/study-level/study-level.service';
-import { StudySectorService } from 'src/study-sector/study-sector.service';
+import { StudyLevelService } from 'src/study-level/services/study-level.service';
+import { StudySectorService } from 'src/study-sector/services/study-sector.service';
 
 async function runSeeder() {
   const app = await NestFactory.create(AppModule);

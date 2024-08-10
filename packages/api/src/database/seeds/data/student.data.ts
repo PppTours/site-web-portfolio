@@ -1,34 +1,34 @@
-import { CreateStudentRequestDTO } from 'src/student/dtos/create-student-request.dto';
+import { CreateStudentDTO } from 'src/student/dtos/create-student.dto';
 
-export const STUDENTS: CreateStudentRequestDTO[] = [
+export const STUDENTS: CreateStudentDTO[] = [
   {
     firstName: 'John',
     lastName: 'Doe',
     profilePictureUrl:
       'https://thumbs.wbm.im/pw/medium/55f909f894923fc2807bc6d88403e840.avif',
-    level: {
+    studyLevel: {
       id: 1,
     },
-    sector: null,
+    studySector: null,
   },
   {
     firstName: 'Alice',
     lastName: 'Smith',
     profilePictureUrl:
       'https://i.pinimg.com/474x/b9/3d/d4/b93dd44ef0d0719d741a9c36802e6d82.jpg',
-    level: {
+    studyLevel: {
       id: 2,
     },
-    sector: null,
+    studySector: null,
   },
   {
     firstName: 'Emma',
     lastName: 'Johnson',
     profilePictureUrl: null,
-    level: {
+    studyLevel: {
       id: 3,
     },
-    sector: {
+    studySector: {
       id: 2,
     },
   },
@@ -37,10 +37,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Williams',
     profilePictureUrl:
       'https://thumbs.wbm.im/pw/medium/39573f81d4d58261e5e1ed8f1ff890f6.avif',
-    level: {
+    studyLevel: {
       id: 4,
     },
-    sector: {
+    studySector: {
       id: 3,
     },
   },
@@ -49,10 +49,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Brown',
     profilePictureUrl:
       'https://thumbs.wbm.im/pw/medium/6a9b235faaa86202932278ed19bb76bf.avif',
-    level: {
+    studyLevel: {
       id: 5,
     },
-    sector: {
+    studySector: {
       id: 5,
     },
   },
@@ -60,10 +60,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     firstName: 'Sophia',
     lastName: 'Miller',
     profilePictureUrl: 'https://wrong.url.com/picture.png',
-    level: {
+    studyLevel: {
       id: 5,
     },
-    sector: {
+    studySector: {
       id: 7,
     },
   },
@@ -72,10 +72,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Davis',
     profilePictureUrl:
       'https://i.pinimg.com/474x/e9/c8/08/e9c808fdac222166d8b1d892e79fe25e.jpg',
-    level: {
+    studyLevel: {
       id: 6,
     },
-    sector: {
+    studySector: {
       id: 4,
     },
   },
@@ -84,10 +84,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Wilson',
     profilePictureUrl:
       'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    level: {
+    studyLevel: {
       id: 3,
     },
-    sector: {
+    studySector: {
       id: 3,
     },
   },
@@ -96,10 +96,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Moore',
     profilePictureUrl:
       'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=1366&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    level: {
+    studyLevel: {
       id: 5,
     },
-    sector: {
+    studySector: {
       id: 2,
     },
   },
@@ -108,10 +108,10 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Taylor',
     profilePictureUrl:
       'https://i.pinimg.com/564x/c6/dc/2e/c6dc2ea586c471521004b3eb12862472.jpg',
-    level: {
+    studyLevel: {
       id: 5,
     },
-    sector: {
+    studySector: {
       id: 3,
     },
   },
@@ -120,9 +120,9 @@ export const STUDENTS: CreateStudentRequestDTO[] = [
     lastName: 'Floyd',
     profilePictureUrl:
       'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    level: {
+    studyLevel: {
       id: 1,
     },
-    sector: null,
+    studySector: null,
   },
 ];

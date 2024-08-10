@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { StudySectorEntity } from '../study-sector.entity';
 import { StudySectorDTO } from '../dto/study-sector.dto';
-import { CreateStudySectorRequestDTO } from '../dto/create-study-sector-request.dto';
-import { StudySectorCreationDTO } from '../dto/study-sector-creation.dto';
+import { StudySectorEntity } from '../entities/study-sector.entity';
 
 @Injectable()
 export class StudySectorMapperService {
@@ -11,14 +9,5 @@ export class StudySectorMapperService {
     dto.initialism = studySector.initialism;
     dto.title = studySector.title;
     return dto;
-  }
-
-  public toEntityWithoutId(
-    studySector: CreateStudySectorRequestDTO,
-  ): StudySectorCreationDTO {
-    return {
-      initialism: studySector.initialism,
-      title: studySector.title,
-    };
   }
 }

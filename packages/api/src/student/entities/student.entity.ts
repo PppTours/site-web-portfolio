@@ -1,6 +1,6 @@
 import { UUID } from 'crypto';
-import { StudyLevelEntity } from 'src/study-level/study-level.entity';
-import { StudySectorEntity } from 'src/study-sector/study-sector.entity';
+import { StudyLevelEntity } from 'src/study-level/entities/study-level.entity';
+import { StudySectorEntity } from 'src/study-sector/entities/study-sector.entity';
 import {
   Column,
   Entity,
@@ -38,3 +38,5 @@ export class StudentEntity {
   @JoinColumn({ name: 'study_sector_id' })
   studySector?: StudySectorEntity;
 }
+
+export type BaseStudentEntity = Omit<StudentEntity, 'id'>;

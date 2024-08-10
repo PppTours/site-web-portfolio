@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { StudentEntity } from '../student.entity';
 import { StudyLevelMapperService } from 'src/study-level/services/study-level-mapper.service';
+import { StudySectorMapperService } from 'src/study-sector/services/study-sector-mapper.service';
 import { StudentListDTO } from '../dtos/student-list.dto';
 import { StudentDTO } from '../dtos/student.dto';
-import { StudySectorMapperService } from 'src/study-sector/services/study-sector-mapper.service';
-import { StudentRelations } from '../student-relations';
-import { CreateStudentRequestDTO } from '../dtos/create-student-request.dto';
-import { StudentCreationDTO } from '../dtos/student-creation.dto';
+import { StudentEntity } from '../entities/student.entity';
 
 @Injectable()
 export class StudentMapperService {
@@ -21,8 +18,8 @@ export class StudentMapperService {
     dto.firstName = student.firstName;
     dto.lastName = student.lastName;
     dto.profilePictureUrl = student.profilePictureUrl ?? null;
-    dto.level = this.studyLevelMapper.toDTO(student.studyLevel);
-    dto.sector = student.studySector
+    dto.studyLevel = this.studyLevelMapper.toDTO(student.studyLevel);
+    dto.studySector = student.studySector
       ? this.studySectorMapper.toDTO(student.studySector)
       : null;
     return dto;
@@ -33,18 +30,5 @@ export class StudentMapperService {
     listDTO.count = students.length;
     listDTO.students = students.map((student) => this.toDTO(student));
     return listDTO;
-  }
-
-  public toEntityWithoutId(
-    studentDTO: CreateStudentRequestDTO,
-    studentRelations: StudentRelations,
-  ): StudentCreationDTO {
-    return {
-      firstName: studentDTO.firstName,
-      lastName: studentDTO.lastName,
-      profilePictureUrl: studentDTO.profilePictureUrl,
-      studyLevel: studentRelations.studyLevel,
-      studySector: studentRelations.studySector ?? null,
-    };
   }
 }

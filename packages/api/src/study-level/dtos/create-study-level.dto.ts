@@ -1,7 +1,7 @@
 import { IsEnum } from 'class-validator';
 import { StudyLevel } from '../enums/study-level.enum';
 
-export class CreateStudyLevelRequestDTO {
+export class CreateStudyLevelDTO {
   @IsEnum(StudyLevel)
   name: StudyLevel;
 }

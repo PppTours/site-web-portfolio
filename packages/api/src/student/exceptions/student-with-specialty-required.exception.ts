@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { StudyLevelDTO } from 'src/study-level/dtos/study-level.dto';
+import { StudyLevelEntity } from 'src/study-level/entities/study-level.entity';
 
 export class StudentWithSectorRequiredException extends HttpException {
-  constructor(studyLevel: StudyLevelDTO) {
+  constructor(studyLevel: StudyLevelEntity) {
     super(
       `'${studyLevel.name}' student should have a sector`,
       HttpStatus.UNPROCESSABLE_ENTITY,

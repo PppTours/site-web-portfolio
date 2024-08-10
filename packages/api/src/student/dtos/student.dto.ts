@@ -18,9 +18,9 @@ export class StudentDTO {
   profilePictureUrl: string | null;
 
   @ValidateNested()
-  level: StudyLevelDTO;
+  studyLevel: StudyLevelDTO;
 
   @ValidateNested()
   @IsOptional()
-  sector: StudySectorDTO | null;
+  studySector: StudySectorDTO | null;
 }
