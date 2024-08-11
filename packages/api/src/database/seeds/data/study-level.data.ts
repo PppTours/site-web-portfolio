@@ -17,7 +17,4 @@ export const STUDY_LEVELS: BaseStudyLevelEntity[] = [
   {
     name: StudyLevel.Year5,
   },
-  {
-    name: StudyLevel.Year6,
-  },
 ];

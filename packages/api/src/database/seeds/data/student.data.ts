@@ -73,7 +73,7 @@ export const STUDENTS: CreateStudentDTO[] = [
     profilePictureUrl:
       'https://i.pinimg.com/474x/e9/c8/08/e9c808fdac222166d8b1d892e79fe25e.jpg',
     studyLevel: {
-      id: 6,
+      id: 5,
     },
     studySector: {
       id: 4,

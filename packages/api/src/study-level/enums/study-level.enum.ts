@@ -4,7 +4,6 @@ export enum StudyLevel {
   Year3 = 'Year3',
   Year4 = 'Year4',
   Year5 = 'Year5',
-  Year6 = 'Year6',
 }
 
 export const ALL_STUDY_LEVELS: StudyLevel[] = [
@@ -13,7 +12,6 @@ export const ALL_STUDY_LEVELS: StudyLevel[] = [
   StudyLevel.Year3,
   StudyLevel.Year4,
   StudyLevel.Year5,
-  StudyLevel.Year6,
 ];
 
 export const STUDY_LEVELS_WITHOUT_SECTOR: StudyLevel[] = [
