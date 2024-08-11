@@ -27,7 +27,6 @@ export enum I18nKey {
   Year3 = 'year_3',
   Year4 = 'year_4',
   Year5 = 'year_5',
-  Graduated = 'graduated',
   DI = 'DI',
   DAE = 'DAE',
   DEE = 'DEE',

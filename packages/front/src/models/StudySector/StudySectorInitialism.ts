@@ -1,4 +1,4 @@
-enum StudySector {
+enum StudySectorInitialism {
   DI = 'DI',
   DAE = 'DAE',
   DEE = 'DEE',
@@ -7,4 +7,4 @@ enum StudySector {
   MMA = 'MMA'
 }
 
-export default StudySector;
+export default StudySectorInitialism;

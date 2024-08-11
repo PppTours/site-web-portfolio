@@ -9,8 +9,7 @@ class StudyLevelTranslationMapping extends EnumTranslationMapping<StudyLevel> {
     [StudyLevel.Peip2]: I18nKey.Peip2,
     [StudyLevel.Year3]: I18nKey.Year3,
     [StudyLevel.Year4]: I18nKey.Year4,
-    [StudyLevel.Year5]: I18nKey.Year5,
-    [StudyLevel.Graduated]: I18nKey.Graduated
+    [StudyLevel.Year5]: I18nKey.Year5
   };
 }
 

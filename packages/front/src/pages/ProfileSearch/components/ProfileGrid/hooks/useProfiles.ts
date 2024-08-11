@@ -1,21 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FakeProfile, fakeProfiles } from 'src/assets/mock/FakeProfiles';
+import { StudentDTO } from 'src/dtos/Student/StudentDTO';
 import { ProfileSearchFilters } from 'src/pages/ProfileSearch/hooks/useProfileSearchFilters';
+import { studentService } from 'src/services/StudentService';
 
 interface ProfilesReturn {
-  profiles: FakeProfile[];
+  profiles: StudentDTO[];
   areProfilesLoading: boolean;
   filterProfiles: (filters: ProfileSearchFilters) => void;
 }
 
 function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
-  const [profiles, setFilteredProfiles] = useState<FakeProfile[]>([]);
+  const [profiles, setFilteredProfiles] = useState<StudentDTO[]>([]);
   const [areProfilesLoading, setAreProfilesLoading] = useState<boolean>(false);
   const [areProfilesLoaded, setAreProfilesLoaded] = useState<boolean>(false);
 
   const filterProfiles = useCallback(async (filters: ProfileSearchFilters) => {
     setAreProfilesLoading(true);
-    const profiles = fakeProfiles.filter(
+    const allProfiles = (await studentService.getAll()).students;
+    const filteredProfiles = allProfiles.filter(
       (profile) =>
         checkSearchText(profile, filters) &&
         checkStudyLevel(profile, filters) &&
@@ -23,10 +25,10 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
     );
     setTimeout(() => setAreProfilesLoading(false), 500);
 
-    setFilteredProfiles(profiles);
+    setFilteredProfiles(filteredProfiles);
   }, []);
 
-  function checkSearchText(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
+  function checkSearchText(profile: StudentDTO, filters: ProfileSearchFilters): boolean {
     const searchTextSplit = filters.searchText
       .trim()
       .replaceAll(/[ ]{2,}/g, ' ')
@@ -38,14 +40,16 @@ function useProfiles(filters?: ProfileSearchFilters): ProfilesReturn {
     return searchTextSplit.reduce((acc, string) => acc && !!profileString.match(string), true);
   }
 
-  function checkStudyLevel(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
-    return filters.studyLevels.length === 0 || filters.studyLevels.includes(profile.studyLevel);
+  function checkStudyLevel(profile: StudentDTO, filters: ProfileSearchFilters): boolean {
+    return (
+      filters.studyLevels.length === 0 || filters.studyLevels.includes(profile.studyLevel.name)
+    );
   }
 
-  function checkStudySector(profile: FakeProfile, filters: ProfileSearchFilters): boolean {
+  function checkStudySector(profile: StudentDTO, filters: ProfileSearchFilters): boolean {
     return (
       filters.studySpecialties.length === 0 ||
-      (!!profile.studySector && filters.studySpecialties.includes(profile.studySector))
+      (!!profile.studySector && filters.studySpecialties.includes(profile.studySector.initialism))
     );
   }
 

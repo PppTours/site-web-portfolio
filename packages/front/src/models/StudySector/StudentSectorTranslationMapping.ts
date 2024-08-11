@@ -1,16 +1,16 @@
 import { I18nKey } from 'src/i18n/I18nKey';
 import EnumTranslationMapping from 'src/utils/EnumTranslationMapping';
 
-import StudySector from './StudySector';
+import StudySectorInitialism from './StudySectorInitialism';
 
-class StudentSectorTranslationMapping extends EnumTranslationMapping<StudySector> {
+class StudentSectorTranslationMapping extends EnumTranslationMapping<StudySectorInitialism> {
   translationKeyMapping = {
-    [StudySector.DI]: I18nKey.DI,
-    [StudySector.DAE]: I18nKey.DAE,
-    [StudySector.DEE]: I18nKey.DEE,
-    [StudySector.DMS]: I18nKey.DMS,
-    [StudySector.ISIE]: I18nKey.ISIE,
-    [StudySector.MMA]: I18nKey.MMA
+    [StudySectorInitialism.DI]: I18nKey.DI,
+    [StudySectorInitialism.DAE]: I18nKey.DAE,
+    [StudySectorInitialism.DEE]: I18nKey.DEE,
+    [StudySectorInitialism.DMS]: I18nKey.DMS,
+    [StudySectorInitialism.ISIE]: I18nKey.ISIE,
+    [StudySectorInitialism.MMA]: I18nKey.MMA
   };
 }
 

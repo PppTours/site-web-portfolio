@@ -1,13 +1,13 @@
 import useEnumTranslation from 'src/hooks/useEnumTranslation';
 import { studySectorTranslationMapping as translationMapping } from 'src/models/StudySector/StudentSectorTranslationMapping';
-import StudySector from 'src/models/StudySector/StudySector';
+import StudySectorInitialism from 'src/models/StudySector/StudySectorInitialism';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
 import CheckboxList, { CheckboxListOptionData } from '../CheckboxList/CheckboxList';
 
 export interface StudySectorFilterProps extends AdditionalClassName {
-  checkedOptions: StudySector[];
-  onUpdate: (checkedOptions: StudySector[]) => void;
+  checkedOptions: StudySectorInitialism[];
+  onUpdate: (checkedOptions: StudySectorInitialism[]) => void;
 }
 
 export default function StudySectorFilter({
@@ -15,23 +15,23 @@ export default function StudySectorFilter({
   className,
   onUpdate
 }: StudySectorFilterProps) {
-  const { getAllTranslations } = useEnumTranslation<StudySector>(translationMapping);
+  const { getAllTranslations } = useEnumTranslation<StudySectorInitialism>(translationMapping);
 
-  function getOptions(): Record<StudySector, CheckboxListOptionData> {
+  function getOptions(): Record<StudySectorInitialism, CheckboxListOptionData> {
     const studySectorFilters = Object.entries(getAllTranslations());
     return studySectorFilters.reduce(
       (acc, [studySector, studySectorLabel]) => ({
         ...acc,
         [studySector]: {
           label: studySectorLabel,
-          checked: checkedOptions.includes(studySector as StudySector)
+          checked: checkedOptions.includes(studySector as StudySectorInitialism)
         }
       }),
-      {} as Record<StudySector, CheckboxListOptionData>
+      {} as Record<StudySectorInitialism, CheckboxListOptionData>
     );
   }
 
-  function onOptionClick(option: StudySector): void {
+  function onOptionClick(option: StudySectorInitialism): void {
     const updatedCheckedOptions = checkedOptions.includes(option)
       ? [...checkedOptions.filter((o) => o !== option)]
       : [...checkedOptions, option];
@@ -39,7 +39,7 @@ export default function StudySectorFilter({
   }
 
   return (
-    <CheckboxList<StudySector>
+    <CheckboxList<StudySectorInitialism>
       className={`filter-group-list ${className ?? ''}`}
       options={getOptions()}
       onOptionClick={onOptionClick}

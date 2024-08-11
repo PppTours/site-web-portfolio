@@ -3,8 +3,7 @@ enum StudyLevel {
   Peip2 = 'Peip2',
   Year3 = 'Year3',
   Year4 = 'Year4',
-  Year5 = 'Year5',
-  Graduated = 'Graduated'
+  Year5 = 'Year5'
 }
 
 export default StudyLevel;

@@ -1,13 +1,13 @@
 import './ProfileCard.scss';
 
 import { useEffect, useState } from 'react';
-import { FakeProfile } from 'src/assets/mock/FakeProfiles';
+import { StudentDTO } from 'src/dtos/Student/StudentDTO';
 import useEnumTranslation from 'src/hooks/useEnumTranslation';
 import { studyLevelTranslationMapping } from 'src/models/StudyLevel/StudyLevelTranslationMapping';
 import { studySectorTranslationMapping } from 'src/models/StudySector/StudentSectorTranslationMapping';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 export interface ProfileCardProps extends AdditionalClassName {
-  profile: FakeProfile;
+  profile: StudentDTO;
 }
 
 export default function ProfileCard({ profile, className }: ProfileCardProps) {
@@ -17,11 +17,11 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
   const { getTranslation: getStudentSectorTranslation } = useEnumTranslation(
     studySectorTranslationMapping
   );
-  const [picture, setPicture] = useState<string | null>(profile.image);
+  const [picture, setPicture] = useState<string | null>(profile.profilePictureUrl);
   const initials = `${profile.firstName.at(0)}${profile.lastName.at(0)}`;
 
   useEffect(() => {
-    setPicture(profile.image);
+    setPicture(profile.profilePictureUrl);
   }, [profile]);
 
   return (
@@ -43,9 +43,11 @@ export default function ProfileCard({ profile, className }: ProfileCardProps) {
         </div>
         <p className="profile-name">{`${profile.firstName} ${profile.lastName}`}</p>
         <div className="profile-study">
-          <p className="profile-study__level">{getStudentLevelTranslation(profile.studyLevel)}</p>
+          <p className="profile-study__level">
+            {getStudentLevelTranslation(profile.studyLevel.name)}
+          </p>
           <p className="profile-study__sector">
-            {profile.studySector ? getStudentSectorTranslation(profile.studySector) : ''}
+            {profile.studySector ? getStudentSectorTranslation(profile.studySector.initialism) : ''}
           </p>
         </div>
       </div>
