@@ -1,6 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+
+import { AppModule } from './app.module';
 import { EnvVariable } from './env/enums/env-variable.enum';
 import { EnvironmentVariableService } from './env/services/environment-variable.service';
 

@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { EnvVariable } from '../enums/env-variable.enum';
 import * as dotenvFlow from 'dotenv-flow';
+
+import { EnvVariable } from '../enums/env-variable.enum';
 
 @Injectable()
 export class EnvironmentVariableService {

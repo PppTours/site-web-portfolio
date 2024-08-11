@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { StudentListDTO } from '../dtos/student-list.dto';
+
 import { StudentDTO } from '../dtos/student.dto';
+import { StudentListDTO } from '../dtos/student-list.dto';
 import { BaseStudentEntity } from '../entities/student.entity';
 import { StudentCreationValidationPipe } from '../pipes/student-creation-validation.pipe';
-import { StudentMapperService } from '../services/student-mapper.service';
 import { StudentService } from '../services/student.service';
+import { StudentMapperService } from '../services/student-mapper.service';
 
 @Controller('students')
 export class StudentController {

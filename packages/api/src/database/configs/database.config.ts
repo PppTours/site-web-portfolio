@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { DataSourceOptions, DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
 export type DatabaseConfigOptions = Omit<
   DataSourceOptions,

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ExecutionEnvironmentService } from './services/execution-environment.service';
+
 import { EnvironmentVariableService } from './services/environment-variable.service';
+import { ExecutionEnvironmentService } from './services/execution-environment.service';
 
 @Module({
   providers: [EnvironmentVariableService, ExecutionEnvironmentService],

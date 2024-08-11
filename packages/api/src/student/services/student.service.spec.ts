@@ -7,10 +7,11 @@ import { StudySectorEntity } from 'src/study-sector/entities/study-sector.entity
 import { StudySectorInitialism } from 'src/study-sector/enums/study-sector.enum';
 import { StudySectorService } from 'src/study-sector/services/study-sector.service';
 import { Repository } from 'typeorm';
+
 import { BaseStudentEntity, StudentEntity } from '../entities/student.entity';
 import { StudentNotFoundException } from '../exceptions/student-not-found.exception';
-import { StudentValidationService } from './student-validation.service';
 import { StudentService } from './student.service';
+import { StudentValidationService } from './student-validation.service';
 
 describe('StudentService', () => {
   let service: StudentService;

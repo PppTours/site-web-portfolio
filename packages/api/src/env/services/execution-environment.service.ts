@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
+
+import { EnvVariable } from '../enums/env-variable.enum';
 import { ExecutionEnvironment } from '../enums/execution-environment.enum';
 import { EnvironmentVariableService } from './environment-variable.service';
-import { EnvVariable } from '../enums/env-variable.enum';
 
 @Injectable()
 export class ExecutionEnvironmentService {

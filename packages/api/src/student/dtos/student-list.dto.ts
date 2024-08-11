@@ -1,4 +1,5 @@
 import { IsArray, IsNumber, ValidateNested } from 'class-validator';
+
 import { StudentDTO } from './student.dto';
 
 export class StudentListDTO {

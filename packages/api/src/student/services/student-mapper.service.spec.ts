@@ -1,14 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { StudyLevelEntity } from 'src/study-level/entities/study-level.entity';
 import { StudyLevel } from 'src/study-level/enums/study-level.enum';
 import { StudyLevelMapperService } from 'src/study-level/services/study-level-mapper.service';
+import { StudySectorEntity } from 'src/study-sector/entities/study-sector.entity';
 import { StudySectorInitialism } from 'src/study-sector/enums/study-sector.enum';
 import { StudySectorMapperService } from 'src/study-sector/services/study-sector-mapper.service';
+
 import { StudentDTO } from '../dtos/student.dto';
+import { StudentListDTO } from '../dtos/student-list.dto';
 import { StudentEntity } from '../entities/student.entity';
 import { StudentMapperService } from './student-mapper.service';
-import { StudentListDTO } from '../dtos/student-list.dto';
-import { StudyLevelEntity } from 'src/study-level/entities/study-level.entity';
-import { StudySectorEntity } from 'src/study-sector/entities/study-sector.entity';
 
 describe('StudentMapperService', () => {
   let studentMapperService: StudentMapperService;

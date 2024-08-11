@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { Repository } from 'typeorm';
+
 import { BaseStudentEntity, StudentEntity } from '../entities/student.entity';
 import { StudentNotFoundException } from '../exceptions/student-not-found.exception';
 

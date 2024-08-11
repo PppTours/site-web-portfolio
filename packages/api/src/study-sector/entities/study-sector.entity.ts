@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { StudentEntity } from 'src/student/entities/student.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
 import { StudySectorInitialism } from '../enums/study-sector.enum';
 
 @Entity('study_sector')

@@ -1,4 +1,5 @@
 import { IsEnum, IsString } from 'class-validator';
+
 import { StudySectorInitialism } from '../enums/study-sector.enum';
 
 export class CreateStudySectorDTO {

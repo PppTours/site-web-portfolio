@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { StudySectorDTO } from '../dto/study-sector.dto';
 import { StudySectorEntity } from '../entities/study-sector.entity';
 

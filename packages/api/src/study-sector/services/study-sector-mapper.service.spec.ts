@@ -1,8 +1,9 @@
-import { TestingModule, Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
+
 import { StudySectorDTO } from '../dto/study-sector.dto';
 import { StudySectorEntity } from '../entities/study-sector.entity';
-import { StudySectorMapperService } from './study-sector-mapper.service';
 import { StudySectorInitialism } from '../enums/study-sector.enum';
+import { StudySectorMapperService } from './study-sector-mapper.service';
 
 describe('StudySectorMapperService', () => {
   let service: StudySectorMapperService;

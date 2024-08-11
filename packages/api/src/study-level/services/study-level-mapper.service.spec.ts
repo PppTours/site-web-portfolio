@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { StudyLevelDTO } from '../dtos/study-level.dto';
+import { StudyLevelEntity } from '../entities/study-level.entity';
 import { StudyLevel } from '../enums/study-level.enum';
 import { StudyLevelMapperService } from './study-level-mapper.service';
-import { StudyLevelEntity } from '../entities/study-level.entity';
 
 describe('StudyLevelMapperService', () => {
   let service: StudyLevelMapperService;

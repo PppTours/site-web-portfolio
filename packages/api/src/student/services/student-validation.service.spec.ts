@@ -4,6 +4,7 @@ import { StudyLevel } from 'src/study-level/enums/study-level.enum';
 import { StudyLevelService } from 'src/study-level/services/study-level.service';
 import { StudySectorEntity } from 'src/study-sector/entities/study-sector.entity';
 import { StudySectorInitialism } from 'src/study-sector/enums/study-sector.enum';
+
 import { StudentWithNoSectorRequiredException } from '../exceptions/student-with-no-specialty-required.exception';
 import { StudentWithSectorRequiredException } from '../exceptions/student-with-specialty-required.exception';
 import { StudentValidationService } from './student-validation.service';

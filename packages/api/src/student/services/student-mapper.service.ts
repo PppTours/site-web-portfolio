@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { StudyLevelMapperService } from 'src/study-level/services/study-level-mapper.service';
 import { StudySectorMapperService } from 'src/study-sector/services/study-sector-mapper.service';
-import { StudentListDTO } from '../dtos/student-list.dto';
+
 import { StudentDTO } from '../dtos/student.dto';
+import { StudentListDTO } from '../dtos/student-list.dto';
 import { StudentEntity } from '../entities/student.entity';
 
 @Injectable()

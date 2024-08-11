@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { StudySectorNotFoundException } from '../exceptions/study-sector-not-found.exception';
+
 import {
   BaseStudySectorEntity,
   StudySectorEntity,
 } from '../entities/study-sector.entity';
+import { StudySectorNotFoundException } from '../exceptions/study-sector-not-found.exception';
 
 @Injectable()
 export class StudySectorService {
