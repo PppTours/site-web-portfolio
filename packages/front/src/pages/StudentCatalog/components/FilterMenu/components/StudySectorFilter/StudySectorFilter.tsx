@@ -1,5 +1,5 @@
 import useEnumTranslation from 'src/hooks/useEnumTranslation';
-import { studySectorTranslationMapping as translationMapping } from 'src/models/StudySector/StudentSectorTranslationMapping';
+import { studySectorTranslationMapping as translationMapping } from 'src/models/StudySector/StudySectorInitialismTranslationMapping';
 import StudySectorInitialism from 'src/models/StudySector/StudySectorInitialism';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 

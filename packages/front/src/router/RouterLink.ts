@@ -1,6 +1,6 @@
 enum RouterLink {
   Home = '/',
-  Profiles = '/profiles',
+  StudentCatalog = '/students',
   Contact = '/contact'
 }
 

@@ -1,4 +1,4 @@
-import './ProfileSearchPage.scss';
+import './StudentCatalog.scss';
 
 import useTranslation from 'src/hooks/useTranslation';
 import { I18nKey } from 'src/i18n/I18nKey';
@@ -6,46 +6,46 @@ import { I18nKey } from 'src/i18n/I18nKey';
 import FilterDisplayToggleButton from './components/FilterDisplayToggleButton/FilterDisplayToggleButton';
 import FilterDrawer from './components/FilterDrawer/FilterDrawer';
 import FilterMenu from './components/FilterMenu/FilterMenu';
-import useFilteredProfiles from './components/ProfileGrid/hooks/useProfiles';
-import ProfileGrid from './components/ProfileGrid/ProfileGrid';
+import useFilteredStudents from './components/StudentGrid/hooks/useStudents';
+import StudentGrid from './components/StudentGrid/StudentGrid';
 import useFilterDisplay from './hooks/useFilterDisplay';
 import useFilterDrawerDisplay from './hooks/useFilterDrawerDisplay';
 import useFilterMenuTopPosition from './hooks/useFilterMenuTopPosition';
-import useProfileSearchFilters from './hooks/useProfileSearchFilters';
+import useStudentCatalogFilters from './hooks/useStudentCatalogFilters';
 
-export default function ProfileSearchPage() {
+export default function StudentCatalogPage() {
   const { translate } = useTranslation();
-  const { filters, setFilters } = useProfileSearchFilters();
-  const { profiles, areProfilesLoading, filterProfiles } = useFilteredProfiles();
+  const { filters, setFilters } = useStudentCatalogFilters();
+  const { students, areStudentsLoading, filterStudents } = useFilteredStudents();
   const { areFiltersDisplayed, toggleFilterDisplay, closeFilterDrawer } = useFilterDisplay();
-  const { filterMenuTopPosition, profileHeaderRef } = useFilterMenuTopPosition();
+  const { filterMenuTopPosition, studentHeaderRef } = useFilterMenuTopPosition();
   const { isFilterDrawerDisplayed, filterMenuRef } = useFilterDrawerDisplay();
 
-  function updateProfiles(): void {
-    filterProfiles(filters);
+  function updateStudents(): void {
+    filterStudents(filters);
   }
 
   return (
-    <div className="profile-search-page">
-      <div className={`profiles ${!areFiltersDisplayed ? 'profiles--filter-hidden' : ''}`}>
-        <div ref={profileHeaderRef} className="profiles__header">
-          <h2 className="title">{`${translate(I18nKey.OurTalents)} (${areProfilesLoading ? 0 : profiles.length})`}</h2>
+    <div className="student-catalog-page">
+      <div className={`students ${!areFiltersDisplayed ? 'students--filter-hidden' : ''}`}>
+        <div ref={studentHeaderRef} className="students__header">
+          <h2 className="title">{`${translate(I18nKey.OurTalents)} (${areStudentsLoading ? 0 : students.length})`}</h2>
           <FilterDisplayToggleButton
             areFiltersDisplayed={areFiltersDisplayed}
             onClick={() => toggleFilterDisplay()}
           />
         </div>
-        <div className="profiles__main">
+        <div className="students__main">
           <FilterMenu
             ref={filterMenuRef}
-            className="profile-filter"
+            className="student-filter"
             filters={filters}
             topPosition={filterMenuTopPosition}
             hidden={!areFiltersDisplayed}
             onFilterUpdate={setFilters}
-            onFilterApplication={updateProfiles}
+            onFilterApplication={updateStudents}
           />
-          <ProfileGrid className="profile-grid" profiles={profiles} loading={areProfilesLoading} />
+          <StudentGrid className="student-grid" students={students} loading={areStudentsLoading} />
         </div>
       </div>
       <FilterDrawer
@@ -54,7 +54,7 @@ export default function ProfileSearchPage() {
         filters={filters}
         onClose={closeFilterDrawer}
         onFilterUpdate={setFilters}
-        onFilterApplication={updateProfiles}
+        onFilterApplication={updateStudents}
       />
     </div>
   );

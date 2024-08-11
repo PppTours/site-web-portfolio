@@ -17,7 +17,7 @@ const navigationLinks: NavigationLink[] = [
     translationKey: I18nKey.Home
   },
   {
-    href: RouterLink.Profiles,
+    href: RouterLink.StudentCatalog,
     translationKey: I18nKey.Profiles
   },
   {

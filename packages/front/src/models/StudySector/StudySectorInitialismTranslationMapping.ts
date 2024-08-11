@@ -3,7 +3,7 @@ import EnumTranslationMapping from 'src/utils/EnumTranslationMapping';
 
 import StudySectorInitialism from './StudySectorInitialism';
 
-class StudentSectorTranslationMapping extends EnumTranslationMapping<StudySectorInitialism> {
+class StudySectorInitialismTranslationMapping extends EnumTranslationMapping<StudySectorInitialism> {
   translationKeyMapping = {
     [StudySectorInitialism.DI]: I18nKey.DI,
     [StudySectorInitialism.DAE]: I18nKey.DAE,
@@ -14,4 +14,4 @@ class StudentSectorTranslationMapping extends EnumTranslationMapping<StudySector
   };
 }
 
-export const studySectorTranslationMapping = new StudentSectorTranslationMapping();
+export const studySectorTranslationMapping = new StudySectorInitialismTranslationMapping();

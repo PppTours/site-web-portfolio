@@ -1,4 +1,4 @@
-import './ProfileSearchBar.scss';
+import './StudentSearchBar.scss';
 
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
@@ -6,16 +6,16 @@ import useTranslation from 'src/hooks/useTranslation';
 import { I18nKey } from 'src/i18n/I18nKey';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-interface ProfileSearchBarProps extends AdditionalClassName {
+interface StudentSearchBarProps extends AdditionalClassName {
   value: string;
   onTextChange: (text: string) => void;
 }
 
-export default function ProfileSearchBar({
+export default function StudentSearchBar({
   value,
   className,
   onTextChange
-}: ProfileSearchBarProps) {
+}: StudentSearchBarProps) {
   const { translate } = useTranslation();
 
   return (

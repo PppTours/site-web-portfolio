@@ -5,15 +5,15 @@ import useTranslation from 'src/hooks/useTranslation';
 import { I18nKey } from 'src/i18n/I18nKey';
 import AdditionalClassName from 'src/types/AdditionalClassName';
 
-import { ProfileSearchFilters } from '../../hooks/useProfileSearchFilters';
+import { StudentCatalogFilters } from '../../hooks/useStudentCatalogFilters';
 import FilterGroup from '../FilterMenu/components/FilterGroup/FilterGroup';
-import ProfileSearchBar from '../FilterMenu/components/ProfileSearchBar/ProfileSearchBar';
+import ProfileSearchBar from '../FilterMenu/components/ProfileSearchBar/StudentSearchBar';
 import StudyLevelFilter from '../FilterMenu/components/StudyLevelFilter/StudyLevelFilter';
 import StudySectorFilter from '../FilterMenu/components/StudySectorFilter/StudySectorFilter';
 
 export interface FiltersProps extends AdditionalClassName {
-  filters: ProfileSearchFilters;
-  onFilterUpdate: (updatedFilters: ProfileSearchFilters) => void;
+  filters: StudentCatalogFilters;
+  onFilterUpdate: (updatedFilters: StudentCatalogFilters) => void;
   onFilterApplication: () => void;
 }
 
@@ -26,7 +26,7 @@ export default function Filters({
   const { translate } = useTranslation();
 
   function clearAllFilters(): void {
-    onFilterUpdate({ searchText: '', studySpecialties: [], studyLevels: [] });
+    onFilterUpdate({ searchText: '', studySectorInitialisms: [], studyLevels: [] });
   }
 
   function applyFilters(): void {
@@ -45,8 +45,10 @@ export default function Filters({
         </FilterGroup>
         <FilterGroup title={translate(I18nKey.StudySector)}>
           <StudySectorFilter
-            checkedOptions={filters.studySpecialties}
-            onUpdate={(studySpecialties) => onFilterUpdate({ ...filters, studySpecialties })}
+            checkedOptions={filters.studySectorInitialisms}
+            onUpdate={(studySectorInitialisms) =>
+              onFilterUpdate({ ...filters, studySectorInitialisms })
+            }
           />
         </FilterGroup>
         <FilterGroup title={translate(I18nKey.StudyLevel)}>

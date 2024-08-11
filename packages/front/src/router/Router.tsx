@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 import ContactPage from '../pages/Contact/ContactPage';
 import ErrorPage from '../pages/Error/ErrorPage';
 import HomePage from '../pages/Home/HomePage';
-import ProfileSearchPage from '../pages/ProfileSearch/ProfileSearchPage';
+import StudentCatalogPage from '../pages/StudentCatalog/StudentCatalog';
 import Template from '../templates/Template';
 import RouterLink from './RouterLink';
 
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: RouterLink.Profiles,
-        element: <ProfileSearchPage />
+        path: RouterLink.StudentCatalog,
+        element: <StudentCatalogPage />
       },
       {
         path: RouterLink.Contact,
